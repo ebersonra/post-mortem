@@ -24,10 +24,10 @@ Na madrugada de 21/10/2026 eu estava redesenhando este site com a ajuda de um ag
 |---|---|
 | 00:25 | Último commit do PR #3 na hora do merge: [`1352e4a`](https://github.com/ebersonra/post-mortem/commit/1352e4a8de75772031107f35747e16990314fcf9) |
 | 00:28 | PR #3 mergeado na `main` (merge [`1f566d3`](https://github.com/ebersonra/post-mortem/commit/1f566d373957a1de0770804f5a8ec592addaf7e6)) |
-| 00:38 | O agente faz push de [`8f400b3`](https://github.com/ebersonra/post-mortem/pull/3/commits/8f400b3ce08c7b0ae737096d4eeab8f3111abc63) (correção de `/archive/` e contraste no tema escuro) **no branch do PR #3, que já estava mergeado** |
+| 00:38 | O agente faz push de `8f400b3` (correção de `/archive/` e contraste no tema escuro) **no branch do [PR #3](https://github.com/ebersonra/post-mortem/pull/3), que já estava mergeado** |
 | 00:42 | A correção é reaplicada num branch novo como [`0122033`](https://github.com/ebersonra/post-mortem/commit/01220336fd15210bd004d6d64638081fe1f1b2ea), PR #4 |
 | 00:43 | PR #4 mergeado (merge [`6c9c8ef`](https://github.com/ebersonra/post-mortem/commit/6c9c8ef0889773f14e3b14bf6add3590f2304960)), com um único commit |
-| 00:47 | O agente faz push de [`a9a2ddc`](https://github.com/ebersonra/post-mortem/pull/4/commits/a9a2ddc790ada5ed300406140682697f826d62d8) (tema visual de jornal) no branch do PR #4, já mergeado |
+| 00:47 | O agente faz push de `a9a2ddc` (tema visual de jornal) no branch do [PR #4](https://github.com/ebersonra/post-mortem/pull/4), já mergeado |
 | 00:52 | PR #5 traz o tema de volta com cherry-pick ([`24866d5`](https://github.com/ebersonra/post-mortem/commit/24866d5896b052e2bb6b14d920fed285bd4669dc)) e acrescenta a troca de marca ([`f99c990`](https://github.com/ebersonra/post-mortem/commit/f99c99060dc6935853c2a6395261cf0d532e35b8)) |
 | 00:54 | PR #5 mergeado (merge [`0dd6216`](https://github.com/ebersonra/post-mortem/commit/0dd62163ba47836f7c11c41a554efab82b745e59)) |
 
