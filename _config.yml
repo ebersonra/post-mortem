@@ -7,6 +7,11 @@ kramdown:
   input: GFM
 url: "https://tech.bargainly.com.br"
 baseurl: ""
+image:
+  path: /assets/images/og/default.png
+  alt: Tech Blog Bargainly — post-mortems blameless, edição digital
+  width: 1200
+  height: 630
 plugins:
   - jekyll-seo-tag
 exclude:
@@ -14,10 +19,24 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - scripts
 defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      image:
+        path: /assets/images/og/default.png
+        alt: Tech Blog Bargainly — post-mortems blameless, edição digital
+        width: 1200
+        height: 630
+      twitter:
+        card: summary_large_image
   - scope:
       path: "postmortems"
       type: "pages"
     values:
       layout: postmortem
       type: postmortem
+      twitter:
+        card: summary_large_image

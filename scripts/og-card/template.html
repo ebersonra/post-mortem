@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #f7f3ea;
+      color: #1a1a1a;
+    }
+    .card {
+      width: 1200px;
+      height: 630px;
+      padding: 48px 72px 56px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #c9c0b0;
+    }
+    .dateline {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #3d3d3d;
+      margin-bottom: 20px;
+    }
+    .rule-thin {
+      width: 100%;
+      height: 0;
+      border-top: 1px solid #2a2a2a;
+      margin-bottom: 28px;
+    }
+    .brand {
+      font-family: "UnifrakturMaguntia", "Playfair Display", Georgia, serif;
+      font-size: 72px;
+      font-weight: 400;
+      line-height: 1;
+      margin-bottom: 24px;
+    }
+    .rule-double {
+      width: 100%;
+      height: 5px;
+      border-top: 3px solid #2a2a2a;
+      border-bottom: 1px solid #2a2a2a;
+      margin-bottom: 36px;
+    }
+    .kicker {
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #8b1538;
+      margin-bottom: 20px;
+    }
+    .headline {
+      font-family: "Source Serif 4", Georgia, serif;
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.25;
+      max-width: 980px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-line {
+      width: 100%;
+      border-top: 1px solid #c9c0b0;
+      margin-top: auto;
+      padding-top: 16px;
+      font-family: "Source Sans 3", sans-serif;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3d3d3d;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="dateline">Edição digital · tech.bargainly.com.br</p>
+    <div class="rule-thin" aria-hidden="true"></div>
+    <p class="brand">Tech Blog Bargainly</p>
+    <div class="rule-double" aria-hidden="true"></div>
+    <p class="kicker">__KICKER__</p>
+    <h1 class="headline">__HEADLINE__</h1>
+    <p class="footer-line">Post-mortems blameless · versão pública</p>
+  </div>
+</body>
+</html>
