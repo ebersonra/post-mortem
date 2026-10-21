@@ -1,6 +1,6 @@
 ---
 title: "O merge levou o PR, mas não a correção"
-date: 2026-10-01 00:00:00 -0300
+date: 2026-10-21 00:00:00 -0300
 description: "Com agentes de IA fazendo push, PR mergeado não significa correção entregue. Pronto é o SHA que está na main."
 tags: [git, workflow, ia]
 image:
