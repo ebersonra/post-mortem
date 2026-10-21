@@ -19,20 +19,24 @@ permissions:
 jobs:
   gitleaks:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     env:
       GITLEAKS_VERSION: "8.30.1"
+      # sha256 of the linux_x64 tarball, pinned here (not read from the same release).
+      # To bump: download the new tarball, verify it, and update both values in a PR.
+      GITLEAKS_SHA256: "551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb"
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
           fetch-depth: 0
-      - name: Install gitleaks (sha256 verified)
+          persist-credentials: false
+      - name: Install gitleaks (pinned sha256)
         run: |
           set -euo pipefail
           base="https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}"
           tarball="gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz"
           curl -sSfLO "${base}/${tarball}"
-          curl -sSfLO "${base}/gitleaks_${GITLEAKS_VERSION}_checksums.txt"
-          grep " ${tarball}\$" "gitleaks_${GITLEAKS_VERSION}_checksums.txt" | sha256sum -c -
+          echo "${GITLEAKS_SHA256}  ${tarball}" | sha256sum -c -
           tar -xzf "${tarball}" gitleaks
           sudo install -m 0755 gitleaks /usr/local/bin/gitleaks
       - name: Scan full history
