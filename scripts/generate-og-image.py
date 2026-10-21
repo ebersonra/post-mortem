@@ -7,7 +7,6 @@ import argparse
 import html
 import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -38,16 +37,15 @@ def optimize_png(path: Path) -> None:
 
 def screenshot(html: str, output: Path) -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
-    with tempfile.NamedTemporaryFile("w", suffix=".html", delete=False, encoding="utf-8") as tmp:
-        tmp.write(html)
-        tmp_path = Path(tmp.name)
+    tmp_path = TEMPLATE.parent / ".render-temp.html"
+    tmp_path.write_text(html, encoding="utf-8")
     try:
         from playwright.sync_api import sync_playwright
 
         with sync_playwright() as p:
             browser = p.chromium.launch()
             page = browser.new_page(viewport={"width": 1200, "height": 630}, device_scale_factor=1)
-            page.goto(tmp_path.as_uri(), wait_until="networkidle")
+            page.goto(tmp_path.as_uri(), wait_until="load")
             page.wait_for_timeout(800)
             page.screenshot(path=str(output), type="png", clip={"x": 0, "y": 0, "width": 1200, "height": 630})
             browser.close()
