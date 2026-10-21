@@ -1,0 +1,25 @@
+{% assign edition_time = site.time %}
+{% assign weekday_num = edition_time | date: '%w' | plus: 0 %}
+{% case weekday_num %}
+  {% when 0 %}{% assign weekday_pt = 'Domingo' %}
+  {% when 1 %}{% assign weekday_pt = 'Segunda-feira' %}
+  {% when 2 %}{% assign weekday_pt = 'Terça-feira' %}
+  {% when 3 %}{% assign weekday_pt = 'Quarta-feira' %}
+  {% when 4 %}{% assign weekday_pt = 'Quinta-feira' %}
+  {% when 5 %}{% assign weekday_pt = 'Sexta-feira' %}
+  {% when 6 %}{% assign weekday_pt = 'Sábado' %}
+{% endcase %}
+<div class="masthead">
+  <p class="masthead__dateline">
+    <span class="masthead__edition">Edição digital</span>
+    <span class="masthead__dateline-sep" aria-hidden="true">·</span>
+    <time datetime="{{ edition_time | date: '%Y-%m-%d' }}">{{ weekday_pt }}, {{ edition_time | date: '%d/%m/%Y' }}</time>
+    <span class="masthead__dateline-sep" aria-hidden="true">·</span>
+    <span class="masthead__tagline">Aprendizado blameless em produção</span>
+  </p>
+  <div class="rule rule--thin" aria-hidden="true"></div>
+  <p class="masthead__title-wrap">
+    <a class="masthead__title" href="{{ '/' | relative_url }}">{{ site.title | escape }}</a>
+  </p>
+  <div class="rule rule--double" aria-hidden="true"></div>
+</div>
