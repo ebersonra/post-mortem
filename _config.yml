@@ -33,5 +33,3 @@ defaults:
     values:
       layout: postmortem
       type: postmortem
-      twitter:
-        card: summary_large_image
