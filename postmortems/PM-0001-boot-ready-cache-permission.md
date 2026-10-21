@@ -11,6 +11,11 @@ tags:
   - permissões
   - observabilidade
 status: Resolvido
+image:
+  path: /assets/images/og/pm-0001.png
+  alt: "PM-0001 — Bot de WhatsApp não chegava a ready"
+  width: 1200
+  height: 630
 ---
 
 # PM-0001 — Bot de WhatsApp autenticava mas não chegava a `ready` após mudança na imagem Docker
