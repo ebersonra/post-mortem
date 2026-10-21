@@ -1,0 +1,9 @@
+title: Post-mortems
+description: Post-mortems blameless públicos (versões sanitizadas)
+theme: jekyll-theme-minimal
+lang: pt-BR
+markdown: kramdown
+kramdown:
+  input: GFM
+exclude:
+  - README.md
