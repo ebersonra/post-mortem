@@ -4,3 +4,5 @@ _site/
 .jekyll-metadata
 vendor/
 .bundle/
+
+scripts/og-card/.render-temp.html
