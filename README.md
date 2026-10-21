@@ -78,4 +78,6 @@ bundle exec jekyll build
 
 4. Rascunhos: use `published: false` para excluir do site (veja `_articles/draft-build-check.md`).
 
+   **Atenção:** `published: false` oculta a página no site gerado, mas o arquivo continua **público no repositório Git**. Não faça commit de rascunhos sobre assuntos sensíveis até estarem prontos para publicação.
+
 5. Índice público de artigos: `/artigos/`. A capa e o arquivo listam artigos e post-mortems juntos, ordenados por data.
