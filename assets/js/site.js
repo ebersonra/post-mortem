@@ -11,6 +11,9 @@
 
   function applyTheme(theme) {
     document.documentElement.setAttribute("data-theme", theme);
+  }
+
+  function persistTheme(theme) {
     try {
       localStorage.setItem("theme", theme);
     } catch (e) {
@@ -25,7 +28,9 @@
     if (themeToggle) {
       themeToggle.addEventListener("click", function () {
         var current = document.documentElement.getAttribute("data-theme") || "light";
-        applyTheme(current === "dark" ? "light" : "dark");
+        var next = current === "dark" ? "light" : "dark";
+        applyTheme(next);
+        persistTheme(next);
       });
     }
 
