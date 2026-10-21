@@ -1,4 +1,4 @@
-# Post-mortems
+# Tech Blog Bargainly
 
 Post-mortems **blameless** públicos (versões sanitizadas), publicados como site estático via GitHub Pages ("Deploy from a branch": `main`, `/`).
 
