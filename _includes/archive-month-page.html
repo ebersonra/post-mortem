@@ -1,0 +1,5 @@
+{% comment %}
+  Sets archive_month_page and archive_month_permalink for include.year and include.month (MM).
+{% endcomment %}
+{% assign archive_month_permalink = '/archive/' | append: include.year | append: '/' | append: include.month | append: '/' %}
+{% assign archive_month_page = site.pages | where: 'permalink', archive_month_permalink | first %}

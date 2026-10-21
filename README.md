@@ -80,4 +80,6 @@ bundle exec jekyll build
 
    **Atenção:** `published: false` oculta a página no site gerado, mas o arquivo continua **público no repositório Git**. Não faça commit de rascunhos sobre assuntos sensíveis até estarem prontos para publicação.
 
-5. Índice público de artigos: `/artigos/`. A capa e o arquivo listam artigos e post-mortems juntos, ordenados por data.
+5. Índice público de artigos: `/artigos/`. A capa e o arquivo listam artigos e post-mortems juntos, ordenados por data. Se o mês ainda não tiver `archive/YYYY/MM/index.md`, o arquivo geral lista o mês como texto (sem link) até você criar a página — evita links 404.
+
+6. Ao publicar em um mês novo, crie os stubs de arquivo como nos post-mortems (passo 5 da seção de post-mortems).
