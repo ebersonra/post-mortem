@@ -48,7 +48,7 @@ bundle exec jekyll build
    ```yaml
    ---
    title: "Título do artigo"
-   date: 2026-11-01
+   date: 2026-10-21 00:00:00 -0300
    description: "Resumo curto para cards e meta description."
    tags:
      - tag1
@@ -56,7 +56,7 @@ bundle exec jekyll build
    ---
    ```
 
-   Use `date` no primeiro dia do mês, preferencialmente com offset `-0300` (ex.: `2026-11-01 00:00:00 -0300`), como nos post-mortems; o site exibe **mês/ano** nos cards.
+   Use a **data real de publicação** à meia-noite no fuso de São Paulo (ex.: `2026-10-21 00:00:00 -0300`), para que `datePublished` e `article:published_time` reflitam o dia correto. Nos cards e listagens, o site exibe apenas **mês/ano** (não o dia); isso vem dos templates, não do valor de `date`.
 
 2. Mantenha o H1 completo no corpo Markdown (o layout não duplica o título).
 
@@ -76,7 +76,7 @@ bundle exec jekyll build
      height: 630
    ```
 
-4. Rascunhos: use `published: false` para excluir do site (veja `_articles/draft-build-check.md`). O workflow **jekyll-build** copia `tests/fixtures/articles/ci-published-article.md` para `_articles/` só no CI — o site em produção não inclui esse artigo.
+4. Rascunhos: defina `published: false` no front matter para que o Jekyll não gere a página HTML no site. O workflow **jekyll-build** copia `tests/fixtures/articles/ci-published-article.md` para `_articles/` só no CI — o site em produção não inclui esse artigo.
 
    **Atenção:** `published: false` oculta a página no site gerado, mas o arquivo continua **público no repositório Git**. Não faça commit de rascunhos sobre assuntos sensíveis até estarem prontos para publicação.
 
