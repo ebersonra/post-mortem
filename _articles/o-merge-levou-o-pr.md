@@ -83,7 +83,7 @@ git merge-base --is-ancestor <sha-do-agente> origin/main && echo "na main" || ec
 
 **5. Tratar a descrição do PR como intenção, não como evidência.** O que conta é a lista de commits e o diff. Se a descrição cita algo que não está no diff, o PR não está pronto.
 
-**6. Apagar o branch automaticamente depois do merge.** Com a opção "Automatically delete head branches" ligada, um push depois do merge recria o branch, e ele aparece como branch novo sem PR. O commit atrasado fica visível em vez de sumir em silêncio no branch antigo.
+**6. (Próximo passo) Apagar o branch automaticamente depois do merge.** Ainda não está ligado aqui. Com a opção "Automatically delete head branches" ligada, um push depois do merge recria o branch, e ele aparece como branch novo sem PR. O commit atrasado fica visível em vez de sumir em silêncio no branch antigo.
 
 Ainda não automatizei nada disso. O próximo passo é um check simples que, depois do merge, avisa se o branch de origem recebeu commits que não estão na `main`.
 
