@@ -2,6 +2,7 @@ title: Tech Blog Bargainly
 description: Post-mortems blameless públicos (versões sanitizadas) — Tech Blog Bargainly
 theme: jekyll-theme-minimal
 lang: pt-BR
+timezone: America/Sao_Paulo
 markdown: kramdown
 kramdown:
   input: GFM
