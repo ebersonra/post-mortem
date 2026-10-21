@@ -33,7 +33,9 @@ bundle exec jekyll build
    ---
    ```
 
-4. Para arquivo por data, adicione stubs quando o ano ou mês ainda não existir:
+4. Listagens com loops Liquid + HTML devem ficar em `_layouts/` (ex.: `archive-index`, `projects-index`), não em Markdown indentado — o kramdown trata HTML indentado como bloco de código.
+
+5. Para arquivo por data, adicione stubs quando o ano ou mês ainda não existir:
    - Ano: `archive/YYYY/index.md` com `layout: archive-year`, `year: YYYY`, `permalink: /archive/YYYY/`
    - Mês: `archive/YYYY/MM/index.md` com `layout: archive-month`, `year`, `month`, `month_label` (nome em português), `permalink: /archive/YYYY/MM/`
 

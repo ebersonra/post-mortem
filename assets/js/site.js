@@ -31,6 +31,7 @@
         var next = current === "dark" ? "light" : "dark";
         applyTheme(next);
         persistTheme(next);
+        window.dispatchEvent(new CustomEvent("site-theme-change", { detail: { theme: next } }));
       });
     }
 

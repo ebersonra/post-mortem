@@ -34,17 +34,18 @@ html[data-theme="light"] {
 html[data-theme="dark"] {
   --bg: #0b1120;
   --bg-elevated: #111827;
-  --text: #e5e7eb;
-  --text-muted: #94a3b8;
-  --border: #334155;
-  --link: #93c5fd;
-  --link-hover: #bfdbfe;
-  --accent: #38bdf8;
+  --text: #f3f4f6;
+  --text-muted: #cbd5e1;
+  --border: #475569;
+  --link: #bae6fd;
+  --link-hover: #e0f2fe;
+  --accent: #7dd3fc;
   --accent-soft: #0c4a6e;
-  --focus: #60a5fa;
+  --focus: #93c5fd;
   --tag-bg: #1e293b;
+  --tag-text: #f3f4f6;
   --status-bg: #14532d;
-  --status-text: #bbf7d0;
+  --status-text: #dcfce7;
   --hero-gradient: linear-gradient(135deg, #0f172a 0%, #111827 55%, #082f49 100%);
 }
 
@@ -348,7 +349,7 @@ button:focus-visible {
 .tag {
   display: inline-block;
   background: var(--tag-bg);
-  color: var(--text);
+  color: var(--tag-text, var(--text));
   border-radius: 999px;
   padding: 0.15rem 0.65rem;
   font-size: 0.82rem;
@@ -541,7 +542,15 @@ button:focus-visible {
   padding: var(--space-3) var(--space-4);
   border-left: 4px solid var(--accent);
   background: color-mix(in srgb, var(--accent-soft) 35%, transparent);
-  color: var(--text-muted);
+  color: var(--text);
+}
+
+.prose .mermaid {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+  overflow-x: auto;
 }
 
 @media (max-width: 720px) {
