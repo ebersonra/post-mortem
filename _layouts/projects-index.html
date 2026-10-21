@@ -1,0 +1,29 @@
+---
+layout: page
+---
+{% assign posts = site.pages | where: 'type', 'postmortem' | where_exp: 'item', 'item.project != nil' | sort: 'date' | reverse %}
+{% if posts.size == 0 %}
+  <p class="empty-state">Nenhum projeto com post-mortems ainda.</p>
+{% else %}
+  <ul class="project-index">
+    {% assign seen = '' %}
+    {% for post in posts %}
+      {% assign slug = post.project %}
+      {% unless seen contains slug %}
+        {% assign seen = seen | append: slug | append: ',' %}
+        {% assign count = 0 %}
+        {% for p in posts %}
+          {% if p.project == slug %}
+            {% assign count = count | plus: 1 %}
+          {% endif %}
+        {% endfor %}
+        <li class="project-index__item">
+          <a href="{{ '/projects/' | append: slug | append: '/' | relative_url }}">
+            <span class="project-index__name">{{ post.project_name | default: slug | escape }}</span>
+            <span class="project-index__count">{{ count }} post-mortem{% if count != 1 %}s{% endif %}</span>
+          </a>
+        </li>
+      {% endunless %}
+    {% endfor %}
+  </ul>
+{% endif %}
