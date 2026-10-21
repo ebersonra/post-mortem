@@ -25,14 +25,17 @@
 <body>
   <a class="skip-link" href="#main-content">Pular para o conteúdo</a>
   <header class="site-header">
-    {% include site-nav.html %}
+    <div class="site-header__inner">
+      {% include masthead.html %}
+      {% include site-nav.html %}
+    </div>
   </header>
   <main id="main-content" class="site-main">
     {{ content }}
   </main>
   <footer class="site-footer">
     <p>Post-mortems blameless — versões públicas e sanitizadas.</p>
-    <p class="site-footer__meta">Publicado via GitHub Pages · Tema base <code>jekyll-theme-minimal</code></p>
+    <p class="site-footer__meta">Edição digital · GitHub Pages</p>
   </footer>
 </body>
 </html>
