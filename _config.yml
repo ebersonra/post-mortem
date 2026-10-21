@@ -7,11 +7,6 @@ kramdown:
   input: GFM
 url: "https://tech.bargainly.com.br"
 baseurl: ""
-image:
-  path: /assets/images/og/default.png
-  alt: Tech Blog Bargainly — post-mortems blameless, edição digital
-  width: 1200
-  height: 630
 plugins:
   - jekyll-seo-tag
 exclude:
