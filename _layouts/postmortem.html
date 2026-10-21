@@ -1,0 +1,41 @@
+---
+layout: default
+---
+<article class="pm-article">
+  <header class="pm-article__header">
+    {% if page.pm_id %}<p class="pm-article__id">{{ page.pm_id | escape }}</p>{% endif %}
+    <dl class="pm-article__meta">
+      {% if page.date %}
+        <div>
+          <dt>Data</dt>
+          <dd><time datetime="{{ page.date | date: '%Y-%m' }}">{% include date-pt.html date=page.date format='month-year' %}</time></dd>
+        </div>
+      {% endif %}
+      {% if page.project %}
+        <div>
+          <dt>Projeto</dt>
+          <dd><a href="{{ '/projects/' | append: page.project | append: '/' | relative_url }}">{{ page.project_name | default: page.project | escape }}</a></dd>
+        </div>
+      {% endif %}
+      {% if page.status %}
+        <div>
+          <dt>Status</dt>
+          <dd><span class="status-pill">{{ page.status | escape }}</span></dd>
+        </div>
+      {% endif %}
+    </dl>
+    {% if page.tags.size > 0 %}
+      <ul class="tag-list" aria-label="Tags">
+        {% for tag in page.tags %}
+          <li><span class="tag">{{ tag | escape }}</span></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if page.summary %}
+      <p class="pm-article__summary">{{ page.summary | escape }}</p>
+    {% endif %}
+  </header>
+  <div class="pm-article__content prose">
+    {{ content }}
+  </div>
+</article>
