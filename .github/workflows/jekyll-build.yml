@@ -34,3 +34,7 @@ jobs:
           test ! -e _site/tests
           grep -q 'post-card__type">Artigo' _site/index.html
           grep -q 'post-card__type">Post-mortem' _site/index.html
+          artigo_line="$(grep -n 'post-card__type">Artigo' _site/index.html | head -1 | cut -d: -f1)"
+          pm_line="$(grep -n 'post-card__type">Post-mortem' _site/index.html | head -1 | cut -d: -f1)"
+          test -n "$artigo_line" && test -n "$pm_line"
+          test "$artigo_line" -lt "$pm_line"
