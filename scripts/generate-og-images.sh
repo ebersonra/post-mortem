@@ -10,3 +10,4 @@ python3 scripts/generate-og-image.py \
   --output assets/images/og/pm-0001.png \
   --kicker "Post-mortem" \
   --headline "PM-0001 — Bot de WhatsApp não chegava a ready"
+python3 scripts/generate-og-image.py --articles

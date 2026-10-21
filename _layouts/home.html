@@ -1,14 +1,16 @@
 ---
 layout: default
 ---
-{% assign posts = site.pages | where: 'type', 'postmortem' | sort: 'date' | reverse %}
-{% assign latest = posts | first %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' %}
+{% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
+{% assign publications = postmortems | concat: published_articles | sort: 'date' | reverse %}
+{% assign latest = publications | first %}
 
 <section class="front-mast">
   <p class="kicker">Primeira página</p>
   <h1 class="front-mast__headline">{{ page.title | default: site.title | escape }}</h1>
   <p class="front-mast__deck">
-    {{ page.hero_lead | default: "Post-mortems blameless publicados como material de aprendizado. Versões sanitizadas: identificadores internos, infraestrutura e dados pessoais foram removidos." | escape }}
+    {{ page.hero_lead | default: "Post-mortems blameless e artigos técnicos publicados como material de aprendizado. Versões sanitizadas: identificadores internos, infraestrutura e dados pessoais foram removidos." | escape }}
   </p>
 </section>
 
@@ -16,7 +18,7 @@ layout: default
 <section class="lead-story" aria-labelledby="lead-heading">
   <div class="section-heading">
     <h2 id="lead-heading" class="section-heading__title">Manchete</h2>
-    <a class="text-link kicker-link" href="{{ '/postmortems/' | relative_url }}">Todas as matérias</a>
+    <a class="text-link kicker-link" href="{{ '/archive/' | relative_url }}">Arquivo</a>
   </div>
   {% include post-card.html post=latest featured=true %}
 </section>
@@ -27,26 +29,36 @@ layout: default
     <h2 id="columns-heading" class="section-heading__title">Colunas</h2>
     <a class="text-link kicker-link" href="{{ '/archive/' | relative_url }}">Arquivo</a>
   </div>
-  {% if posts.size > 1 %}
+  {% if publications.size > 1 %}
     <div class="front-columns__grid">
-      {% for post in posts offset: 1 limit: 6 %}
+      {% for post in publications offset: 1 limit: 6 %}
         {% include post-card.html post=post %}
       {% endfor %}
     </div>
-  {% elsif posts.size == 1 %}
+  {% elsif publications.size == 1 %}
     <p class="empty-state">Mais edições serão publicadas em breve.</p>
   {% else %}
-    <p class="empty-state">Nenhum post-mortem publicado ainda.</p>
+    <p class="empty-state">Nenhuma publicação ainda.</p>
   {% endif %}
 </section>
 
 <section class="front-sections" aria-labelledby="sections-heading">
   <h2 id="sections-heading" class="section-heading__title section-heading__title--solo">Seções</h2>
   <div class="front-sections__grid">
+    <a class="section-teaser" href="{{ '/postmortems/' | relative_url }}">
+      <span class="kicker">Índice</span>
+      <span class="section-teaser__title">Post-mortems</span>
+      <span class="section-teaser__desc">Incidentes blameless com foco em sistemas e processos.</span>
+    </a>
+    <a class="section-teaser" href="{{ '/artigos/' | relative_url }}">
+      <span class="kicker">Índice</span>
+      <span class="section-teaser__title">Artigos</span>
+      <span class="section-teaser__desc">Textos técnicos e notas de engenharia.</span>
+    </a>
     <a class="section-teaser" href="{{ '/projects/' | relative_url }}">
       <span class="kicker">Índice</span>
       <span class="section-teaser__title">Por projeto</span>
-      <span class="section-teaser__desc">Incidentes agrupados pelo sistema ou produto afetado.</span>
+      <span class="section-teaser__desc">Post-mortems agrupados pelo sistema ou produto afetado.</span>
     </a>
     <a class="section-teaser" href="{{ '/archive/' | relative_url }}">
       <span class="kicker">Cronologia</span>

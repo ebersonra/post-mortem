@@ -2,11 +2,16 @@ title: Tech Blog Bargainly
 description: Post-mortems blameless públicos (versões sanitizadas) — Tech Blog Bargainly
 theme: jekyll-theme-minimal
 lang: pt-BR
+timezone: America/Sao_Paulo
 markdown: kramdown
 kramdown:
   input: GFM
 url: "https://tech.bargainly.com.br"
 baseurl: ""
+collections:
+  articles:
+    output: true
+    permalink: /artigos/:slug.html
 plugins:
   - jekyll-seo-tag
 exclude:
@@ -15,6 +20,7 @@ exclude:
   - Gemfile.lock
   - vendor
   - scripts
+  - tests
 defaults:
   - scope:
       path: ""
@@ -33,3 +39,15 @@ defaults:
     values:
       layout: postmortem
       type: postmortem
+  - scope:
+      type: "articles"
+    values:
+      layout: article
+      type: article
+      image:
+        path: /assets/images/og/default.png
+        alt: Tech Blog Bargainly — artigos e post-mortems
+        width: 1200
+        height: 630
+      twitter:
+        card: summary_large_image

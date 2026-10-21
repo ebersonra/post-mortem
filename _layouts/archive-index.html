@@ -1,9 +1,11 @@
 ---
 layout: page
 ---
-{% assign posts = site.pages | where: 'type', 'postmortem' | where_exp: 'item', 'item.date != nil' | sort: 'date' | reverse %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' | where_exp: 'item', 'item.date != nil' %}
+{% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' | where_exp: 'item', 'item.date != nil' %}
+{% assign posts = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% if posts.size == 0 %}
-  <p class="empty-state">Nenhum post-mortem datado ainda.</p>
+  <p class="empty-state">Nenhuma publicação datada ainda.</p>
 {% else %}
   {% assign current_year = '' %}
   {% assign seen_months = '' %}
@@ -21,7 +23,14 @@ layout: page
     {% assign month_entry = y | append: '-' | append: m %}
     {% unless seen_months contains month_entry %}
       {% assign seen_months = seen_months | append: month_entry | append: ',' %}
-      <li><a href="{{ '/archive/' | append: y | append: '/' | append: m | append: '/' | relative_url }}">{% include date-pt.html date=post.date format='month' %}</a></li>
+      {% include archive-month-page.html year=y month=m %}
+      <li>
+        {% if archive_month_page %}
+          <a href="{{ archive_month_permalink | relative_url }}">{% include date-pt.html date=post.date format='month' %}</a>
+        {% else %}
+          <span>{% include date-pt.html date=post.date format='month' %}</span>
+        {% endif %}
+      </li>
     {% endunless %}
   {% endfor %}
   </ul></section>

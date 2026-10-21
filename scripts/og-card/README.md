@@ -8,6 +8,8 @@ Arquivos TTF vendored em `fonts/` (repositório [google/fonts](https://github.co
 
 Integridade: `fonts/SHA256SUMS` — verificado por `scripts/generate-og-image.py` antes de cada geração (checksum, `file`, `fc-scan`). Falha ruidosamente se algo estiver ausente ou inválido.
 
+Dependências Python (OG): `pip install -r scripts/requirements-og.txt`. O modo `--articles` lê front matter com `yaml.safe_load`, ignora `published: false` (e outros valores YAML falsos), e encerra com erro se um artigo publicado não tiver `title`.
+
 Para baixar novamente (use `curl -fsSL`):
 
 ```bash

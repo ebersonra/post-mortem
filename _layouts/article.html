@@ -1,0 +1,29 @@
+---
+layout: default
+---
+<article class="pm-article">
+  <header class="pm-article__header">
+    <p class="pm-article__id">Artigo</p>
+    <dl class="pm-article__meta">
+      {% if page.date %}
+        <div>
+          <dt>Data</dt>
+          <dd><time datetime="{{ page.date | date: '%Y-%m' }}">{% include date-pt.html date=page.date format='month-year' %}</time></dd>
+        </div>
+      {% endif %}
+    </dl>
+    {% if page.tags.size > 0 %}
+      <ul class="tag-list" aria-label="Tags">
+        {% for tag in page.tags %}
+          <li><span class="tag">{{ tag | escape }}</span></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    {% if page.description %}
+      <p class="pm-article__summary">{{ page.description | escape }}</p>
+    {% endif %}
+  </header>
+  <div class="pm-article__content prose">
+    {{ content }}
+  </div>
+</article>

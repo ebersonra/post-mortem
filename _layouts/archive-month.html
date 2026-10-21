@@ -3,7 +3,9 @@ layout: page
 ---
 {% assign year = page.year | append: '' %}
 {% assign month = page.month | prepend: '0' | slice: -2, 2 %}
-{% assign posts = site.pages | where: 'type', 'postmortem' | sort: 'date' | reverse %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' %}
+{% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
+{% assign posts = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% assign month_label = page.month_label %}
 {% assign found = false %}
 
@@ -30,5 +32,5 @@ layout: page
 </div>
 
 {% unless found %}
-  <p class="empty-state">Nenhum post-mortem neste mês.</p>
+  <p class="empty-state">Nenhuma publicação neste mês.</p>
 {% endunless %}

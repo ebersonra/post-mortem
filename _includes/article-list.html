@@ -1,0 +1,10 @@
+{% assign articles = site.articles | where_exp: 'item', 'item.published != false' | sort: 'date' | reverse %}
+{% if articles.size == 0 %}
+  <p class="empty-state">Nenhum artigo publicado ainda.</p>
+{% else %}
+  <div class="post-grid">
+    {% for post in articles %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+{% endif %}
