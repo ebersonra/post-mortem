@@ -3,8 +3,15 @@ layout: default
 ---
 {% assign postmortems = site.pages | where: 'type', 'postmortem' %}
 {% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
-{% assign publications = postmortems | concat: published_articles | sort: 'date' | reverse %}
-{% assign latest = publications | first %}
+{% assign publications_pool = postmortems | concat: published_articles %}
+{% include sort-publications-by-date.html postmortems=postmortems articles=published_articles %}
+{% assign latest = nil %}
+{% assign latest_url = publication_sorted_urls | first %}
+{% for post in publications_pool %}
+  {% if post.url == latest_url %}
+    {% assign latest = post %}
+  {% endif %}
+{% endfor %}
 
 <section class="front-mast">
   <p class="kicker">Primeira página</p>
@@ -29,13 +36,21 @@ layout: default
     <h2 id="columns-heading" class="section-heading__title">Colunas</h2>
     <a class="text-link kicker-link" href="{{ '/archive/' | relative_url }}">Arquivo</a>
   </div>
-  {% if publications.size > 1 %}
+  {% if publications_pool.size > 1 %}
     <div class="front-columns__grid">
-      {% for post in publications offset: 1 limit: 6 %}
-        {% include post-card.html post=post %}
+      {% assign col_count = 0 %}
+      {% for pub_url in publication_sorted_urls %}
+        {% if forloop.index > 1 and col_count < 6 %}
+          {% for post in publications_pool %}
+            {% if post.url == pub_url %}
+              {% include post-card.html post=post %}
+              {% assign col_count = col_count | plus: 1 %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
       {% endfor %}
     </div>
-  {% elsif publications.size == 1 %}
+  {% elsif publications_pool.size == 1 %}
     <p class="empty-state">Mais edições serão publicadas em breve.</p>
   {% else %}
     <p class="empty-state">Nenhuma publicação ainda.</p>
