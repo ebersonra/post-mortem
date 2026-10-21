@@ -30,9 +30,20 @@ def optimize_png(path: Path) -> None:
             ["pngquant", "--force", "--skip-if-larger", "--quality", "65-85", "-o", str(path), str(path)],
             check=True,
             capture_output=True,
+            text=True,
         )
-    except (FileNotFoundError, subprocess.CalledProcessError):
-        pass
+    except FileNotFoundError:
+        print(
+            "Warning: pngquant not found; PNG was written without lossy optimization.",
+            file=sys.stderr,
+        )
+    except subprocess.CalledProcessError as err:
+        detail = (err.stderr or err.stdout or "").strip()
+        print(
+            "Warning: pngquant failed; PNG was written without lossy optimization."
+            + (f" ({detail})" if detail else ""),
+            file=sys.stderr,
+        )
 
 
 def screenshot(html: str, output: Path) -> None:
