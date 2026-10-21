@@ -4,10 +4,10 @@ layout: page
 {% assign slug = page.project %}
 {% assign posts = site.pages | where: 'type', 'postmortem' | where: 'project', slug | sort: 'date' | reverse %}
 
-<p class="breadcrumb"><a href="{{ '/projects/' | relative_url }}">Projetos</a> / {{ page.project_name | default: slug }}</p>
+<p class="breadcrumb"><a href="{{ '/projects/' | relative_url }}">Projetos</a> / {{ page.project_name | default: slug | escape }}</p>
 
 {% if page.project_description %}
-  <p class="content-page__subtitle">{{ page.project_description }}</p>
+  <p class="content-page__subtitle">{{ page.project_description | escape }}</p>
 {% endif %}
 
 {% if posts.size == 0 %}

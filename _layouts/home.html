@@ -6,9 +6,9 @@ layout: default
 
 <section class="hero">
   <p class="eyebrow">Tech blog · aprendizado em produção</p>
-  <h1>{{ page.title | default: site.title }}</h1>
+  <h1>{{ page.title | default: site.title | escape }}</h1>
   <p class="hero__lead">
-    {{ page.hero_lead | default: "Post-mortems blameless publicados como material de aprendizado. Versões sanitizadas: identificadores internos, infraestrutura e dados pessoais foram removidos." }}
+    {{ page.hero_lead | default: "Post-mortems blameless publicados como material de aprendizado. Versões sanitizadas: identificadores internos, infraestrutura e dados pessoais foram removidos." | escape }}
   </p>
 </section>
 

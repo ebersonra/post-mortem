@@ -3,7 +3,7 @@ layout: default
 ---
 <article class="pm-article">
   <header class="pm-article__header">
-    {% if page.pm_id %}<p class="pm-article__id">{{ page.pm_id }}</p>{% endif %}
+    {% if page.pm_id %}<p class="pm-article__id">{{ page.pm_id | escape }}</p>{% endif %}
     <dl class="pm-article__meta">
       {% if page.date %}
         <div>

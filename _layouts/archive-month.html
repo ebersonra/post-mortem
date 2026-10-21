@@ -10,7 +10,7 @@ layout: page
 <p class="breadcrumb">
   <a href="{{ '/archive/' | relative_url }}">Arquivo</a> /
   <a href="{{ '/archive/' | append: year | append: '/' | relative_url }}">{{ year }}</a> /
-  <span>{% if month_label %}{{ month_label }}{% else %}{{ month }}{% endif %}</span>
+  <span>{% if month_label %}{{ month_label | escape }}{% else %}{{ month | escape }}{% endif %}</span>
 </p>
 
 <div class="post-grid">

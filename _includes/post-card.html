@@ -2,33 +2,33 @@
 {% assign card_href = card.url | relative_url %}
 <article class="post-card{% if include.featured %} post-card--featured{% endif %}">
   <div class="post-card__meta">
-    {% if card.pm_id %}<span class="post-card__id">{{ card.pm_id }}</span>{% endif %}
+    {% if card.pm_id %}<span class="post-card__id">{{ card.pm_id | escape }}</span>{% endif %}
     {% if card.date %}
       <time datetime="{{ card.date | date: '%Y-%m' }}">{% include date-pt.html date=card.date format='month-year' %}</time>
     {% endif %}
   </div>
   {% if include.featured %}
-    <h2 class="post-card__title"><a href="{{ card_href }}">{{ card.title | default: card.pm_id }}</a></h2>
+    <h2 class="post-card__title"><a href="{{ card_href }}">{{ card.title | default: card.pm_id | escape }}</a></h2>
   {% else %}
-    <h3 class="post-card__title"><a href="{{ card_href }}">{{ card.title | default: card.pm_id }}</a></h3>
+    <h3 class="post-card__title"><a href="{{ card_href }}">{{ card.title | default: card.pm_id | escape }}</a></h3>
   {% endif %}
   {% if card.project_name or card.project %}
     <p class="post-card__project">
       Projeto:
-      <a href="{{ '/projects/' | append: card.project | append: '/' | relative_url }}">{{ card.project_name | default: card.project }}</a>
+      <a href="{{ '/projects/' | append: card.project | append: '/' | relative_url }}">{{ card.project_name | default: card.project | escape }}</a>
     </p>
   {% endif %}
   {% if card.summary %}
-    <p class="post-card__summary">{{ card.summary }}</p>
+    <p class="post-card__summary">{{ card.summary | escape }}</p>
   {% endif %}
   {% if card.tags.size > 0 %}
     <ul class="tag-list" aria-label="Tags">
       {% for tag in card.tags %}
-        <li><span class="tag">{{ tag }}</span></li>
+        <li><span class="tag">{{ tag | escape }}</span></li>
       {% endfor %}
     </ul>
   {% endif %}
   {% if card.status %}
-    <p class="post-card__status"><span class="status-pill">{{ card.status }}</span></p>
+    <p class="post-card__status"><span class="status-pill">{{ card.status | escape }}</span></p>
   {% endif %}
 </article>

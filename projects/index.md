@@ -23,7 +23,7 @@ permalink: /projects/
         {% endfor %}
         <li class="project-index__item">
           <a href="{{ '/projects/' | append: slug | append: '/' | relative_url }}">
-            <span class="project-index__name">{{ post.project_name | default: slug }}</span>
+            <span class="project-index__name">{{ post.project_name | default: slug | escape }}</span>
             <span class="project-index__count">{{ count }} post-mortem{% if count != 1 %}s{% endif %}</span>
           </a>
         </li>
