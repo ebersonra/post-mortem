@@ -76,7 +76,7 @@ bundle exec jekyll build
      height: 630
    ```
 
-4. Rascunhos: use `published: false` para excluir do site (veja `_articles/draft-build-check.md`).
+4. Rascunhos: use `published: false` para excluir do site (veja `_articles/draft-build-check.md`). O workflow **jekyll-build** copia `tests/fixtures/articles/ci-published-article.md` para `_articles/` só no CI — o site em produção não inclui esse artigo.
 
    **Atenção:** `published: false` oculta a página no site gerado, mas o arquivo continua **público no repositório Git**. Não faça commit de rascunhos sobre assuntos sensíveis até estarem prontos para publicação.
 

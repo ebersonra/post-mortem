@@ -1,0 +1,35 @@
+# Validates GitHub Pages build, including a published article copied from tests/fixtures.
+# The fixture is not part of the live site (Pages builds the repo without this step).
+name: jekyll-build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@4f9c8a781a87440a9c94a58b06aefccc55823233 # v1
+        with:
+          ruby-version: "3.3"
+          bundler-cache: true
+      - name: Stage CI article fixture
+        run: cp tests/fixtures/articles/ci-published-article.md "_articles/ci-published-article.md"
+      - name: Build site
+        run: bundle exec jekyll build
+      - name: Assert article output and mixed listing
+        run: |
+          set -euo pipefail
+          test -f _site/artigos/ci-published-article.html
+          grep -q 'post-card__type">Artigo' _site/index.html
+          grep -q 'post-card__type">Post-mortem' _site/index.html
