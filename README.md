@@ -18,7 +18,7 @@ bundle exec jekyll build
 
 ## Publicar um novo post-mortem
 
-1. Adicione `postmortems/PM-XXXX-slug.md` com front matter (`title`, `pm_id`, `date`, `project`, `project_name`, `summary`, `tags`, `status`). Use `date` no primeiro dia do mês de publicação (ex.: `2026-11-01`); o site exibe **mês/ano** nos cards e metadados, não o dia exato.
+1. Adicione `postmortems/PM-XXXX-slug.md` com front matter (`title`, `pm_id`, `date`, `project`, `project_name`, `summary`, `tags`, `status`). Use `date` no primeiro dia do mês de publicação com hora UTC (ex.: `2026-11-01 00:00:00 +0000`) para ordenação correta junto com artigos; o site exibe **mês/ano** nos cards e metadados, não o dia exato.
 2. Mantenha o H1 completo no corpo Markdown do post-mortem (o layout não duplica o título).
 3. Se o `project` for novo, crie `projects/<slug>.md`:
 

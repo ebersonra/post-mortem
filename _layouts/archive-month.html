@@ -5,8 +5,7 @@ layout: page
 {% assign month = page.month | prepend: '0' | slice: -2, 2 %}
 {% assign postmortems = site.pages | where: 'type', 'postmortem' %}
 {% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
-{% assign publications_pool = postmortems | concat: published_articles %}
-{% include sort-publications-by-date.html postmortems=postmortems articles=published_articles %}
+{% assign posts = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% assign month_label = page.month_label %}
 {% assign found = false %}
 
@@ -17,20 +16,18 @@ layout: page
 </p>
 
 <div class="post-grid">
-  {% for pub_url in publication_sorted_urls %}
-    {% for post in publications_pool %}
-      {% if post.url == pub_url and post.date %}
-        {% assign post_year = post.date | date: '%Y' %}
-        {% assign post_month = post.date | date: '%m' %}
-        {% if post_year == year and post_month == month %}
-          {% assign found = true %}
-          {% unless month_label %}
-            {% capture month_label %}{% include date-pt.html date=post.date format='month' %}{% endcapture %}
-          {% endunless %}
-          {% include post-card.html post=post %}
-        {% endif %}
+  {% for post in posts %}
+    {% if post.date %}
+      {% assign post_year = post.date | date: '%Y' %}
+      {% assign post_month = post.date | date: '%m' %}
+      {% if post_year == year and post_month == month %}
+        {% assign found = true %}
+        {% unless month_label %}
+          {% capture month_label %}{% include date-pt.html date=post.date format='month' %}{% endcapture %}
+        {% endunless %}
+        {% include post-card.html post=post %}
       {% endif %}
-    {% endfor %}
+    {% endif %}
   {% endfor %}
 </div>
 
