@@ -4,17 +4,19 @@ Gera PNGs 1200×630 offline a partir de `template.html` via Playwright.
 
 ## Fontes
 
-As fontes ficam em `fonts/` (TTF vendored do repositório [google/fonts](https://github.com/google/fonts), licença OFL). **Não há chamada de rede** durante o render.
+Arquivos TTF vendored em `fonts/` (repositório [google/fonts](https://github.com/google/fonts), licença OFL). **Sem rede** no render.
 
-Se os arquivos em `fonts/` estiverem ausentes, o Chromium usa os fallbacks declarados no CSS (`Georgia`, `Segoe UI`, etc.) — o cartão continua gerando, com tipografia aproximada.
+Integridade: `fonts/SHA256SUMS` — verificado por `scripts/generate-og-image.py` antes de cada geração (checksum, `file`, `fc-scan`). Falha ruidosamente se algo estiver ausente ou inválido.
 
-Para restaurar as fontes:
+Para baixar novamente (use `curl -fsSL`):
 
 ```bash
-curl -sL -o fonts/UnifrakturMaguntia-Regular.ttf \
-  "https://github.com/google/fonts/raw/main/ofl/unifrakturmaguntia/UnifrakturMaguntia-Regular.ttf"
-curl -sL -o fonts/SourceSerif4-Variable.ttf \
-  "https://github.com/google/fonts/raw/main/ofl/sourceserif4/SourceSerif4%5Bwght%5D.ttf"
-curl -sL -o fonts/SourceSans3-Variable.ttf \
-  "https://github.com/google/fonts/raw/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf"
+cd scripts/og-card/fonts
+curl -fsSL -o UnifrakturMaguntia-Book.ttf \
+  "https://raw.githubusercontent.com/google/fonts/main/ofl/unifrakturmaguntia/UnifrakturMaguntia-Book.ttf"
+curl -fsSL -o SourceSerif4-Variable.ttf \
+  "https://raw.githubusercontent.com/google/fonts/main/ofl/sourceserif4/SourceSerif4%5Bopsz,wght%5D.ttf"
+curl -fsSL -o SourceSans3-Variable.ttf \
+  "https://raw.githubusercontent.com/google/fonts/main/ofl/sourcesans3/SourceSans3%5Bwght%5D.ttf"
+sha256sum UnifrakturMaguntia-Book.ttf SourceSerif4-Variable.ttf SourceSans3-Variable.ttf > SHA256SUMS
 ```

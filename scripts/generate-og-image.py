@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import html
 import subprocess
 import sys
@@ -11,6 +12,79 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "scripts" / "og-card" / "template.html"
+FONTS_DIR = TEMPLATE.parent / "fonts"
+CHECKSUMS_FILE = FONTS_DIR / "SHA256SUMS"
+
+REQUIRED_FONTS = {
+    "UnifrakturMaguntia-Book.ttf": "UnifrakturMaguntia",
+    "SourceSerif4-Variable.ttf": "Source Serif 4",
+    "SourceSans3-Variable.ttf": "Source Sans 3",
+}
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(65536), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+
+def verify_fonts() -> None:
+    if not CHECKSUMS_FILE.is_file():
+        print(f"Error: missing checksum file {CHECKSUMS_FILE}", file=sys.stderr)
+        sys.exit(1)
+
+    expected: dict[str, str] = {}
+    for line in CHECKSUMS_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split(None, 1)
+        if len(parts) != 2:
+            continue
+        expected[parts[1]] = parts[0]
+
+    for filename, family in REQUIRED_FONTS.items():
+        path = FONTS_DIR / filename
+        if not path.is_file():
+            print(f"Error: required font missing: {path}", file=sys.stderr)
+            sys.exit(1)
+        if filename not in expected:
+            print(f"Error: no SHA256 entry for {filename} in {CHECKSUMS_FILE}", file=sys.stderr)
+            sys.exit(1)
+        actual = sha256_file(path)
+        if actual != expected[filename]:
+            print(
+                f"Error: checksum mismatch for {path}\n"
+                f"  expected: {expected[filename]}\n"
+                f"  actual:   {actual}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        file_desc = subprocess.run(
+            ["file", "-b", str(path)], check=True, capture_output=True, text=True
+        ).stdout.strip()
+        if "TrueType" not in file_desc and "OpenType" not in file_desc:
+            print(f"Error: {path} is not a valid font (file: {file_desc})", file=sys.stderr)
+            sys.exit(1)
+        try:
+            scan = subprocess.run(
+                ["fc-scan", "--format", "%{family}\n", str(path)],
+                check=True,
+                capture_output=True,
+                text=True,
+            )
+        except FileNotFoundError:
+            print("Error: fc-scan is required to validate font family names.", file=sys.stderr)
+            sys.exit(1)
+        families = scan.stdout.strip()
+        if family not in families:
+            print(
+                f"Error: {path} family mismatch — expected '{family}' in fc-scan output, got: {families!r}",
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
 
 def load_template() -> str:
@@ -70,6 +144,7 @@ def main() -> int:
     parser.add_argument("--kicker", required=True, help="Upper kicker label")
     parser.add_argument("--headline", required=True, help="Headline text")
     args = parser.parse_args()
+    verify_fonts()
     out = args.output if args.output.is_absolute() else ROOT / args.output
     html_doc = render_html(args.kicker.strip(), args.headline.strip())
     screenshot(html_doc, out)
