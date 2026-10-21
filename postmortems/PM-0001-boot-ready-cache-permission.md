@@ -13,6 +13,8 @@ tags:
 status: Resolvido
 ---
 
+# PM-0001 — Bot de WhatsApp autenticava mas não chegava a `ready` após mudança na imagem Docker
+
 > **Post-mortem blameless.** O foco está em sistemas e processos, não em pessoas. Esta é uma versão pública e sanitizada: identificadores internos, detalhes de infraestrutura e dados pessoais foram omitidos.
 
 | Campo | Valor |
