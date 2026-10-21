@@ -35,7 +35,7 @@ layout: page
           <section class="archive-month-block">
             <h2>
               <a href="{{ '/archive/' | append: year | append: '/' | append: month_num | append: '/' | relative_url }}">
-                {{ post.date | date: '%B %Y' }}
+                {% include date-pt.html date=post.date format='month-year' %}
               </a>
             </h2>
             <div class="post-grid post-grid--compact">

@@ -1,0 +1,26 @@
+{% assign month_num = include.date | date: '%m' | plus: 0 %}
+{% assign year = include.date | date: '%Y' %}
+{% assign day = include.date | date: '%d' | plus: 0 %}
+{% case month_num %}
+  {% when 1 %}{% assign month_name = 'janeiro' %}{% assign month_short = 'jan' %}
+  {% when 2 %}{% assign month_name = 'fevereiro' %}{% assign month_short = 'fev' %}
+  {% when 3 %}{% assign month_name = 'março' %}{% assign month_short = 'mar' %}
+  {% when 4 %}{% assign month_name = 'abril' %}{% assign month_short = 'abr' %}
+  {% when 5 %}{% assign month_name = 'maio' %}{% assign month_short = 'mai' %}
+  {% when 6 %}{% assign month_name = 'junho' %}{% assign month_short = 'jun' %}
+  {% when 7 %}{% assign month_name = 'julho' %}{% assign month_short = 'jul' %}
+  {% when 8 %}{% assign month_name = 'agosto' %}{% assign month_short = 'ago' %}
+  {% when 9 %}{% assign month_name = 'setembro' %}{% assign month_short = 'set' %}
+  {% when 10 %}{% assign month_name = 'outubro' %}{% assign month_short = 'out' %}
+  {% when 11 %}{% assign month_name = 'novembro' %}{% assign month_short = 'nov' %}
+  {% when 12 %}{% assign month_name = 'dezembro' %}{% assign month_short = 'dez' %}
+{% endcase %}
+{% if include.format == 'short' %}
+  {{- day }} {{ month_short }} {{ year -}}
+{% elsif include.format == 'month' %}
+  {{- month_name | capitalize -}}
+{% elsif include.format == 'month-year' %}
+  {{- month_name | capitalize }} de {{ year -}}
+{% else %}
+  {{- day }} de {{ month_name }} de {{ year -}}
+{% endif %}

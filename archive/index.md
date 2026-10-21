@@ -25,7 +25,7 @@ permalink: /archive/
     {% assign month_entry = y | append: '-' | append: m %}
     {% unless seen_months contains month_entry %}
       {% assign seen_months = seen_months | append: month_entry | append: ',' %}
-      <li><a href="{{ '/archive/' | append: y | append: '/' | append: m | append: '/' | relative_url }}">{{ post.date | date: '%B' }}</a></li>
+      <li><a href="{{ '/archive/' | append: y | append: '/' | append: m | append: '/' | relative_url }}">{% include date-pt.html date=post.date format='month' %}</a></li>
     {% endunless %}
   {% endfor %}
   </ul></section>

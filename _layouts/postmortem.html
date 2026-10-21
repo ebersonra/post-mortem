@@ -3,12 +3,12 @@ layout: default
 ---
 <article class="pm-article">
   <header class="pm-article__header">
-    {% if page.pm_id %}<p class="pm-article__id">{{ page.pm_id | escape }}</p>{% endif %}
+    {% if page.pm_id %}<p class="pm-article__id">{{ page.pm_id }}</p>{% endif %}
     <dl class="pm-article__meta">
       {% if page.date %}
         <div>
           <dt>Data</dt>
-          <dd><time datetime="{{ page.date | date: '%Y-%m-%d' }}">{{ page.date | date: '%d %B %Y' }}</time></dd>
+          <dd><time datetime="{{ page.date | date: '%Y-%m' }}">{% include date-pt.html date=page.date format='month-year' %}</time></dd>
         </div>
       {% endif %}
       {% if page.project %}

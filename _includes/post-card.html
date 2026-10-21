@@ -4,7 +4,7 @@
   <div class="post-card__meta">
     {% if card.pm_id %}<span class="post-card__id">{{ card.pm_id }}</span>{% endif %}
     {% if card.date %}
-      <time datetime="{{ card.date | date: '%Y-%m-%d' }}">{{ card.date | date: '%d %b %Y' }}</time>
+      <time datetime="{{ card.date | date: '%Y-%m' }}">{% include date-pt.html date=card.date format='month-year' %}</time>
     {% endif %}
   </div>
   {% if include.featured %}
