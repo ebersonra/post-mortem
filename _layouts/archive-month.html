@@ -21,7 +21,7 @@ layout: page
       {% if post_year == year and post_month == month %}
         {% assign found = true %}
         {% unless month_label %}
-          {% capture month_label %}{{ post.date | date: '%B' }}{% endcapture %}
+          {% capture month_label %}{% include date-pt.html date=post.date format='month' %}{% endcapture %}
         {% endunless %}
         {% include post-card.html post=post %}
       {% endif %}
