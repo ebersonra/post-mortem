@@ -1,0 +1,10 @@
+{% assign posts = site.pages | where: 'type', 'postmortem' | sort: 'date' | reverse %}
+{% if posts.size == 0 %}
+  <p class="empty-state">Nenhum post-mortem publicado ainda.</p>
+{% else %}
+  <div class="post-grid">
+    {% for post in posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+{% endif %}

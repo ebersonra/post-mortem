@@ -1,8 +1,17 @@
 ---
 title: "PM-0001 — Bot de WhatsApp não chegava a ready"
+pm_id: PM-0001
+date: 2026-10-20
+project: whatsapp-bot
+project_name: Bot WhatsApp
+summary: "Bot autenticava no WhatsApp após migração Docker multi-stage, mas nunca emitia `ready` — diretório de cache não gravável (EACCES)."
+tags:
+  - docker
+  - whatsapp
+  - permissões
+  - observabilidade
+status: Resolvido
 ---
-
-# PM-0001 — Bot de WhatsApp autenticava mas não chegava a `ready` após mudança na imagem Docker
 
 > **Post-mortem blameless.** O foco está em sistemas e processos, não em pessoas. Esta é uma versão pública e sanitizada: identificadores internos, detalhes de infraestrutura e dados pessoais foram omitidos.
 

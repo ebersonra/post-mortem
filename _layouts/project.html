@@ -1,0 +1,21 @@
+---
+layout: page
+---
+{% assign slug = page.project %}
+{% assign posts = site.pages | where: 'type', 'postmortem' | where: 'project', slug | sort: 'date' | reverse %}
+
+<p class="breadcrumb"><a href="{{ '/projects/' | relative_url }}">Projetos</a> / {{ page.project_name | default: slug }}</p>
+
+{% if page.project_description %}
+  <p class="content-page__subtitle">{{ page.project_description }}</p>
+{% endif %}
+
+{% if posts.size == 0 %}
+  <p class="empty-state">Nenhum post-mortem para este projeto.</p>
+{% else %}
+  <div class="post-grid">
+    {% for post in posts %}
+      {% include post-card.html post=post %}
+    {% endfor %}
+  </div>
+{% endif %}

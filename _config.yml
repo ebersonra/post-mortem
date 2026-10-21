@@ -5,5 +5,19 @@ lang: pt-BR
 markdown: kramdown
 kramdown:
   input: GFM
+url: "https://tech.bargainly.com.br"
+baseurl: ""
+plugins:
+  - jekyll-seo-tag
 exclude:
   - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+defaults:
+  - scope:
+      path: "postmortems"
+      type: "pages"
+    values:
+      layout: postmortem
+      type: postmortem
