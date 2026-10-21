@@ -138,13 +138,61 @@ def screenshot(html: str, output: Path) -> None:
         tmp_path.unlink(missing_ok=True)
 
 
+def parse_front_matter(path: Path) -> dict[str, str]:
+    text = path.read_text(encoding="utf-8")
+    if not text.startswith("---"):
+        return {}
+    end = text.find("\n---", 3)
+    if end == -1:
+        return {}
+    block = text[3:end]
+    data: dict[str, str] = {}
+    for line in block.splitlines():
+        if ":" not in line:
+            continue
+        key, _, value = line.partition(":")
+        value = value.strip().strip('"').strip("'")
+        data[key.strip()] = value
+    return data
+
+
+def generate_article_cards() -> None:
+    articles_dir = ROOT / "_articles"
+    if not articles_dir.is_dir():
+        return
+    for path in sorted(articles_dir.glob("*.md")):
+        meta = parse_front_matter(path)
+        if meta.get("published", "true").lower() == "false":
+            continue
+        slug = path.stem
+        title = meta.get("title", slug).strip()
+        if not title:
+            continue
+        out = ROOT / "assets" / "images" / "og" / f"{slug}.png"
+        html_doc = render_html("Artigo", title)
+        screenshot(html_doc, out)
+        optimize_png(out)
+        size_kb = out.stat().st_size / 1024
+        print(f"Wrote {out} ({size_kb:.1f} KiB)")
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate OG social card PNG (1200×630).")
-    parser.add_argument("--output", required=True, type=Path, help="Output PNG path (e.g. assets/images/og/default.png)")
-    parser.add_argument("--kicker", required=True, help="Upper kicker label")
-    parser.add_argument("--headline", required=True, help="Headline text")
+    parser.add_argument("--output", type=Path, help="Output PNG path (e.g. assets/images/og/default.png)")
+    parser.add_argument("--kicker", help="Upper kicker label")
+    parser.add_argument("--headline", help="Headline text")
+    parser.add_argument(
+        "--articles",
+        action="store_true",
+        help="Generate OG cards for each published article in _articles/ (assets/images/og/<slug>.png)",
+    )
     args = parser.parse_args()
     verify_fonts()
+    if args.articles:
+        generate_article_cards()
+        return 0
+    if not args.output or not args.kicker or not args.headline:
+        parser.error("--output, --kicker, and --headline are required unless --articles is set")
     out = args.output if args.output.is_absolute() else ROOT / args.output
     html_doc = render_html(args.kicker.strip(), args.headline.strip())
     screenshot(html_doc, out)

@@ -1,9 +1,11 @@
 ---
 layout: page
 ---
-{% assign posts = site.pages | where: 'type', 'postmortem' | where_exp: 'item', 'item.date != nil' | sort: 'date' | reverse %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' | where_exp: 'item', 'item.date != nil' %}
+{% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' | where_exp: 'item', 'item.date != nil' %}
+{% assign posts = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% if posts.size == 0 %}
-  <p class="empty-state">Nenhum post-mortem datado ainda.</p>
+  <p class="empty-state">Nenhuma publicação datada ainda.</p>
 {% else %}
   {% assign current_year = '' %}
   {% assign seen_months = '' %}

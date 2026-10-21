@@ -1,7 +1,14 @@
 {% assign card = include.post %}
 {% assign card_href = card.url | relative_url %}
+{% if card.type == 'article' %}
+  {% assign card_type_label = 'Artigo' %}
+{% else %}
+  {% assign card_type_label = 'Post-mortem' %}
+{% endif %}
+{% assign card_summary = card.summary | default: card.description %}
 <article class="post-card{% if include.featured %} post-card--featured{% endif %}">
   <div class="post-card__meta">
+    <span class="post-card__type">{{ card_type_label | escape }}</span>
     {% if card.pm_id %}<span class="post-card__id">{{ card.pm_id | escape }}</span>{% endif %}
     {% if card.date %}
       <time datetime="{{ card.date | date: '%Y-%m' }}">{% include date-pt.html date=card.date format='month-year' %}</time>
@@ -18,8 +25,8 @@
       <a href="{{ '/projects/' | append: card.project | append: '/' | relative_url }}">{{ card.project_name | default: card.project | escape }}</a>
     </p>
   {% endif %}
-  {% if card.summary %}
-    <p class="post-card__summary">{{ card.summary | escape }}</p>
+  {% if card_summary %}
+    <p class="post-card__summary">{{ card_summary | escape }}</p>
   {% endif %}
   {% if card.tags.size > 0 %}
     <ul class="tag-list" aria-label="Tags">

@@ -2,7 +2,9 @@
 layout: page
 ---
 {% assign year = page.year | append: '' %}
-{% assign posts = site.pages | where: 'type', 'postmortem' | sort: 'date' | reverse %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' %}
+{% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
+{% assign posts = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% assign found = false %}
 {% for post in posts %}
   {% if post.date %}
@@ -16,7 +18,7 @@ layout: page
 <p class="breadcrumb"><a href="{{ '/archive/' | relative_url }}">Arquivo</a> / {{ year }}</p>
 
 {% unless found %}
-  <p class="empty-state">Nenhum post-mortem em {{ year }}.</p>
+  <p class="empty-state">Nenhuma publicação em {{ year }}.</p>
 {% else %}
   {% assign current_month = '' %}
   {% assign month_open = false %}

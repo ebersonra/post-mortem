@@ -39,4 +39,43 @@ bundle exec jekyll build
    - Ano: `archive/YYYY/index.md` com `layout: archive-year`, `year: YYYY`, `permalink: /archive/YYYY/`
    - Mês: `archive/YYYY/MM/index.md` com `layout: archive-month`, `year`, `month`, `month_label` (nome em português), `permalink: /archive/YYYY/MM/`
 
-   O índice em `/archive/` lista anos e meses automaticamente a partir dos post-mortems datados; as páginas de ano/mês filtram por front matter.
+   O índice em `/archive/` lista anos e meses automaticamente a partir de post-mortems e artigos datados; as páginas de ano/mês filtram por front matter.
+
+## Publicar um artigo
+
+1. Crie `_articles/<slug>.md` (a URL será `/artigos/<slug>.html`). Front matter mínimo:
+
+   ```yaml
+   ---
+   title: "Título do artigo"
+   date: 2026-11-01
+   description: "Resumo curto para cards e meta description."
+   tags:
+     - tag1
+     - tag2
+   ---
+   ```
+
+   Use `date` no primeiro dia do mês de publicação; o site exibe **mês/ano** nos cards, como nos post-mortems.
+
+2. Mantenha o H1 completo no corpo Markdown (o layout não duplica o título).
+
+3. **Imagem Open Graph (opcional):** gere o card social e referencie no front matter. Sem `image`, o site usa `assets/images/og/default.png` via defaults do `_config.yml`.
+
+   ```bash
+   ./scripts/generate-og-images.sh
+   ```
+
+   Para um artigo publicado, o script grava `assets/images/og/<slug>.png` (slug = nome do arquivo sem `.md`). Adicione:
+
+   ```yaml
+   image:
+     path: /assets/images/og/seu-slug.png
+     alt: "Descrição acessível da imagem social"
+     width: 1200
+     height: 630
+   ```
+
+4. Rascunhos: use `published: false` para excluir do site (veja `_articles/draft-build-check.md`).
+
+5. Índice público de artigos: `/artigos/`. A capa e o arquivo listam artigos e post-mortems juntos, ordenados por data.

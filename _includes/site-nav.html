@@ -6,6 +6,7 @@
   <div class="site-nav__links" id="site-nav-links">
     <a href="{{ '/' | relative_url }}"{% if page.url == '/' %} aria-current="page"{% endif %}>Capa</a>
     <a href="{{ '/postmortems/' | relative_url }}"{% if page.url contains '/postmortems/' and page.layout != 'postmortem' %} aria-current="page"{% endif %}>Post-mortems</a>
+    <a href="{{ '/artigos/' | relative_url }}"{% if page.url contains '/artigos/' and page.layout != 'article' %} aria-current="page"{% endif %}>Artigos</a>
     <a href="{{ '/projects/' | relative_url }}"{% if page.url contains '/projects/' %} aria-current="page"{% endif %}>Projetos</a>
     <a href="{{ '/archive/' | relative_url }}"{% if page.url contains '/archive/' %} aria-current="page"{% endif %}>Arquivo</a>
     <button type="button" class="theme-toggle" data-theme-toggle aria-label="Alternar edição diurna ou noturna">
