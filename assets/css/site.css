@@ -781,3 +781,35 @@ button:focus-visible {
     scroll-behavior: auto;
   }
 }
+
+/* Squad: avatares circulares no artigo "Apresentando o squad" */
+.squad-member {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem 1.25rem;
+  margin: 1.75rem 0;
+}
+.squad-member__body {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+.squad-member__body > h3:first-child {
+  margin-top: 0;
+}
+.squad-member__body > :last-child {
+  margin-bottom: 0;
+}
+.squad-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+  margin: 0;
+  max-width: none;
+  border: 2px solid var(--border-soft);
+  box-shadow: 0 0 0 3px var(--bg-elevated), 0 0 0 4px var(--rule);
+  background: var(--bg-elevated);
+}
