@@ -166,7 +166,7 @@ Observabilidade e SRE, mais analytics de produto e SEO.
 
 ### SREs por projeto
 
-Alguns projetos têm um agente de SRE dedicado, cobrindo a API de finanças, o bot de WhatsApp e o Design System. Eles acompanham a saúde de cada projeto de perto.
+Cada projeto tem uma sala de SRE dedicada, que reúne agentes do squad já apresentados acima: uma para a API de finanças, uma para o bot de WhatsApp e uma para o Design System. É nelas que eles acompanham a saúde de cada projeto de perto.
 
 <div class="squad-member" markdown="1">
 <img class="squad-avatar" src="/assets/images/squad/avatars/tech-social-writer.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
