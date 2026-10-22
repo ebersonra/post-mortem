@@ -164,16 +164,9 @@ Observabilidade e SRE, mais analytics de produto e SEO.
 </div>
 </div>
 
-<div class="squad-member" markdown="1">
-<span class="squad-avatar squad-avatar--initials" role="img" aria-label="SREs por projeto">SRE</span>
-<div class="squad-member__body" markdown="1">
-
 ### SREs por projeto
 
 Alguns projetos têm um agente de SRE dedicado, cobrindo a API de finanças, o bot de WhatsApp e o Design System. Eles acompanham a saúde de cada projeto de perto.
-
-</div>
-</div>
 
 <div class="squad-member" markdown="1">
 <img class="squad-avatar" src="/assets/images/squad/avatars/tech-social-writer.jpg" width="96" height="96" alt="Tech Social Writer" loading="lazy" decoding="async">
