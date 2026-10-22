@@ -89,7 +89,7 @@ Scripts de shell e Linux.
 
 ### Larry Ellison & Bob Miner & Ed Oates - Oracle
 
-Opera o bot em uma VM na nuvem, com PM2 e Linux.
+Cuida da saúde, dos logs e dos reinícios do bot numa VM na nuvem.
 
 ### Larry Page & Sergey Brin - Specialist GA4 & SEO
 
@@ -97,12 +97,12 @@ Observabilidade e SRE, mais analytics de produto e SEO.
 
 ### SREs por projeto
 
-Alguns projetos têm um agente de SRE dedicado: 4u2-finance-api, 4u2-fia-bot e Design System. Eles acompanham a saúde de cada projeto de perto.
+Alguns projetos têm um agente de SRE dedicado, cobrindo a API de finanças, o bot de WhatsApp e o Design System. Eles acompanham a saúde de cada projeto de perto.
 
 ### Tech Social Writer
 
-Transforma os posts do blog em posts para LinkedIn, X e Instagram. O blog vem primeiro, e ele só escreve rascunhos: quem publica sou eu.
+Transforma os posts do blog em posts para LinkedIn, X e Instagram. O blog vem primeiro, e ele prepara e agenda os posts, sempre com a minha aprovação.
 
 ## Por que contar isso
 
-Os projetos, como o 4U2 Finance e o Bargainly, são construídos assim. Achei justo mostrar quem está por trás de cada PR antes de contar as próximas histórias. Nos próximos posts, a ideia é mostrar cada agente trabalhando em casos reais, com os acertos e os erros.
+Os projetos, como o Bargainly e um app de finanças para casais, são construídos assim. Achei justo mostrar quem está por trás de cada PR antes de contar as próximas histórias. Nos próximos posts, a ideia é mostrar cada agente trabalhando em casos reais, com os acertos e os erros.
