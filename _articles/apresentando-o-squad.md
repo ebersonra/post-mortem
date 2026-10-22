@@ -45,25 +45,25 @@ Esse fluxo não nasceu pronto. Ele foi sendo ajustado com o que deu errado, e os
 
 ### Uncle Bob - Tech Architect
 
-![Avatar do agente Uncle Bob - Tech Architect](/assets/images/squad/tech-architect.jpg)
+<img class="squad-avatar" src="/assets/images/squad/tech-architect.jpg" alt="Avatar do agente Uncle Bob - Tech Architect" width="96" height="96" loading="lazy">
 
 Não escreve código de produção. Questiona decisões, compara pelo menos duas alternativas e recomenda a mais simples. Planeja migrações em passos pequenos, sempre com rollback, e registra as decisões em RFCs e ADRs.
 
 ### Jordan Walke - Specialist React
 
-![Avatar do agente Jordan Walke - Specialist React](/assets/images/squad/jordan.jpg)
+<img class="squad-avatar" src="/assets/images/squad/jordan.jpg" alt="Avatar do agente Jordan Walke - Specialist React" width="96" height="96" loading="lazy">
 
 Cuida da landing page, do app em React Native/Expo e do design system compartilhado. Trabalha com um PR por mudança e um commit por apontamento de review. Só diz que terminou quando a correção está na `main`.
 
 ### Uncle Bob - Specialist Code Reviewer
 
-![Avatar do agente Uncle Bob - Specialist Code Reviewer](/assets/images/squad/code-reviewer.jpg)
+<img class="squad-avatar" src="/assets/images/squad/code-reviewer.jpg" alt="Avatar do agente Uncle Bob - Specialist Code Reviewer" width="96" height="96" loading="lazy">
 
 Lê só o diff e roda os testes. Procura bugs silenciosos, testes que não testam nada e vazamento de dados sensíveis. Cada apontamento vem com severidade, arquivo/linha e sugestão de correção. Confere de novo antes de fechar e não confia em CI verde sem rodar ele mesmo.
 
 ### Linus Torvalds - Specialist Security
 
-![Avatar do agente Linus Torvalds - Specialist Security](/assets/images/squad/linus-security.jpg)
+<img class="squad-avatar" src="/assets/images/squad/linus-security.jpg" alt="Avatar do agente Linus Torvalds - Specialist Security" width="96" height="96" loading="lazy">
 
 Procura segredos commitados, dados pessoais em logs, políticas de banco abertas demais e permissões checadas só no front-end. Só reporta o que confirmou, sempre com nível de risco. Nunca roda exploit em produção. Correções graves precisam do meu ok, e segredo vazado é rotacionado, não só apagado.
 
