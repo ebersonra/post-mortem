@@ -44,7 +44,7 @@ Esse fluxo não nasceu pronto. Ele foi sendo ajustado com o que deu errado, e os
 ## O squad
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-tech-architect.jpg" width="96" height="96" alt="Uncle Bob - Tech Architect" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-tech-architect.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Uncle Bob - Tech Architect
@@ -55,7 +55,7 @@ Não escreve código de produção. Questiona decisões, compara pelo menos duas
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/jordan-walke-react.jpg" width="96" height="96" alt="Jordan Walke - Specialist React" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/jordan-walke-react.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Jordan Walke - Specialist React
@@ -66,7 +66,7 @@ Cuida da landing page, do app em React Native/Expo e do design system compartilh
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-code-reviewer.jpg" width="96" height="96" alt="Uncle Bob - Specialist Code Reviewer" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-code-reviewer.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Uncle Bob - Specialist Code Reviewer
@@ -77,7 +77,7 @@ Lê só o diff e roda os testes. Procura bugs silenciosos, testes que não testa
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-security.jpg" width="96" height="96" alt="Linus Torvalds - Specialist Security" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-security.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Linus Torvalds - Specialist Security
@@ -88,7 +88,7 @@ Procura segredos commitados, dados pessoais em logs, políticas de banco abertas
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/james-gosling-java.jpg" width="96" height="96" alt="James Gosling - Java Champion" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/james-gosling-java.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### James Gosling - Java Champion
@@ -99,7 +99,7 @@ Backend sênior em Java e Spring Boot. Corrige os apontamentos dos revisores em 
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/ryan-dahl-node.jpg" width="96" height="96" alt="Ryan Dahl - Specialist Node" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/ryan-dahl-node.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Ryan Dahl - Specialist Node
@@ -110,7 +110,7 @@ Cuida do que roda em Node.js.
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/vlad-mihalcea-db.jpg" width="96" height="96" alt="Vlad Mihalcea - Specialist DB" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/vlad-mihalcea-db.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Vlad Mihalcea - Specialist DB
@@ -121,7 +121,7 @@ Bancos de dados, principalmente Postgres.
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/shannon-lietz-devsecops.jpg" width="96" height="96" alt="Shannon Lietz - DevSecOps" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/shannon-lietz-devsecops.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Shannon Lietz - DevSecOps
@@ -132,7 +132,7 @@ CI/CD com GitHub Actions para mobile, web, Node e Java.
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-shell.jpg" width="96" height="96" alt="Linus Torvalds - Specialist Shell" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-shell.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Linus Torvalds - Specialist Shell
@@ -143,7 +143,7 @@ Scripts de shell e Linux.
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/oracle-founders.jpg" width="96" height="96" alt="Larry Ellison &amp; Bob Miner &amp; Ed Oates - Oracle" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/oracle-founders.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Larry Ellison & Bob Miner & Ed Oates - Oracle
@@ -154,7 +154,7 @@ Cuida da saúde, dos logs e dos reinícios do bot numa VM na nuvem.
 </div>
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/larry-page-sergey-brin-ga4-seo.jpg" width="96" height="96" alt="Larry Page &amp; Sergey Brin - Specialist GA4 &amp; SEO" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/larry-page-sergey-brin-ga4-seo.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Larry Page & Sergey Brin - Specialist GA4 & SEO
@@ -169,7 +169,7 @@ Observabilidade e SRE, mais analytics de produto e SEO.
 Alguns projetos têm um agente de SRE dedicado, cobrindo a API de finanças, o bot de WhatsApp e o Design System. Eles acompanham a saúde de cada projeto de perto.
 
 <div class="squad-member" markdown="1">
-<img class="squad-avatar" src="/assets/images/squad/avatars/tech-social-writer.jpg" width="96" height="96" alt="Tech Social Writer" loading="lazy" decoding="async">
+<img class="squad-avatar" src="/assets/images/squad/avatars/tech-social-writer.jpg" width="96" height="96" alt="" loading="lazy" decoding="async">
 <div class="squad-member__body" markdown="1">
 
 ### Tech Social Writer
