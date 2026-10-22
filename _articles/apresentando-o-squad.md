@@ -43,65 +43,148 @@ Esse fluxo não nasceu pronto. Ele foi sendo ajustado com o que deu errado, e os
 
 ## O squad
 
-### Uncle Bob - Tech Architect
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-tech-architect.jpg" width="96" height="96" alt="Uncle Bob - Tech Architect" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
 
-![Avatar do agente Uncle Bob - Tech Architect](/assets/images/squad/tech-architect.jpg)
+### Uncle Bob - Tech Architect
 
 Não escreve código de produção. Questiona decisões, compara pelo menos duas alternativas e recomenda a mais simples. Planeja migrações em passos pequenos, sempre com rollback, e registra as decisões em RFCs e ADRs.
 
-### Jordan Walke - Specialist React
+</div>
+</div>
 
-![Avatar do agente Jordan Walke - Specialist React](/assets/images/squad/jordan.jpg)
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/jordan-walke-react.jpg" width="96" height="96" alt="Jordan Walke - Specialist React" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
+### Jordan Walke - Specialist React
 
 Cuida da landing page, do app em React Native/Expo e do design system compartilhado. Trabalha com um PR por mudança e um commit por apontamento de review. Só diz que terminou quando a correção está na `main`.
 
-### Uncle Bob - Specialist Code Reviewer
+</div>
+</div>
 
-![Avatar do agente Uncle Bob - Specialist Code Reviewer](/assets/images/squad/code-reviewer.jpg)
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/uncle-bob-code-reviewer.jpg" width="96" height="96" alt="Uncle Bob - Specialist Code Reviewer" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
+### Uncle Bob - Specialist Code Reviewer
 
 Lê só o diff e roda os testes. Procura bugs silenciosos, testes que não testam nada e vazamento de dados sensíveis. Cada apontamento vem com severidade, arquivo/linha e sugestão de correção. Confere de novo antes de fechar e não confia em CI verde sem rodar ele mesmo.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-security.jpg" width="96" height="96" alt="Linus Torvalds - Specialist Security" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
 ### Linus Torvalds - Specialist Security
 
-![Avatar do agente Linus Torvalds - Specialist Security](/assets/images/squad/linus-security.jpg)
-
 Procura segredos commitados, dados pessoais em logs, políticas de banco abertas demais e permissões checadas só no front-end. Só reporta o que confirmou, sempre com nível de risco. Nunca roda exploit em produção. Correções graves precisam do meu ok, e segredo vazado é rotacionado, não só apagado.
+
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/james-gosling-java.jpg" width="96" height="96" alt="James Gosling - Java Champion" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
 
 ### James Gosling - Java Champion
 
 Backend sênior em Java e Spring Boot. Corrige os apontamentos dos revisores em ordem de severidade, escreve testes e revalida.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/ryan-dahl-node.jpg" width="96" height="96" alt="Ryan Dahl - Specialist Node" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
 ### Ryan Dahl - Specialist Node
 
 Cuida do que roda em Node.js.
+
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/vlad-mihalcea-db.jpg" width="96" height="96" alt="Vlad Mihalcea - Specialist DB" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
 
 ### Vlad Mihalcea - Specialist DB
 
 Bancos de dados, principalmente Postgres.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/shannon-lietz-devsecops.jpg" width="96" height="96" alt="Shannon Lietz - DevSecOps" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
 ### Shannon Lietz - DevSecOps
 
 CI/CD com GitHub Actions para mobile, web, Node e Java.
+
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/linus-torvalds-shell.jpg" width="96" height="96" alt="Linus Torvalds - Specialist Shell" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
 
 ### Linus Torvalds - Specialist Shell
 
 Scripts de shell e Linux.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/oracle-founders.jpg" width="96" height="96" alt="Larry Ellison &amp; Bob Miner &amp; Ed Oates - Oracle" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
 ### Larry Ellison & Bob Miner & Ed Oates - Oracle
 
 Cuida da saúde, dos logs e dos reinícios do bot numa VM na nuvem.
+
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/larry-page-sergey-brin-ga4-seo.jpg" width="96" height="96" alt="Larry Page &amp; Sergey Brin - Specialist GA4 &amp; SEO" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
 
 ### Larry Page & Sergey Brin - Specialist GA4 & SEO
 
 Observabilidade e SRE, mais analytics de produto e SEO.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<span class="squad-avatar squad-avatar--initials" role="img" aria-label="SREs por projeto">SRE</span>
+<div class="squad-member__body" markdown="1">
+
 ### SREs por projeto
 
 Alguns projetos têm um agente de SRE dedicado, cobrindo a API de finanças, o bot de WhatsApp e o Design System. Eles acompanham a saúde de cada projeto de perto.
 
+</div>
+</div>
+
+<div class="squad-member" markdown="1">
+<img class="squad-avatar" src="/assets/images/squad/avatars/tech-social-writer.jpg" width="96" height="96" alt="Tech Social Writer" loading="lazy" decoding="async">
+<div class="squad-member__body" markdown="1">
+
 ### Tech Social Writer
 
 Transforma os posts do blog em posts para LinkedIn, X e Instagram. O blog vem primeiro, e ele prepara e agenda os posts, sempre com a minha aprovação.
+
+</div>
+</div>
 
 ## Por que contar isso
 
