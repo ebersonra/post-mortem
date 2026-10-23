@@ -14,7 +14,7 @@ image:
 
 Montei uma squad de agentes de IA especializados, e o fluxo mudou de patamar. Em vez de um assistente genérico, cada agente é um chat com uma skill própria.
 
-Quem são os agentes, com nome e função, está em [Apresentando o squad](/artigos/apresentando-o-squad.html). Aqui o foco é outro: por que esse formato funciona melhor que um assistente único.
+Quem são os agentes, com nome e função, está em [Apresentando o squad](/artigos/apresentando-o-squad.html). Os nomes são personas inspiradas em referências da área, só para dar identidade a cada papel; as pessoas reais não estão envolvidas. Aqui o foco é outro: por que esse formato funciona melhor que um assistente único.
 
 ## Como está estruturado
 
@@ -44,7 +44,5 @@ O fluxo de revisão em detalhe (PR a partir da `main`, três revisores, minha ap
 - Especialização vence generalismo: um agente com escopo estreito erra menos.
 - Humano continua decidindo arquitetura e prioridade, e os agentes executam e revisam dentro desses limites.
 - CI e testes são o juiz final, e não a opinião do modelo. Foi isso que o artigo [O merge levou o PR, mas não a correção](/artigos/o-merge-levou-o-pr.html) me ensinou na prática.
-
-Os nomes dos agentes são personas inspiradas em referências da área, só para dar identidade a cada papel.
 
 E você, já trabalha com agentes especializados ou ainda com um assistente único?
