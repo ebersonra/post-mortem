@@ -26,7 +26,7 @@ Quem são os agentes, com nome e função, está em [Apresentando o squad](/arti
 ## O que isso muda no dia a dia
 
 - **Trabalho em PRs reais:** os agentes abrem commits, revisam PRs e acompanham o CI até voltar a ficar verde.
-- **Delegação entre agentes:** o agente de Node pede ajuda ao **Vlad Mihalcea - Specialist DB**, nosso especialista em banco de dados, para contar os formatos de teste, em vez de eu intermediar.
+- **Delegação entre agentes:** o agente de Node pede diretamente ao **Vlad Mihalcea - Specialist DB**, nosso especialista em banco de dados, que faça a contagem dos formatos de teste, sem que eu precise intermediar.
 - **Revisão cruzada:** quem escreve não é quem revisa, o que reduz o viés de "código que o próprio autor aprova".
 - **Trabalho assíncrono:** a squad continua entregando enquanto não estou olhando, e o chat funciona como notificação e histórico.
 - **Rastreabilidade:** cada decisão fica registrada na conversa, e dá para voltar e entender o porquê.
