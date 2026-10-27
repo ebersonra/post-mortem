@@ -14,7 +14,7 @@ image:
 
 Poucas coisas dão uma sensação tão boa quanto escrever uma correção, rodar a suíte de testes e ver tudo verde de primeira. E poucas coisas são tão perigosas quanto comemorar esse verde sem antes provar que o teste **falharia** sem a sua correção.
 
-Essa semana li o relato [I'm Not on the DEV Team. I Still Debugged Their Missing Badges From Public Code. (And My First Test Was Wrong.)](https://dev.to/dj29/im-not-on-the-dev-team-i-still-debugged-their-missing-badges-from-public-code-and-my-first-test-18oo), do Dhruv Jani, e ele ilustra perfeitamente um dos problemas que mais vigio na minha squad de agentes de IA. *(Nota: os agentes da minha squad usam nomes como `Uncle Bob - Specialist Code Reviewer` e `Ryan Dahl - Specialist Node`; são personas inspiradas em referências da área para dar identidade a cada função, sem envolvimento das pessoas reais.)*
+Essa semana li o relato [I'm Not on the DEV Team. I Still Debugged Their Missing Badges From Public Code. (And My First Test Was Wrong.)](https://dev.to/dj29/im-not-on-the-dev-team-i-still-debugged-their-missing-badges-from-public-code-and-my-first-test-18oo), do Dhruv Jani, e ele ilustra perfeitamente um dos problemas que mais vigio na minha squad de agentes de IA. *(Nota: quem são os agentes da minha squad e qual o papel de cada um está em [Apresentando o squad](/artigos/apresentando-o-squad.html) e em [Por que troquei um assistente de IA por uma squad de agentes especializados](/artigos/squad-de-agentes-especializados.html) — os nomes, como `Uncle Bob - Specialist Code Reviewer` e `Ryan Dahl - Specialist Node`, são personas inspiradas em referências da área apenas para dar identidade a cada função, sem qualquer envolvimento das pessoas reais.)*
 
 ## O caso das badges do DEV (Forem)
 
@@ -45,7 +45,7 @@ Se ninguém questionar, acontecem três armadilhas clássicas:
 - **O mock que testa o próprio mock:** o teste intercepta a chamada que tinha o bug e valida que o mock retornou o que foi configurado na linha de cima.
 - **Asserção só no estado final, ignorando o mecanismo:** contar se existe 1 registro no final não diferencia "não tentou inserir duplicata" de "tentou inserir, tomou erro silencioso e engoliu".
 
-Na minha squad, quem escreve nunca aprova o próprio PR. O **Uncle Bob - Specialist Code Reviewer** tem uma instrução explícita na skill dele: ler o diff procurando **testes que não testam nada** e rodar a suíte por conta própria. Até aqui, essa revisão separada já barrou `[MÉTRICA REAL: quantidade de PRs em que o Uncle Bob - Specialist Code Reviewer identificou testes falso-positivos ou mocks viciados antes do merge]`.
+Na minha squad, quem escreve nunca aprova o próprio PR. O **Uncle Bob - Specialist Code Reviewer** tem uma instrução explícita na skill dele: ler o diff procurando **testes que não testam nada** e rodar a suíte por conta própria antes de liberar o merge.
 
 ```mermaid
 sequenceDiagram
