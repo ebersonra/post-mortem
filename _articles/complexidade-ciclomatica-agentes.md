@@ -1,6 +1,6 @@
 ---
 title: "Quando os agentes escrevem o código, o que você ainda precisa saber?"
-date: 2026-10-27 00:00:00 -0300
+date: 2026-10-27 08:00:00 -0300
 description: "Agentes toleram complexidade ciclomática que nenhum humano gostaria de depurar às 2h da manhã. Por que qualidade estática, revisão separada e profundidade sob demanda viraram obrigatórios na minha squad."
 tags: [ia, agentes, qualidade-de-codigo, devsecops, building-in-public]
 image:
@@ -41,7 +41,7 @@ Na minha squad, resolvi não confiar na boa vontade do agente que implementa. Di
 flowchart LR
   DEV[Agente Especialista implementa] --> CI[CI / Análise Estática]
   CI -- reprovou complexidade --> DEV
-  CI -- passou --> REV[Uncle Bob - Specialist Code Reviewer + Uncle Bob - Tech Architect]
+  CI -- passou --> REV[Uncle Bob - Specialist Code Reviewer + Linus Torvalds - Specialist Security + Uncle Bob - Tech Architect]
   REV -- exige simplificação --> DEV
   REV -- aprovado --> ME[Minha aprovação final]
 ```
