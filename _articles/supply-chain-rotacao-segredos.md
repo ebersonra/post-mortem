@@ -1,6 +1,6 @@
 ---
 title: "Atualizar o pacote é a parte fácil: supply chain, LiteLLM e rotação de segredos"
-date: 2026-10-27 00:00:00 -0300
+date: 2026-10-27 12:00:00 -0300
 description: "Quando uma dependência comprometida entra no ambiente, subir a versão não encerra o incidente. O que a semana de CVEs críticas ensina sobre inventário, menor privilégio e rotação de chaves."
 tags: [seguranca, devsecops, supply-chain, ia, building-in-public]
 image:
