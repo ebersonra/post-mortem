@@ -14,7 +14,7 @@ image:
 
 Quando sai um alerta crítico de segurança, a reação automática de qualquer time é perguntar: *"qual é a versão corrigida para eu abrir o PR de bump?"*. Mas, em incidentes de supply chain, atualizar a versão é só o começo. O trabalho real — e o que quase sempre atrasa — é saber exatamente onde aquilo rodou, o que aquela identidade podia alcançar e quais segredos precisam ser rotacionados.
 
-Essa análise veio do artigo [PHP2Shell, LiteLLM, GitLab: Find What You Need to Patch](https://cloudsleuth.io/blog/php2shell-litellm-gitlab-find-what-you-run/), da Cloud Sleuth, que dissecou uma semana pesada de outubro de 2026 e reforçou várias regras que sigo com a minha squad de agentes de IA. *(Nota: os agentes da minha squad têm nomes como `Linus Torvalds - Specialist Security` e `Shannon Lietz - DevSecOps`; são personas inspiradas em referências da área para dar identidade a cada papel, sem envolvimento das pessoas reais.)*
+Essa análise veio do artigo [PHP2Shell, LiteLLM, GitLab: Find What You Need to Patch](https://cloudsleuth.io/blog/php2shell-litellm-gitlab-find-what-you-run/), da Cloud Sleuth, que dissecou uma semana pesada de outubro de 2026 e reforçou várias regras que sigo com a minha squad de agentes de IA. *(Nota: quem são os agentes da minha squad e qual o papel de cada um está em [Apresentando o squad](/artigos/apresentando-o-squad.html) e em [Por que troquei um assistente de IA por uma squad de agentes especializados](/artigos/squad-de-agentes-especializados.html) — os nomes, como `Linus Torvalds - Specialist Security` e `Shannon Lietz - DevSecOps`, são personas inspiradas em referências da área apenas para dar identidade a cada função, sem qualquer envolvimento das pessoas reais.)*
 
 ## Uma semana que resumiu o risco moderno de supply chain
 
@@ -45,7 +45,7 @@ Por isso, divido a defesa em três frentes permanentes na squad:
 
 - **Rotação acima de "apagar no commit":** a regra número um do **Linus Torvalds - Specialist Security** é clara — segredo vazado ou exposto em ambiente suspeito não se resolve limpando código ou subindo patch; exige rotação imediata da chave e revisão de escopo.
 - **Higiene de pipeline e dependências:** a **Shannon Lietz - DevSecOps** cuida dos workflows de GitHub Actions (web, mobile, Node e Java), mantendo versões e actions sob controle para sabermos exatamente o que roda em cada build com o **Ryan Dahl - Specialist Node** e o **James Gosling - Java Champion**.
-- **Menor privilégio no banco e nas APIs:** o **Vlad Mihalcea - Specialist DB** e o **Linus Torvalds - Specialist Security** revisam políticas de acesso para que cada componente enxergue apenas o estritamente necessário. Se uma chave precisar ser revogada, o raio de alcance é conhecido. Hoje consigo executar o ciclo de verificação e rotação de chaves dos projetos em `[MÉTRICA REAL: tempo necessário para localizar onde uma chave de API é usada e concluir a rotação sem downtime]`.
+- **Menor privilégio no banco e nas APIs:** a diretriz para o **Vlad Mihalcea - Specialist DB** e o **Linus Torvalds - Specialist Security** é revisar políticas de acesso para que cada componente enxergue apenas o estritamente necessário, mantendo o raio de alcance mapeado para quando uma chave precisar ser revogada e rotacionada.
 
 ```mermaid
 flowchart TD
