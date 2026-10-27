@@ -1,6 +1,6 @@
 ---
 title: "O teste passou, mas pelo motivo errado: o perigo do CI verde mentiroso"
-date: 2026-10-27 00:00:00 -0300
+date: 2026-10-27 10:00:00 -0300
 description: "Um teste de regressão que passa na main antes da sua correção não testa o seu fix. O que um bug real no Forem ensina sobre revisão de código e testes com agentes."
 tags: [testes, code-review, ia, agentes, building-in-public]
 image:
