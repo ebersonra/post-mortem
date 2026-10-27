@@ -14,7 +14,7 @@ image:
 
 Agentes de IA não sentem dor ao editar um arquivo com 15 componentes espremidos em uma linha só e cheio de ramificações. Eles continuam adicionando features ali dentro sem reclamar. Quem sente a dor é você, quando o CI trava ou quando precisa depurar um incidente de madrugada num trecho que nunca escreveu à mão.
 
-Essa reflexão veio do artigo [Here Be Monsters: What Do You Still Need to Know When Agents Do the Work?](https://blog.adrq.dev/here-be-monsters-what-do-you-still-need-to-know-when-agents-do-the-work), que bateu direto na forma como organizo a minha squad de agentes de IA para construir o Bargainly e um app de finanças para casais. *(Nota: na minha squad, os agentes têm nomes como `Uncle Bob - Tech Architect` ou `Jordan Walke - Specialist React`; são personas inspiradas em referências da área apenas para dar identidade a cada papel, sem qualquer envolvimento das pessoas reais.)*
+Essa reflexão veio do artigo [Here Be Monsters: What Do You Still Need to Know When Agents Do the Work?](https://blog.adrq.dev/here-be-monsters-what-do-you-still-need-to-know-when-agents-do-the-work), que bateu direto na forma como organizo a minha squad de agentes de IA para construir o Bargainly e um app de finanças para casais. *(Nota: quem são os agentes da minha squad e qual o papel de cada um está em [Apresentando o squad](/artigos/apresentando-o-squad.html) e em [Por que troquei um assistente de IA por uma squad de agentes especializados](/artigos/squad-de-agentes-especializados.html) — os nomes, como `Uncle Bob - Tech Architect` ou `Jordan Walke - Specialist React`, são personas inspiradas em referências da área apenas para dar identidade a cada função, sem qualquer envolvimento das pessoas reais.)*
 
 ## O alerta do SonarQube que abriu a discussão
 
@@ -34,7 +34,7 @@ Na minha squad, resolvi não confiar na boa vontade do agente que implementa. Di
 
 - **Quem implementa foca na entrega:** o **Jordan Walke - Specialist React**, o **Ryan Dahl - Specialist Node** e o **James Gosling - Java Champion** constroem as features nos seus respectivos escopos.
 - **Quem arquiteta barra complexidade desnecessária antes:** o **Uncle Bob - Tech Architect** não escreve código de produção; ele questiona a abordagem, compara alternativas e puxa sempre para o desenho mais simples.
-- **Quem revisa lê só o diff com lupa:** todo PR passa pelo **Uncle Bob - Specialist Code Reviewer** e pelo **Linus Torvalds - Specialist Security** antes do meu ok. Nos últimos 30 dias, tivemos `[MÉTRICA REAL: quantidade de PRs ou apontamentos em que o Uncle Bob - Specialist Code Reviewer exigiu quebra de função/componente por complexidade antes do merge]`.
+- **Quem revisa lê só o diff com lupa:** todo PR passa pelo **Uncle Bob - Specialist Code Reviewer** e pelo **Linus Torvalds - Specialist Security** antes do meu ok, barrando funções acopladas ou componentes inchados antes do merge.
 - **O CI é o freio mecânico:** a **Shannon Lietz - DevSecOps** mantém os checks automatizados nos pipelines de GitHub Actions. Linter, tipagem e análise estática não têm conversa: se o portão barra, o agente precisa refatorar antes de pedir minha aprovação.
 
 ```mermaid
