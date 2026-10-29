@@ -128,7 +128,7 @@ function trackOutbound(eventName, href) {
 }
 ```
 
-De quebra, `chat_start` passou a disparar na abertura do chat, no máximo uma vez por sessão da aba (marcado em `sessionStorage`), para não inflar conversões. Já o `cta_click` é um evento interno, de leitura de funil, e não conta como conversão.
+De quebra, `chat_start` foi ajustado para disparar na abertura do chat, no máximo uma vez por sessão da aba (marcado em `sessionStorage`), para não inflar conversões. Esse comportamento está coberto por testes, mas ainda não foi observado em produção. Já o `cta_click` é um evento interno, de leitura de funil, e não conta como conversão.
 
 **Trava.** Dois testes novos, um para o envio via beacon com navegação garantida e outro para a deduplicação de `chat_start`, levando a suíte a 24 testes.
 
