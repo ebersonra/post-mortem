@@ -49,7 +49,7 @@ A ideia deste post é uma só: **os agentes me deram velocidade, mas o que deixo
 | 09:04–09:19 | Revisão ética (CFP/LGPD), política de privacidade, headers de segurança (CSP/HSTS) |
 | 10:08 | GA4 com Consent Mode estrito + banner de cookies |
 | 10:29–10:39 | Pipeline de CI/release |
-| 10:40 | v0.1.0 — deploy falha (conflito entre `netlify-cli` e TypeScript) |
+| 10:40 | v0.1.0 — deploy falha (conflito entre a CLI do provedor e o TypeScript) |
 | 10:50 | v0.1.1 — primeiro deploy em produção |
 | 11:09 | v0.1.2 — correção do banner + versão no rodapé |
 | 12:33 | v0.2.0 — pronta para Ads: atribuição gclid/UTM, eventos `whatsapp_click`/`email_click`/`chat_start`, consentimento de Marketing, testes |
@@ -84,9 +84,9 @@ flowchart TD
 
 **Atribuição com allowlist.** Só `gclid`, `gbraid`, `wbraid` e `utm_*` são lidos da URL, guardados em `sessionStorage` e removidos da barra de endereço. Nada fora da lista é persistido.
 
-**CI/CD por label.** O fluxo, especificado pela Shannon Lietz, é: label no PR → tag → GitHub Release → deploy via Netlify CLI. Os builds automáticos da Netlify ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
+**CI/CD por label.** O fluxo, especificado pela Shannon Lietz, é: label no PR → tag → GitHub Release → deploy pela CLI do provedor de hospedagem estática. Os builds automáticos do provedor ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
 
-A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por um conflito entre o `netlify-cli` e o TypeScript, e dez minutos depois a v0.1.1 subiu. Falhar no pipeline é barato; falhar em produção, não.
+A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por um conflito entre a CLI do provedor e o TypeScript, e dez minutos depois a v0.1.1 subiu. Falhar no pipeline é barato; falhar em produção, não.
 
 ## 5. Bug 1 — A CSP bloqueava o GA4
 
@@ -134,7 +134,7 @@ De quebra, `chat_start` passou a disparar no máximo uma vez por sessão (marcad
 
 **Sintoma.** A validação automatizada recebeu `ERR_CONNECTION_CLOSED`. No meu celular, `DNS_PROBE_FINISHED_NXDOMAIN`. Parecia que o site tinha caído logo depois do deploy.
 
-**Diagnóstico.** Uma consulta DNS via DoH mostrou que o registro `.com.br` respondia NXDOMAIN — o domínio não existia. E não existia mesmo: o domínio que circulou numa mensagem de handoff entre agentes tinha um "i" a mais. O site esteve no ar o tempo todo.
+**Diagnóstico.** Uma consulta DNS via DoH mostrou que o registro do domínio respondia NXDOMAIN — o domínio não existia. E não existia mesmo: o domínio que circulou numa mensagem de handoff entre agentes tinha um "i" a mais. O site esteve no ar o tempo todo.
 
 **Causa.** Um dado crítico copiado de mensagem para mensagem, em vez de lido da fonte.
 
