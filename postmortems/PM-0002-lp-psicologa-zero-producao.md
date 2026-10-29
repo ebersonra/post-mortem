@@ -111,7 +111,7 @@ A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por u
 
 **Diagnóstico.** Duas coisas somadas. O transporte padrão do gtag agrupa e atrasa envios, e um link `mailto:` entrega o controle ao app de e-mail — a página pode perder o hit antes de enviá-lo. Além disso, esse hit também esbarrava na CSP do bug 1.
 
-**Correção.** Uma função `trackOutbound()` que envia com `transport_type: 'beacon'`, usa `event_callback` com `event_timeout` de 800 ms, tem um `setTimeout` de reserva e uma guarda contra execução dupla. Um esboço ilustrativo:
+**Correção.** Uma função `trackOutbound()` que envia com `transport_type: 'beacon'`, usa `event_callback` com `event_timeout` de 800 ms, tem um `setTimeout` de reserva e uma guarda contra execução dupla. Um esboço ilustrativo (ele assume que o handler de clique já chamou `preventDefault()` no link; sem isso, o navegador navega antes do envio e o esboço não serve):
 
 ```js
 function trackOutbound(eventName, href) {
@@ -172,7 +172,7 @@ Checklist que ficou para a próxima landing page:
 - [ ] Consentimento aceito antes de testar `gclid`
 - [ ] Versão no rodapé igual à da última release
 
-Resultado de campanha ainda não há: [MÉTRICA REAL: conversões registradas no GA4/Ads desde a v0.2.1].
+Resultado de campanha ainda não há; volto a este post quando houver dados.
 
 ## 11. Fechamento
 
