@@ -58,7 +58,7 @@ A ideia deste post é uma só: **os agentes me deram velocidade, mas o que deixo
 
 ## 3. Como consentimento, GA4 e Ads se conectam
 
-Antes dos bugs, o desenho. Nada de medição sai antes de a pessoa escolher, e personalização de anúncios nunca é concedida — não há remarketing.
+Antes dos bugs, o desenho. Nada de medição sai antes de a pessoa escolher, e personalização de anúncios nunca é concedida — não há remarketing. Também não há tag `AW-` na página: as conversões do Google Ads são importadas do GA4.
 
 ```mermaid
 flowchart TD
@@ -66,7 +66,7 @@ flowchart TD
     B --> C{Banner de cookies}
     C -->|Recusa| D[Nenhum cookie de medição]
     C -->|Aceita Estatísticas| E[analytics_storage = granted]
-    C -->|Aceita Marketing| F[ad_storage e ad_user_data = granted]
+    C -->|Aceita Marketing (requer Estatísticas)| F[ad_storage e ad_user_data = granted]
     E --> G[GA4 coleta page_view e eventos de conversão]
     F --> H[Atribuição de Google Ads por gclid/gbraid/wbraid]
     G --> I[GA4 vinculado ao Google Ads]
@@ -82,9 +82,9 @@ flowchart TD
 
 **Headers de segurança.** CSP restritiva e HSTS desde cedo. A CSP depois cobrou seu preço (bug 1), mas foi justamente por ela ser estrita que o problema ficou visível.
 
-**Atribuição com allowlist.** Só `gclid`, `gbraid`, `wbraid` e `utm_*` são lidos da URL, guardados em `sessionStorage` e removidos da barra de endereço. Nada fora da lista é persistido.
+**Atribuição com allowlist.** Só `gclid`, `gbraid`, `wbraid` e `utm_*` são lidos da URL, guardados em `sessionStorage` e removidos da barra de endereço após o envio do hit de `page_view`. Nada fora da lista é persistido. Com `ad_storage` negado, `ads_data_redaction` fica em `true`; `url_passthrough` fica em `false`. A página não carrega tag `AW-`: as conversões do Ads vêm importadas do GA4.
 
-**CI/CD por label.** O fluxo, especificado pela `Shannon Lietz - DevSecOps`, é: label no PR → tag → GitHub Release → deploy pela CLI do provedor de hospedagem estática. Os builds automáticos do provedor ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
+**CI/CD por label.** O fluxo, especificado pela `Shannon Lietz - DevSecOps`, é: label no PR (`release`, `release:minor` ou `release:major`) → tag → GitHub Release → deploy pela CLI do provedor de hospedagem estática. Os builds automáticos do provedor ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
 
 A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por um conflito entre a CLI do provedor e o TypeScript, e dez minutos depois a v0.1.1 subiu. Falhar no pipeline é barato; falhar em produção, não.
 
@@ -102,6 +102,8 @@ A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por u
 - connect-src 'self' https://*.analytics.google.com ...
 + connect-src 'self' https://analytics.google.com https://*.analytics.google.com ...
 ```
+
+Depois da correção, os hits de coleta passaram a responder 204 com `gcs=G111`.
 
 **Trava.** O checklist de validação em produção ganhou um item: zero erros de CSP no console e hits de coleta respondendo 204.
 
@@ -126,15 +128,15 @@ function trackOutbound(eventName, href) {
 }
 ```
 
-De quebra, `chat_start` passou a disparar no máximo uma vez por sessão (marcado em `sessionStorage`), para não inflar conversões.
+De quebra, `chat_start` passou a disparar na abertura do chat, no máximo uma vez por sessão da aba (marcado em `sessionStorage`), para não inflar conversões. Já o `cta_click` é um evento interno, de leitura de funil, e não conta como conversão.
 
-**Trava.** Dois testes novos: um para o envio via beacon com navegação garantida, outro para a deduplicação de `chat_start`.
+**Trava.** Dois testes novos, um para o envio via beacon com navegação garantida e outro para a deduplicação de `chat_start`, levando a suíte a 24 testes.
 
 ## 7. Bug 3 — O site "fora do ar" que nunca caiu
 
 **Sintoma.** A validação automatizada recebeu `ERR_CONNECTION_CLOSED`. No meu celular, `DNS_PROBE_FINISHED_NXDOMAIN`. Parecia que o site tinha caído logo depois do deploy.
 
-**Diagnóstico.** Uma consulta DNS via DoH mostrou que o registro do domínio respondia NXDOMAIN — o domínio não existia. E não existia mesmo: o domínio que circulou numa mensagem de handoff entre agentes tinha um erro de digitação no domínio. O site esteve no ar o tempo todo.
+**Diagnóstico.** Uma consulta DNS via DNS over HTTPS (DoH) mostrou que o registro do domínio respondia NXDOMAIN — o domínio não existia. E não existia mesmo: havia um erro de digitação no domínio que circulou numa mensagem de handoff entre agentes. O site esteve no ar o tempo todo.
 
 **Causa.** Um dado crítico copiado de mensagem para mensagem, em vez de lido da fonte.
 
