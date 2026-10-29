@@ -1,7 +1,7 @@
 ---
 title: "PM-0002 — Do zero à produção em ~16 h: a landing page ética que uma squad de agentes entregou"
 pm_id: PM-0002
-date: 2026-10-01 00:00:00 -0300
+date: 2026-10-01 12:00:00 -0300
 project: landing-page-psicologa
 project_name: Landing page para uma psicóloga
 summary: "Uma squad de agentes levou uma landing page para uma psicóloga do primeiro commit à produção em ~16 h. A velocidade veio dos agentes; o que a deixou pronta para produção foram as travas: ética do CFP e LGPD desde o primeiro commit, CI com releases por label e validação real em produção — que revelou 3 bugs."
@@ -84,7 +84,7 @@ flowchart TD
 
 **Atribuição com allowlist.** Só `gclid`, `gbraid`, `wbraid` e `utm_*` são lidos da URL, guardados em `sessionStorage` e removidos da barra de endereço. Nada fora da lista é persistido.
 
-**CI/CD por label.** O fluxo, especificado pela Shannon Lietz, é: label no PR → tag → GitHub Release → deploy pela CLI do provedor de hospedagem estática. Os builds automáticos do provedor ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
+**CI/CD por label.** O fluxo, especificado pela `Shannon Lietz - DevSecOps`, é: label no PR → tag → GitHub Release → deploy pela CLI do provedor de hospedagem estática. Os builds automáticos do provedor ficaram desligados para economizar custo — só sobe o que virou release. E a versão aparece no rodapé, para eu saber, olhando a página no celular, exatamente o que está no ar.
 
 A primeira release mostrou que a trava funciona: a v0.1.0 falhou no deploy por um conflito entre a CLI do provedor e o TypeScript, e dez minutos depois a v0.1.1 subiu. Falhar no pipeline é barato; falhar em produção, não.
 
@@ -134,7 +134,7 @@ De quebra, `chat_start` passou a disparar no máximo uma vez por sessão (marcad
 
 **Sintoma.** A validação automatizada recebeu `ERR_CONNECTION_CLOSED`. No meu celular, `DNS_PROBE_FINISHED_NXDOMAIN`. Parecia que o site tinha caído logo depois do deploy.
 
-**Diagnóstico.** Uma consulta DNS via DoH mostrou que o registro do domínio respondia NXDOMAIN — o domínio não existia. E não existia mesmo: o domínio que circulou numa mensagem de handoff entre agentes tinha um "i" a mais. O site esteve no ar o tempo todo.
+**Diagnóstico.** Uma consulta DNS via DoH mostrou que o registro do domínio respondia NXDOMAIN — o domínio não existia. E não existia mesmo: o domínio que circulou numa mensagem de handoff entre agentes tinha um erro de digitação no domínio. O site esteve no ar o tempo todo.
 
 **Causa.** Um dado crítico copiado de mensagem para mensagem, em vez de lido da fonte.
 
@@ -146,9 +146,9 @@ Para testar a atribuição, é preciso **aceitar o consentimento antes** de carr
 
 ## 9. Quem fez o quê na squad
 
-- **Jordan Walke** (frontend): escreveu os PRs, a CSP e os eventos, e fez a validação em produção.
-- **Larry Page & Sergey Brin** (GA4 e Ads): plano de tagueamento, checklist de Ads, revisão do PR de Ads, vínculo GA4–Ads e a proposta de campanha.
-- **Shannon Lietz** (DevSecOps): especificou o fluxo de CI, release e deploy.
+- **`Jordan Walke - Specialist React`** (frontend): escreveu os PRs, a CSP e os eventos, e fez a validação em produção.
+- **`Larry Page & Sergey Brin - Specialist GA4 & SEO`** (GA4 e Ads): plano de tagueamento, checklist de Ads, revisão do PR de Ads, vínculo GA4–Ads e a proposta de campanha.
+- **`Shannon Lietz - DevSecOps`** (DevSecOps): especificou o fluxo de CI, release e deploy.
 - **Eu**: decidi cada merge e cada release.
 
 Uma squad rápida precisa de um humano que segure o botão de publicar. Não por desconfiança dos agentes, mas porque é ali que alguém responde pela página de uma profissional de saúde.
