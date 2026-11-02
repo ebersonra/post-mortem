@@ -1,6 +1,6 @@
 ---
 title: "A cadeia de suprimentos dos agentes: a extensão que roda com as minhas permissões e o log que pode mentir"
-date: 2026-11-01 00:00:00 -0300
+date: 2026-11-05 09:00:00 -0300
 description: "Uma extensão oficial com backdoor no marketplace do Cursor e arquivos comuns que sequestram agentes de IA. Por que tudo o que o agente lê é parte da cadeia de suprimentos, e o que mudei na minha squad."
 tags: [seguranca, devsecops, supply-chain, ia, agentes, building-in-public]
 image:
@@ -28,7 +28,7 @@ O que o código injetado fazia, segundo a análise:
 - **Criava persistência** para sobreviver a reboot: LaunchAgent disfarçado de serviço da Apple no macOS, entrada `@reboot` no crontab no Linux, tarefa agendada ou script na pasta de inicialização no Windows.
 - **Mandava um "beacon" de reconhecimento** com hostname, usuário, e-mail global do Git e os **nomes** (não os valores) de variáveis de ambiente que pareciam chaves e tokens. Na prática, uma lista de quais credenciais existiam ali.
 
-Na [discussão no Hacker News](https://news.ycombinator.com/item?id=50300683), comentaristas citaram uma reportagem da Reuters segundo a qual a versão maliciosa ficou no ar por cerca de 11 horas, e o número de até ~5 mil usuários no marketplace do Cursor. Também apareceu a informação de que o Cursor disse que a extensão publicada ali não foi desenvolvida pela Anthropic. Trato esses detalhes como relatos de terceiros, não como confirmação minha.
+No [aviso de segurança do próprio Cursor](https://cursor.com/blog/claude-code-extension-security-notice), a versão maliciosa ficou disponível no marketplace entre cerca de 2h27 e 13h35 (horário do Pacífico) de 29/10/2026, perto de 11 horas, e o Cursor afirma que essas versões não foram desenvolvidas pela Anthropic. A [Reuters](https://www.streetinsider.com/Reuters/Cursor+says+up+to+5%2C000+users+affected+by+tampered+Claude+Code+extension/27260087.html) noticiou que, segundo o Cursor, até 5 mil usuários foram afetados. A [Microsoft Threat Intelligence](https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/) acrescentou que a Anthropic confirmou não ter desenvolvido o pacote e que o Visual Studio Marketplace e o npm não foram afetados. A [discussão no Hacker News](https://news.ycombinator.com/item?id=50300683) reúne mais relatos da comunidade.
 
 A frase da Phorion que mais me pegou foi esta: extensões rodam **com as permissões do editor e do usuário que o executa**. Uma extensão comprometida ganha acesso imediato a arquivos locais, código-fonte e ferramentas de desenvolvimento.
 
@@ -97,6 +97,9 @@ Na sua equipe, quem revisa o que os agentes leem antes de agir?
 ## Fontes
 
 - Phorion — [Official Claude Code Extension Compromise: Security Advisory](https://phorion.io/blog/offical-claude-code-vsx-compromise/)
+- Cursor — [Security notice: malicious version of Anthropic.claude-code (2.1.312 and 2.1.313)](https://cursor.com/blog/claude-code-extension-security-notice)
+- Reuters (via StreetInsider) — [Cursor says up to 5,000 users affected by tampered Claude Code extension](https://www.streetinsider.com/Reuters/Cursor+says+up+to+5%2C000+users+affected+by+tampered+Claude+Code+extension/27260087.html)
+- Microsoft Security Blog — [Inside a malicious Claude Code-branded extension and its persistent SSH backdoor](https://www.microsoft.com/en-us/security/blog/2026/10/30/inside-malicious-claude-code-branded-cursor-extension-persistent-ssh-backdoor/)
 - Hacker News — [Backdoor in Claude Code for VS Code extension on the Cursor Marketplace](https://news.ycombinator.com/item?id=50300683)
 - Forever Security — [Markdown Is the New Executable](https://forever.security/blog/hijacking-ai-agents-via-downloads-folder/)
 - The Hacker News — [Malicious File in Downloads Folder Tries to Trick AI Coding Agent Into Installing Malware](https://thehackernews.com/2026/10/malicious-file-in-downloads-folder.html)
