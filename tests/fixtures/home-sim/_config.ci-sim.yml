@@ -1,0 +1,2 @@
+# Overlay só para a simulação da home no CI: fixa site.time para datas controladas.
+time: 2099-12-31 00:00:00 -0300

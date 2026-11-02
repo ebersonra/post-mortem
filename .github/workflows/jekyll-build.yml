@@ -44,17 +44,8 @@ jobs:
         run: |
           set -euo pipefail
           grep -q 'post-card__type">Post-mortem' _site/index.html
-      - name: Simulate home with only articles in the top 8
-        run: |
-          set -euo pipefail
-          for i in 1 2 3 4 5 6 7 8 9; do
-            printf -- '---\ntitle: "Fixture CI flood %s"\ndate: 2099-01-0%s\ndescription: "Fixture CI."\n---\nFixture.\n' "$i" "$i" > "_articles/ci-flood-$i.md"
-          done
-          bundle exec jekyll build --future -d _site_flood
-          home=_site_flood/index.html
-          test "$(grep -c 'post-card__type">' "$home")" -eq 8
-          test "$(grep -c 'post-card__type">Post-mortem' "$home")" -eq 1
-          test "$(grep -c 'post-card__type">Artigo' "$home")" -eq 7
-          pm_line="$(grep -n 'post-card__type' "$home" | tail -1 | grep -c 'Post-mortem')"
-          test "$pm_line" -eq 1
-          rm -f _articles/ci-flood-*.md
+      - name: Simulate home with controlled fixtures (#20)
+        run: tests/home-sim.sh
+      - name: Cleanup simulation fixtures
+        if: always()
+        run: rm -f _articles/ci-flood-*.md postmortems/ci-pm-*.md

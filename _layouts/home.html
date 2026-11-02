@@ -1,12 +1,12 @@
 ---
 layout: default
 ---
-{% assign postmortems = site.pages | where: 'type', 'postmortem' %}
+{% assign postmortems = site.pages | where: 'type', 'postmortem' | where_exp: 'p', 'p.date <= site.time' %}
 {% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
 {% assign publications = postmortems | concat: published_articles | sort: 'date' | reverse %}
 {% comment %}
   A home mostra as 8 publicações mais recentes (1 manchete + 7 colunas).
-  Requisito (#20): sempre exibir ao menos um post-mortem. Se nenhum dos 8 for
+  Ver #20: exibe ao menos um post-mortem. Se nenhum dos 8 for
   post-mortem, o 8º item é substituído pelo post-mortem mais recente. Como ele é
   mais antigo que todos os 8, a ordem cronológica decrescente é preservada e não
   há duplicata.
