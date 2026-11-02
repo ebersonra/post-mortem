@@ -27,6 +27,29 @@ jobs:
         run: |
           mkdir -p _articles
           cp tests/fixtures/articles/ci-published-article.md "_articles/ci-published-article.md"
+      - name: Assert every post-mortem has a valid date in front matter
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=()
+          for f in postmortems/*.md; do
+            case "$f" in */index.md) continue ;; esac
+            files+=("$f")
+          done
+          if [ "${#files[@]}" -eq 0 ]; then
+            echo "FAIL: nenhum post-mortem encontrado em postmortems/"; exit 1
+          fi
+          bad=""
+          for f in "${files[@]}"; do
+            # Só o front matter (entre os dois primeiros '---') conta.
+            d=$(awk 'NR==1{if($0!="---")exit; next} $0=="---"{exit} /^date:/{sub(/^date:[[:space:]]*/,""); gsub(/^["\x27]|["\x27][[:space:]]*$/,""); print; exit}' "$f")
+            if [ -z "$d" ]; then bad="$bad\n  $f: sem date no front matter"; continue; fi
+            if ! printf '%s' "$d" | grep -Eq '^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])([ T]([01][0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?([[:space:]]*(Z|[+-][0-9]{2}:?[0-9]{2}))?)?[[:space:]]*$'; then
+              bad="$bad\n  $f: date inválida '$d'"
+            fi
+          done
+          if [ -n "$bad" ]; then printf 'FAIL: post-mortems com date ausente/inválida:%b\n' "$bad"; exit 1; fi
+          echo "OK: ${#files[@]} post-mortem(s) com date válida"
       - name: Build site
         run: bundle exec jekyll build
       - name: Assert article output and mixed listing
