@@ -34,7 +34,7 @@ O furo aparece logo em seguida: se o humano só atua no Tier 3, onde ele constr�
 
 ## Deskilling e "never-skilling"
 
-O texto cita dois exemplos de outras áreas: um estudo em que endoscopistas que usavam IA para detectar pólipos viram a taxa de detecção *sem* a IA cair de 28% para 22% depois de um período de uso, e a aviação, onde a FAA passou a exigir mais horas de voo manual para compensar a dependência do piloto automático.
+O texto cita dois exemplos de outras áreas: um estudo em que endoscopistas que usavam IA para detectar pólipos viram a taxa de detecção *sem* a IA cair de 28% para 22% depois de um período de uso, e a aviação, onde a FAA passou a recomendar que as companhias aéreas incentivem mais voo manual, para compensar a dependência do piloto automático.
 
 Para mim, a parte mais perigosa é que **você não sente acontecer**. A perda aparece como hiperprodutividade. Você se sente competente, os dashboards estão verdes, e um dia chega um incidente que não bate com nenhum padrão.
 
@@ -50,7 +50,7 @@ Na minha squad, quem implementa nunca aprova o próprio PR, e a revisão é feit
 
 ## O que estou mudando
 
-As duas propostas do texto são **ineficiência deliberada** (separar alguns incidentes, mesmo os que a IA resolveria, como treino humano, do jeito que a FAA exige horas de voo manual) e **projetar para o humano no loop, não do lado**. Traduzi isso para três práticas:
+As duas propostas do texto são **ineficiência deliberada** (separar alguns incidentes, mesmo os que a IA resolveria, como treino humano, do jeito que a FAA incentiva o voo manual) e **projetar para o humano no loop, não do lado**. Traduzi isso para três práticas:
 
 1. **Hipótese antes do agente.** Antes de pedir diagnóstico a um agente, escrevo em uma linha qual acho que é a causa. Depois comparo. [MÉTRICA REAL: quantas vezes minha hipótese bateu com a do agente num período]
 2. **Um incidente por [EXPERIÊNCIA REAL: período] sem atalho.** Pego um problema que o agente resolveria e investigo na mão: logs crus, métricas, código.
