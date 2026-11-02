@@ -40,3 +40,12 @@ jobs:
           pm_line="$(grep -n 'post-card__type">Post-mortem' _site/index.html | head -1 | cut -d: -f1)"
           test -n "$artigo_line" && test -n "$pm_line"
           test "$artigo_line" -lt "$pm_line"
+      - name: Assert home always lists a post-mortem (#20)
+        run: |
+          set -euo pipefail
+          grep -q 'post-card__type">Post-mortem' _site/index.html
+      - name: Simulate home with controlled fixtures (#20)
+        run: tests/home-sim.sh
+      - name: Cleanup simulation fixtures
+        if: always()
+        run: rm -f _articles/ci-flood-*.md postmortems/ci-pm-*.md
