@@ -3,6 +3,11 @@ title: "A IA não está substituindo o SRE, está tirando a prática dele: o que
 date: 2026-11-10 00:00:00 -0300
 description: "Um texto da SigNoz retoma as Ironias da Automação para mostrar como a IA pode atrofiar justamente as habilidades que importam no incidente inédito. O que isso me ensinou operando uma squad de agentes de IA."
 tags: [sre, observabilidade, incidentes, ia, agentes, building-in-public]
+image:
+  path: /assets/images/og/sre-deskilling-squad-de-agentes.png
+  alt: "Card do artigo A IA não está substituindo o SRE, está tirando a prática dele, no Tech Blog Bargainly"
+  width: 1200
+  height: 630
 ---
 
 # A IA não está substituindo o SRE, está tirando a prática dele: o que isso muda na minha squad de agentes
@@ -64,3 +69,11 @@ flowchart LR
 Nada disso é rejeitar a IA. O próprio texto deixa claro que a adoção vai continuar e ficar mais forte. O ponto é usar a squad de um jeito que me mantenha afiado para os 5% que ela não resolve.
 
 E você, já percebeu alguma habilidade sua enferrujando porque um agente passou a fazer por você?
+
+## Fontes
+
+- SigNoz — [AI Isn't Replacing SREs. It's Deskilling Them.](https://newsletter.signoz.io/p/ai-isnt-replacing-sres-its-deskilling), de Elizabeth
+- Hacker News — [AI isn't replacing SREs, it's deskilling them](https://news.ycombinator.com/item?id=50305693)
+- The Lancet Gastroenterology & Hepatology (via PubMed) — [Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: a multicentre, observational study](https://pubmed.ncbi.nlm.nih.gov/40816301/), de Budzyń et al. (2025)
+- FAA — [SAFO 13002: Manual Flight Operations](https://www.faa.gov/sites/faa.gov/files/other_visit/aviation_industry/airline_operators/airline_safety/SAFO13002.pdf) (2013)
+- FAA — [SAFO 17007: Manual Flight Operations Proficiency](https://www.faa.gov/sites/faa.gov/files/2022-11/SAFO17007.pdf) (2017)
