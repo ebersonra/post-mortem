@@ -46,7 +46,7 @@ Um detalhe que achei bonito: o workload `compare`, com cerca de duas mil linhas 
 Já escrevi aqui sobre [testes que passam pelo motivo errado](/artigos/testes-que-passam-pelo-motivo-errado.html). O ParticleDB é a versão em escala desse problema. Três práticas que recomendo e procuro seguir:
 
 1. **"Corrigido" não vale sem prova.** Um agente dizer que corrigiu não conta como evidência. O PR precisa de um teste que falha sem a correção e passa com ela, e quem revisa roda a suíte por conta própria. Vale perguntar: na sua squad, quantos "corrigido" foram aceitos só pela palavra do agente?
-2. **Todo PR precisa de um porquê.** Se nem eu nem o agente revisor conseguimos explicar a causa de um bug, ele não está entendido, mesmo com o CI verde. Changelog e descrição de PR com causa e correção são obrigatórios.
+2. **Todo PR precisa de um porquê.** Se nem eu nem o agente revisor conseguimos explicar a causa de um bug, ele não está entendido, mesmo com o CI verde. Changelog e descrição de PR com causa e correção deveriam ser obrigatórios.
 3. **Documentação não pode prometer mais que os testes.** Garantias escritas no README ou na doc ("seguro sob concorrência", "ACID") precisam apontar para um teste que as verifica. Se não houver teste, a frase sai. Um exercício que recomendo: reler o README do seu projeto procurando cada promessa e perguntando qual teste a sustenta.
 
 ```mermaid
