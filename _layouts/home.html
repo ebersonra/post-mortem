@@ -4,7 +4,21 @@ layout: default
 {% assign postmortems = site.pages | where: 'type', 'postmortem' %}
 {% assign published_articles = site.articles | where_exp: 'item', 'item.published != false' %}
 {% assign publications = postmortems | concat: published_articles | sort: 'date' | reverse %}
-{% assign latest = publications | first %}
+{% comment %}
+  A home mostra as 8 publicações mais recentes (1 manchete + 7 colunas).
+  Requisito (#20): sempre exibir ao menos um post-mortem. Se nenhum dos 8 for
+  post-mortem, o 8º item é substituído pelo post-mortem mais recente. Como ele é
+  mais antigo que todos os 8, a ordem cronológica decrescente é preservada e não
+  há duplicata.
+{% endcomment %}
+{% assign home_items = publications | slice: 0, 8 %}
+{% assign home_pm_count = home_items | where: 'type', 'postmortem' | size %}
+{% if home_pm_count == 0 and postmortems.size > 0 and home_items.size == 8 %}
+  {% assign latest_pm = postmortems | sort: 'date' | reverse | first %}
+  {% assign latest_pm_list = postmortems | where: 'url', latest_pm.url %}
+  {% assign home_items = publications | slice: 0, 7 | concat: latest_pm_list %}
+{% endif %}
+{% assign latest = home_items | first %}
 
 <section class="front-mast">
   <p class="kicker">Primeira página</p>
@@ -29,13 +43,13 @@ layout: default
     <h2 id="columns-heading" class="section-heading__title">Colunas</h2>
     <a class="text-link kicker-link" href="{{ '/archive/' | relative_url }}">Arquivo</a>
   </div>
-  {% if publications.size > 1 %}
+  {% if home_items.size > 1 %}
     <div class="front-columns__grid">
-      {% for post in publications offset: 1 limit: 7 %}
+      {% for post in home_items offset: 1 %}
         {% include post-card.html post=post %}
       {% endfor %}
     </div>
-  {% elsif publications.size == 1 %}
+  {% elsif home_items.size == 1 %}
     <p class="empty-state">Mais edições serão publicadas em breve.</p>
   {% else %}
     <p class="empty-state">Nenhuma publicação ainda.</p>
