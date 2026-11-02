@@ -3,6 +3,11 @@ title: "96 problemas e um \"Full ACID\" prematuro: o que a análise do Jepsen so
 date: 2026-11-12 00:00:00 -0300
 description: "O Jepsen testou o ParticleDB, um banco feito com forte apoio de LLMs, e encontrou 96 problemas, quase todos em um único nó, sem falhas injetadas. As lições sobre testes, documentação e confiança que levei para a minha squad de agentes."
 tags: [bancos-de-dados, testes, qualidade, ia, agentes, building-in-public]
+image:
+  path: /assets/images/og/jepsen-particledb-testes-e-llms.png
+  alt: "Card do artigo 96 problemas e um Full ACID prematuro: Jepsen e o ParticleDB, no Tech Blog Bargainly"
+  width: 1200
+  height: 630
 ---
 
 # 96 problemas e um "Full ACID" prematuro: o que a análise do Jepsen sobre o ParticleDB ensina a quem escreve código com agentes

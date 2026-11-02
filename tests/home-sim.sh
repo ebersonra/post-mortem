@@ -19,7 +19,7 @@ test "$(cards "$h" | sort | uniq -d | wc -l)" -eq 0
 test "$(grep -c 'post-card__type">Post-mortem' "$h")" -eq 1
 test "$(grep -c 'post-card__type">Artigo' "$h")" -eq 7
 cards "$h" | tail -1 | grep -q '/postmortems/ci-pm-latest'
-if grep -q 'ci-pm-future' "$h"; then echo "FAIL: ci-pm-future não deveria aparecer na home"; exit 1; fi
+! grep -q 'ci-pm-future' "$h"
 cards "$h" | head -1 | grep -q '/artigos/ci-flood-9'
 
 echo "Caso B: PM já está no top 8 -> home inalterada, sem PM extra"
@@ -31,6 +31,6 @@ test "$(cards "$h" | sort | uniq -d | wc -l)" -eq 0
 test "$(grep -c 'post-card__type">Post-mortem' "$h")" -eq 1
 cards "$h" | sed -n 4p | grep -q '/postmortems/ci-pm-in-top8'
 cards "$h" | tail -1 | grep -q '/artigos/ci-flood-3'
-if grep -q 'ci-pm-latest' "$h"; then echo "FAIL: ci-pm-latest não deveria aparecer na home"; exit 1; fi
-if grep -q 'ci-pm-future' "$h"; then echo "FAIL: ci-pm-future não deveria aparecer na home"; exit 1; fi
+! grep -q 'ci-pm-latest' "$h"
+! grep -q 'ci-pm-future' "$h"
 echo "OK"

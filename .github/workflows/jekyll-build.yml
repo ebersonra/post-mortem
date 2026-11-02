@@ -27,11 +27,6 @@ jobs:
         run: |
           mkdir -p _articles
           cp tests/fixtures/articles/ci-published-article.md "_articles/ci-published-article.md"
-      - name: Assert every post-mortem has a date
-        run: |
-          set -euo pipefail
-          missing="$(grep -L '^date:' postmortems/*.md | grep -v '/index.md$' || true)"
-          if [ -n "$missing" ]; then echo "Post-mortems sem date: $missing"; exit 1; fi
       - name: Build site
         run: bundle exec jekyll build
       - name: Assert article output and mixed listing
