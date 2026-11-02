@@ -12,7 +12,7 @@ image:
 
 # A IA não está substituindo o SRE, está tirando a prática dele: o que isso muda na minha squad de agentes
 
-Esta semana o texto [AI Isn't Replacing SREs. It's Deskilling Them.](https://newsletter.signoz.io/p/ai-isnt-replacing-sres-its-deskilling), da Elizabeth, da newsletter da SigNoz, [voltou a circular no Hacker News](https://news.ycombinator.com/item?id=50305693). A pergunta central dele me incomodou de um jeito bom: *quando a IA cuida de 95% da resposta a incidentes, você fica pior nos 5% que realmente importam?*
+No fim de outubro, o texto [AI Isn't Replacing SREs. It's Deskilling Them.](https://newsletter.signoz.io/p/ai-isnt-replacing-sres-its-deskilling), da Elizabeth, da newsletter da SigNoz, [voltou a circular no Hacker News](https://news.ycombinator.com/item?id=50305693). A pergunta central dele me incomodou de um jeito bom: *quando a IA cuida de 95% da resposta a incidentes, você fica pior nos 5% que realmente importam?*
 
 Eu não sou SRE de uma grande operação. Mas há algum tempo opero uma squad de agentes de IA especializados, e boa parte do trabalho operacional do meu dia (ler logs, levantar hipótese, revisar PR, rodar CI) passou a ser feita primeiro por eles. Então a pergunta vale para mim também. *(Nota: quem são os agentes da minha squad e qual o papel de cada um está em [Apresentando o squad](/artigos/apresentando-o-squad.html) e em [Por que troquei um assistente de IA por uma squad de agentes especializados](/artigos/squad-de-agentes-especializados.html). Os nomes são personas inspiradas em referências da área, usadas só para dar identidade a cada função, sem qualquer envolvimento das pessoas reais.)*
 
