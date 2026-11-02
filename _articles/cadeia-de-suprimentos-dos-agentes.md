@@ -1,6 +1,6 @@
 ---
 title: "A cadeia de suprimentos dos agentes: a extensão que roda com as minhas permissões e o log que pode mentir"
-date: 2026-11-05 09:00:00 -0300
+date: 2026-11-05 00:00:00 -0300
 description: "Uma extensão oficial com backdoor no marketplace do Cursor e arquivos comuns que sequestram agentes de IA. Por que tudo o que o agente lê é parte da cadeia de suprimentos, e o que mudei na minha squad."
 tags: [seguranca, devsecops, supply-chain, ia, agentes, building-in-public]
 image:
