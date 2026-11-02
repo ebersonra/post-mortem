@@ -34,7 +34,7 @@ jobs:
           for f in postmortems/*.md; do
             case "$f" in */index.md) continue ;; esac
             # Only the front matter (between the first two '---' lines) counts.
-            if ! awk 'NR==1 && $0!="---"{exit 1} NR>1 && $0=="---"{exit found?0:1} NR>1 && /^date:[[:space:]]*[^[:space:]]/{found=1} END{if(!found) exit 1}' "$f"; then
+            if ! awk 'NR==1 && $0!="---"{exit 1} NR>1 && $0=="---"{closed=1; exit} NR>1 && /^date:[[:space:]]*[^[:space:]]/{found=1} END{exit (closed && found) ? 0 : 1}' "$f"; then
               missing="$missing $f"
             fi
           done
