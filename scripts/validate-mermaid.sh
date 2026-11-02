@@ -5,7 +5,7 @@
 # Fails if no block is found, if the extracted count differs from the number of
 # opening fences, if a block is left unclosed, or if any block fails to render.
 #
-# Usage: scripts/validate-mermaid.sh [dir ...]   (default: postmortems _articles _posts)
+# Usage: scripts/validate-mermaid.sh [dir ...]   (default: postmortems _articles, plus _posts if present)
 # Requires: npm ci --ignore-scripts in tools/mermaid, and a Chrome binary in
 # PUPPETEER_EXECUTABLE_PATH (CI uses the runner's /usr/bin/google-chrome).
 set -euo pipefail
@@ -17,12 +17,16 @@ if [ ! -x "$tooldir/node_modules/.bin/mmdc" ]; then
   exit 1
 fi
 
-if [ "$#" -gt 0 ]; then candidates=("$@"); else candidates=(postmortems _articles _posts); fi
+# Default: postmortems/ and _articles/ are required, _posts/ is optional.
+# Explicit dirs (used by the self-tests) are all required.
+if [ "$#" -gt 0 ]; then required=("$@"); optional=(); else required=(postmortems _articles); optional=(_posts); fi
 dirs=()
-for d in "${candidates[@]}"; do
-  if [ -d "$d" ]; then dirs+=("$d"); else echo "aviso: diretório ausente, ignorado: $d" >&2; fi
+for d in "${required[@]}"; do
+  if [ -d "$d" ]; then dirs+=("$d"); else echo "Diretório obrigatório ausente: $d" >&2; exit 1; fi
 done
-if [ "${#dirs[@]}" -eq 0 ]; then echo "Nenhum diretório de conteúdo encontrado" >&2; exit 1; fi
+for d in "${optional[@]+"${optional[@]}"}"; do
+  if [ -d "$d" ]; then dirs+=("$d"); else echo "aviso: diretório opcional ausente, ignorado: $d" >&2; fi
+done
 
 out="$(mktemp -d)"
 trap 'rm -rf "$out"' EXIT
