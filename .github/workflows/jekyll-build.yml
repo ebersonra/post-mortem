@@ -30,8 +30,15 @@ jobs:
       - name: Assert every post-mortem has a date
         run: |
           set -euo pipefail
-          missing="$(grep -L '^date:' postmortems/*.md | grep -v '/index.md$' || true)"
-          if [ -n "$missing" ]; then echo "Post-mortems sem date: $missing"; exit 1; fi
+          missing=""
+          for f in postmortems/*.md; do
+            case "$f" in */index.md) continue ;; esac
+            # Only the front matter (between the first two '---' lines) counts.
+            if ! awk 'NR==1 && $0!="---"{exit 1} NR>1 && $0=="---"{exit found?0:1} NR>1 && /^date:[[:space:]]*[^[:space:]]/{found=1} END{if(!found) exit 1}' "$f"; then
+              missing="$missing $f"
+            fi
+          done
+          if [ -n "$missing" ]; then echo "Post-mortems sem date no front matter:$missing"; exit 1; fi
       - name: Build site
         run: bundle exec jekyll build
       - name: Assert article output and mixed listing
