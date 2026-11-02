@@ -1,0 +1,11 @@
+{
+  "name": "post-mortem-mermaid-validate",
+  "private": true,
+  "description": "Pinned mermaid-cli used by CI to validate ```mermaid blocks. mermaid is overridden to match the version loaded by _includes/head-custom.html.",
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "11.17.1"
+  },
+  "overrides": {
+    "mermaid": "11.17.2"
+  }
+}

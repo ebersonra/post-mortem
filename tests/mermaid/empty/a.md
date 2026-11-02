@@ -1,0 +1,5 @@
+# sem diagrama
+
+```js
+x()
+```

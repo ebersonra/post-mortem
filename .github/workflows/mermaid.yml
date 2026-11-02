@@ -1,20 +1,45 @@
-# Renders every ```mermaid block in post-mortems and articles with mermaid-cli,
+# Renders every mermaid block in post-mortems and articles with mermaid-cli
+# (pinned in tools/mermaid, mermaid overridden to the version the site loads),
 # so a diagram that breaks the parser fails the PR instead of production.
 name: mermaid
 
 on:
   push:
     branches: [main]
+    paths:
+      - 'postmortems/**'
+      - '_articles/**'
+      - '_posts/**'
+      - '_includes/head-custom.html'
+      - 'scripts/validate-mermaid.sh'
+      - 'scripts/test-validate-mermaid.sh'
+      - 'tests/mermaid/**'
+      - '.github/workflows/mermaid.yml'
+      - 'tools/mermaid/**'
   pull_request:
     branches: [main]
+    paths:
+      - 'postmortems/**'
+      - '_articles/**'
+      - '_posts/**'
+      - '_includes/head-custom.html'
+      - 'scripts/validate-mermaid.sh'
+      - 'scripts/test-validate-mermaid.sh'
+      - 'tests/mermaid/**'
+      - '.github/workflows/mermaid.yml'
+      - 'tools/mermaid/**'
 
 permissions:
   contents: read
 
 jobs:
   validate:
+    # GitHub-hosted, ephemeral runner only: the script launches Chrome with --no-sandbox.
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    env:
+      PUPPETEER_SKIP_DOWNLOAD: "1"
+      PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
@@ -22,5 +47,17 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
+      - name: Install pinned mermaid-cli
+        working-directory: tools/mermaid
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check mermaid version matches the site
+        run: |
+          set -euo pipefail
+          site=$(grep -o 'mermaid@[0-9.]*' _includes/head-custom.html | head -1 | cut -d@ -f2)
+          ci=$(node -p 'require("./tools/mermaid/node_modules/mermaid/package.json").version')
+          echo "site=$site ci=$ci"
+          [ "$site" = "$ci" ] || { echo "mermaid do CI ($ci) difere do site ($site)"; exit 1; }
+      - name: Self-test the validator
+        run: ./scripts/test-validate-mermaid.sh
       - name: Validate mermaid blocks
         run: ./scripts/validate-mermaid.sh
