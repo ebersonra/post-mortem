@@ -1,7 +1,7 @@
 ---
 title: "96 problemas e um \"Full ACID\" prematuro: o que a análise do Jepsen sobre o ParticleDB ensina a quem escreve código com agentes"
 date: 2026-11-12 00:00:00 -0300
-description: "O Jepsen testou o ParticleDB, um banco feito com forte apoio de LLMs, e encontrou 96 problemas, quase todos em um único nó, sem falhas injetadas. As lições sobre testes, documentação e confiança que levei para a minha squad de agentes."
+description: "O Jepsen testou o ParticleDB, um banco feito com forte apoio de LLMs, e encontrou 96 problemas, quase todos em um único nó, sem falhas injetadas. As lições sobre testes, documentação e confiança que valem para quem trabalha com uma squad de agentes."
 tags: [bancos-de-dados, testes, qualidade, ia, agentes, building-in-public]
 image:
   path: /assets/images/og/jepsen-particledb-testes-e-llms.png
@@ -43,11 +43,11 @@ Um detalhe que achei bonito: o workload `compare`, com cerca de duas mil linhas 
 
 ## O que isso muda na minha squad
 
-Já escrevi aqui sobre [testes que passam pelo motivo errado](/artigos/testes-que-passam-pelo-motivo-errado.html). O ParticleDB é a versão em escala desse problema. Três coisas que reforcei:
+Já escrevi aqui sobre [testes que passam pelo motivo errado](/artigos/testes-que-passam-pelo-motivo-errado.html). O ParticleDB é a versão em escala desse problema. Três práticas que recomendo e procuro seguir:
 
-1. **"Corrigido" não vale sem prova.** Um agente dizer que corrigiu não conta como evidência. O PR precisa de um teste que falha sem a correção e passa com ela, e quem revisa roda a suíte por conta própria. [EXPERIÊNCIA REAL: um caso em que um agente da squad declarou um bug corrigido e não estava]
+1. **"Corrigido" não vale sem prova.** Um agente dizer que corrigiu não conta como evidência. O PR precisa de um teste que falha sem a correção e passa com ela, e quem revisa roda a suíte por conta própria. Vale perguntar: na sua squad, quantos "corrigido" foram aceitos só pela palavra do agente?
 2. **Todo PR precisa de um porquê.** Se nem eu nem o agente revisor conseguimos explicar a causa de um bug, ele não está entendido, mesmo com o CI verde. Changelog e descrição de PR com causa e correção são obrigatórios.
-3. **Documentação não pode prometer mais que os testes.** Garantias escritas no README ou na doc ("seguro sob concorrência", "ACID") precisam apontar para um teste que as verifica. Se não houver teste, a frase sai. [EXPERIÊNCIA REAL: se já revisou a documentação de algum projeto com esse critério e o que encontrou]
+3. **Documentação não pode prometer mais que os testes.** Garantias escritas no README ou na doc ("seguro sob concorrência", "ACID") precisam apontar para um teste que as verifica. Se não houver teste, a frase sai. Um exercício que recomendo: reler o README do seu projeto procurando cada promessa e perguntando qual teste a sustenta.
 
 ```mermaid
 flowchart LR
