@@ -26,7 +26,7 @@ Os agentes rodam numa máquina de trabalho. O servidor de memória, o [ai-memory
 
 Do lado dos agentes, cada cliente MCP enxerga a memória como um servidor MCP comum, falando pelo [transporte stdio](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports): o cliente inicia um processo local e troca mensagens JSON-RPC pela entrada e saída padrão. Esse processo é um wrapper fino que leva as mensagens até o servidor do outro lado da tailnet.
 
-Na máquina de trabalho, o Tailscale roda em [modo userspace](https://tailscale.com/kb/1112/userspace-networking): ele não cria interface TUN e roda sem root. Nesse modo, quem quer falar com a tailnet passa pelo proxy SOCKS5 que o próprio `tailscaled` oferece. Na máquina pessoal, o [`tailscale serve`](https://tailscale.com/kb/1242/tailscale-serve) publica a porta HTTP do ai-memory só para dentro da tailnet.
+Na máquina de trabalho, o Tailscale roda em [modo userspace](https://tailscale.com/kb/1112/userspace-networking), sem criar interface TUN: o `tailscaled` funciona como proxy SOCKS5/HTTP, e as aplicações precisam ser configuradas para usá-lo. Na máquina pessoal, o [`tailscale serve`](https://tailscale.com/kb/1242/tailscale-serve) publica a porta HTTP do ai-memory só para dentro da tailnet.
 
 ```mermaid
 flowchart LR
@@ -60,24 +60,24 @@ exec <cliente-mcp-remoto> \
 
 A alternativa óbvia seria abrir uma porta na máquina pessoal e proteger com chave. Não quis. Uma porta exposta passa a receber varredura do mundo inteiro, e qualquer falha no servidor vira um problema público. A minha memória não precisa ser alcançável por ninguém além dos meus agentes.
 
-Com a tailnet, a superfície é outra: só dispositivos autenticados na minha rede privada chegam ao serviço, e o `tailscale serve` publica a porta apenas ali dentro. A chave de API continua existindo, mas como segunda camada, não como a única coisa entre o servidor e a internet. E o modo userspace me deixou rodar o Tailscale na máquina de trabalho sem criar interface TUN e sem root.
+Com a tailnet, a superfície é outra: só dispositivos autenticados na minha rede privada chegam ao serviço, e o `tailscale serve` publica a porta apenas ali dentro. A chave de API continua existindo, mas como segunda camada, não como a única coisa entre o servidor e a internet. E o modo userspace me deixou rodar o Tailscale na máquina de trabalho sem criar interface TUN: o `tailscaled` funciona como proxy SOCKS5/HTTP, e só as aplicações configuradas para usá-lo chegam à tailnet.
 
 ## Segurança
 
 Memória compartilhada é, por definição, um lugar onde informação de um agente chega a outro. Por isso defini as regras antes de gravar a primeira nota:
 
-- **Chave de API própria por cliente.** Cada cliente tem a sua, com label própria, guardada num arquivo legível só pelo dono. Dá para revogar uma sem afetar as outras.
-- **Menor privilégio.** Cada cliente recebe só o acesso de que precisa, nada além.
+- **Identidade própria e revogável por cliente.** Cada cliente tem a sua chave de API, com label própria, guardada num arquivo legível só pelo dono. Dá para rotacionar ou revogar uma por id sem afetar as outras.
+- **Menor privilégio.** As chaves nativas do ai-memory autenticam sempre no nível User, então nenhum cliente da squad chega às operações administrativas.
 - **Nada sensível na memória.** Segredos, telefones e conteúdo de mensagens não entram. A memória guarda decisões, convenções e resumos, não dados pessoais nem credenciais.
 - **O que vem da memória é dado, não instrução.** Um agente que lê uma nota trata o texto como informação a avaliar, nunca como ordem a cumprir. Isso fecha a porta para que uma nota mal escrita, ou maliciosa, faça um agente agir sozinho.
 
 ## O incidente do timeout
 
-A primeira versão não funcionou. As chamadas do MCP batiam no limite de 60 s e falhavam.
+A primeira versão não funcionou. As chamadas do MCP batiam no limite de 60 s e falhavam, na nossa medição.
 
 O culpado era o primeiro encaminhador entre o wrapper e a tailnet: um proxy HTTP em Python que bufferizava a resposta inteira antes de repassá-la. Com requisições curtas isso passa despercebido. Com as conexões longas que o MCP mantém, o proxy ficava esperando um "fim de resposta" que não chegava, e a chamada travava até estourar o tempo.
 
-A correção foi trocar o proxy por um encaminhador TCP com streaming, uma thread por conexão. Ele não interpreta HTTP: só copia bytes nos dois sentidos assim que chegam, passando pelo SOCKS5 do `tailscaled` até a porta HTTP que só é visível dentro da tailnet. Depois disso, a chamada autenticada respondeu em uns 2 s.
+A correção foi trocar o proxy por um encaminhador TCP com streaming, uma thread por conexão. Ele não interpreta HTTP: só copia bytes nos dois sentidos assim que chegam, passando pelo SOCKS5 do `tailscaled` até a porta HTTP que só é visível dentro da tailnet. Depois disso, a chamada autenticada respondeu em uns 2 s, na nossa medição.
 
 A lição técnica ficou registrada: num caminho que carrega protocolo de conexão longa, qualquer peça que espera a resposta completa vira um ponto de travamento.
 
@@ -105,3 +105,4 @@ E você, como os seus agentes compartilham contexto hoje: por uma memória comum
 - ai-memory — [akitaonrails/ai-memory no GitHub](https://github.com/akitaonrails/ai-memory)
 - ai-memory — [Release v3.3.2](https://github.com/akitaonrails/ai-memory/releases/tag/v3.3.2)
 - ai-memory — [README, seção Security](https://github.com/akitaonrails/ai-memory#security)
+- ai-memory — [docs/users.md, §5 "Issue, rotate, or revoke a native API key" (v3.3.2)](https://github.com/akitaonrails/ai-memory/blob/v3.3.2/docs/users.md#5-issue-rotate-or-revoke-a-native-api-key), fonte de adicionar, rotacionar e revogar uma chave por id e do nível User das chaves nativas
