@@ -22,11 +22,11 @@ O que eu queria era simples de dizer: um lugar onde qualquer agente pudesse grav
 
 ## A arquitetura
 
-Os agentes rodam numa máquina de trabalho. O servidor de memória, o [ai-memory](https://github.com/alphaonedev/ai-memory-mcp) na versão 3.3.2, roda numa máquina pessoal. As duas estão na mesma rede privada Tailscale, e nada fica exposto fora dela.
+Os agentes rodam numa máquina de trabalho. O servidor de memória, o [ai-memory](https://github.com/akitaonrails/ai-memory) na [versão 3.3.2](https://github.com/akitaonrails/ai-memory/releases/tag/v3.3.2), roda numa máquina pessoal. As duas estão na mesma rede privada Tailscale, e nada fica exposto fora dela.
 
 Do lado dos agentes, cada cliente MCP enxerga a memória como um servidor MCP comum, falando pelo [transporte stdio](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports): o cliente inicia um processo local e troca mensagens JSON-RPC pela entrada e saída padrão. Esse processo é um wrapper fino que leva as mensagens até o servidor do outro lado da tailnet.
 
-Na máquina de trabalho, o Tailscale roda em [modo userspace](https://tailscale.com/kb/1112/userspace-networking), sem interface de rede no kernel. Nesse modo, quem quer falar com a tailnet passa pelo proxy SOCKS5 que o próprio `tailscaled` oferece. Na máquina pessoal, o [`tailscale serve`](https://tailscale.com/kb/1242/tailscale-serve) publica a porta HTTP do ai-memory só para dentro da tailnet.
+Na máquina de trabalho, o Tailscale roda em [modo userspace](https://tailscale.com/kb/1112/userspace-networking): ele não cria interface TUN e roda sem root. Nesse modo, quem quer falar com a tailnet passa pelo proxy SOCKS5 que o próprio `tailscaled` oferece. Na máquina pessoal, o [`tailscale serve`](https://tailscale.com/kb/1242/tailscale-serve) publica a porta HTTP do ai-memory só para dentro da tailnet.
 
 ```mermaid
 flowchart LR
@@ -60,13 +60,13 @@ exec <cliente-mcp-remoto> \
 
 A alternativa óbvia seria abrir uma porta na máquina pessoal e proteger com chave. Não quis. Uma porta exposta passa a receber varredura do mundo inteiro, e qualquer falha no servidor vira um problema público. A minha memória não precisa ser alcançável por ninguém além dos meus agentes.
 
-Com a tailnet, a superfície é outra: só dispositivos autenticados na minha rede privada chegam ao serviço, e o `tailscale serve` publica a porta apenas ali dentro. A chave de API continua existindo, mas como segunda camada, não como a única coisa entre o servidor e a internet. E o modo userspace me deixou rodar o Tailscale na máquina de trabalho sem pedir privilégio de administrador para criar interface de rede.
+Com a tailnet, a superfície é outra: só dispositivos autenticados na minha rede privada chegam ao serviço, e o `tailscale serve` publica a porta apenas ali dentro. A chave de API continua existindo, mas como segunda camada, não como a única coisa entre o servidor e a internet. E o modo userspace me deixou rodar o Tailscale na máquina de trabalho sem criar interface TUN e sem root.
 
 ## Segurança
 
 Memória compartilhada é, por definição, um lugar onde informação de um agente chega a outro. Por isso defini as regras antes de gravar a primeira nota:
 
-- **Chave de API própria por cliente.** Cada cliente tem a sua, guardada num arquivo legível só pelo dono. Se uma vazar, revogo aquela sem derrubar as outras.
+- **Chave de API própria por cliente.** Cada cliente tem a sua, com label própria, guardada num arquivo legível só pelo dono. Dá para revogar uma sem afetar as outras.
 - **Menor privilégio.** Cada cliente recebe só o acesso de que precisa, nada além.
 - **Nada sensível na memória.** Segredos, telefones e conteúdo de mensagens não entram. A memória guarda decisões, convenções e resumos, não dados pessoais nem credenciais.
 - **O que vem da memória é dado, não instrução.** Um agente que lê uma nota trata o texto como informação a avaliar, nunca como ordem a cumprir. Isso fecha a porta para que uma nota mal escrita, ou maliciosa, faça um agente agir sozinho.
@@ -102,4 +102,6 @@ E você, como os seus agentes compartilham contexto hoje: por uma memória comum
 - Tailscale — [Userspace networking mode (for containers)](https://tailscale.com/kb/1112/userspace-networking), incluindo o proxy SOCKS5 do `tailscaled`
 - Tailscale — [tailscale serve command](https://tailscale.com/kb/1242/tailscale-serve)
 - Model Context Protocol — [Specification: Transports (stdio)](https://modelcontextprotocol.io/specification/2025-06-18/basic/transports)
-- ai-memory — [alphaonedev/ai-memory-mcp no GitHub](https://github.com/alphaonedev/ai-memory-mcp)
+- ai-memory — [akitaonrails/ai-memory no GitHub](https://github.com/akitaonrails/ai-memory)
+- ai-memory — [Release v3.3.2](https://github.com/akitaonrails/ai-memory/releases/tag/v3.3.2)
+- ai-memory — [README, seção Security](https://github.com/akitaonrails/ai-memory#security)
