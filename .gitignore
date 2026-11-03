@@ -6,3 +6,4 @@ vendor/
 .bundle/
 
 scripts/og-card/.render-temp.html
+node_modules/

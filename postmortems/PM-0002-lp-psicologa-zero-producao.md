@@ -62,16 +62,16 @@ Antes dos bugs, o desenho. Nada de medição sai antes de a pessoa escolher, e p
 
 ```mermaid
 flowchart TD
-    A[Visitante chega à página] --> B[Consent Mode v2: tudo negado por padrão]
+    A[Visitante chega à página] --> B["Consent Mode v2: tudo negado por padrão"]
     B --> C{Banner de cookies}
     C -->|Recusa| D[Nenhum cookie de medição]
-    C -->|Aceita Estatísticas| E[analytics_storage = granted]
-    C -->|Aceita Marketing (requer Estatísticas)| F[ad_storage e ad_user_data = granted]
+    C -->|Aceita Estatísticas| E["analytics_storage = granted"]
+    C -->|"Aceita Marketing (requer Estatísticas)"| F["ad_storage e ad_user_data = granted"]
     E --> G[GA4 coleta page_view e eventos de conversão]
-    F --> H[Atribuição de Google Ads por gclid/gbraid/wbraid]
+    F --> H["Atribuição de Google Ads por gclid/gbraid/wbraid"]
     G --> I[GA4 vinculado ao Google Ads]
     H --> I
-    B -.-> J[ad_personalization = sempre denied, sem remarketing]
+    B -.-> J["ad_personalization = sempre denied, sem remarketing"]
 ```
 
 ## 4. As travas que vieram antes da velocidade
