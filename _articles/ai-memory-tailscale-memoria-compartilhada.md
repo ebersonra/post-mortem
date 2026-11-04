@@ -1,6 +1,6 @@
 ---
 title: "Memória compartilhada para uma squad de agentes: ai-memory num servidor caseiro via Tailscale"
-date: 2026-11-17 00:00:00 -0300
+date: 2026-11-06 00:00:00 -0300
 description: "Como dei à minha squad de agentes uma memória comum com o ai-memory rodando numa máquina pessoal, alcançada por uma rede privada Tailscale, e o timeout que me ensinou a não bufferizar conexões longas."
 tags: [ia, agentes, mcp, tailscale, seguranca, building-in-public]
 image:
