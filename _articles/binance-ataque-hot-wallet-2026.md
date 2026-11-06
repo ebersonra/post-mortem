@@ -20,7 +20,7 @@ Escrevo isto como engenheiro que acompanha incidentes públicos para melhorar o 
 
 No [Security Incident Update de 30 de outubro de 2026](https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7), a Binance estimou o impacto total em torno de **US$ 6,3 bilhões**. Naquele comunicado preliminar, a hipótese inicial apontava para o laptop comprometido de um engenheiro DevOps, que teria permitido acesso a um *service container* e a *withdrawals* não autorizados. A empresa afirmou **não ter encontrado evidência de vazamento de private key** de carteira e prometeu um post-mortem técnico detalhado quando a investigação estivesse completa.
 
-Três dias depois, o quadro ficou maior. Em briefing coberto pelo [CoinDesk em 3 de novembro de 2026](https://www.coindesk.com/business/2026/11/03/binance-s-usd6-3-billion-hack-began-with-a-fake-job-interview-exchange-says) e pelo [CNBC no mesmo dia](https://www.cnbc.com/2026/11/03/binance-co-ceo-teng-says-hackers-used-fake-job-interviews-to-steal-6point3-billion-in-crypto.html), o co-CEO Richard Teng rejeitou a leitura de “um único ponto de falha num notebook” e descreveu uma campanha de meses. Segundo a cobertura do CoinDesk, a Binance afirmou que o **FBI** atribuiu o ataque a atores ligados à Coreia do Norte (grupo TraderTraitor / Lazarus). No CNBC, Teng **não atribuiu pessoalmente** o ataque à Coreia do Norte, mas reconheceu o vínculo apontado pelo FBI.
+Três dias depois, o quadro ficou maior. Em briefing coberto pelo [CoinDesk em 3 de novembro de 2026](https://www.coindesk.com/business/2026/11/03/binance-s-usd6-3-billion-hack-began-with-a-fake-job-interview-exchange-says) e pelo [CNBC no mesmo dia](https://www.cnbc.com/2026/11/03/binance-co-ceo-teng-says-hackers-used-fake-job-interviews-to-steal-6point3-billion-in-crypto.html), o co-CEO Richard Teng rejeitou a leitura de “um único ponto de falha num notebook” e descreveu uma campanha de meses. Segundo a Binance e a imprensa (CoinDesk e CNBC, 3/11/2026), o FBI teria atribuído o ataque a atores ligados à Coreia do Norte (grupo TraderTraitor / Lazarus) — isso é o que a exchange/reportagem relatam, **não** uma declaração do FBI que eu tenha verificado diretamente. No CNBC, o co-CEO Richard Teng **não atribuiu pessoalmente** o ataque à Coreia do Norte, mas reconheceu o vínculo que a imprensa associa ao FBI.
 
 Números que aparecem nas fontes — sempre com data e emissor:
 
@@ -31,7 +31,7 @@ Números que aparecem nas fontes — sempre com data e emissor:
 | ~US$ 3B | Ativos congelados on-chain | Binance, update de 30/10/2026 |
 | ~US$ 2,85B | Ativos frozen/intercepted | CoinDesk e CNBC, 3/11/2026 (número de outra data; não misturar com os ~US$ 3B do dia 30) |
 | ~98% | Tokens afetados reabastecidos com fundos da empresa | CNBC e CoinDesk, 3/11/2026 — reposição ≠ recuperação dos fundos roubados |
-| 57 | Tentativas suspeitas ligadas a NK que a Binance diz ter bloqueado no ano | CoinDesk, 3/11/2026 (claim da empresa) |
+| 57 | Tentativas que a Binance descreve como suspeitas e ligadas a NK, bloqueadas no ano | CoinDesk, 3/11/2026 (claim da empresa, via imprensa) |
 
 A Binance afirmou que cobriria as perdas com o fundo SAFU e recursos próprios, e que os fundos dos usuários estavam seguros ([anúncio de 30/10](https://www.binance.com/en/support/announcement/detail/c5a8729a97ac486d963784d96c5642d7)).
 
