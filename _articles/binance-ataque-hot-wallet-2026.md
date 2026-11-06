@@ -80,13 +80,13 @@ Trocar device e rotacionar credenciais em junho **não encerrou** a campanha: o 
 
 ```mermaid
 flowchart TD
-  A[Fake job / tooling AI adulterado] --> B[Device e identidade de engenheiro]
-  B --> C[Ferramenta interna de AI]
-  C --> D[Engenheiros de wallet]
-  D --> E[Credenciais de deploy / signing]
-  E --> F[Hot wallet + EIP-7702]
-  F --> G[Outflows não autorizados]
-  G --> H[Suspender withdrawals / revoke / freeze / reposição]
+  A["Fake job / tooling AI adulterado"] --> B["Device e identidade de engenheiro"]
+  B --> C["Ferramenta interna de AI"]
+  C --> D["Engenheiros de wallet"]
+  D --> E["Credenciais de deploy / signing"]
+  E --> F["Hot wallet + EIP-7702"]
+  F --> G["Outflows não autorizados"]
+  G --> H["Suspender withdrawals / revoke / freeze / reposição"]
 ```
 
 ## O que eu levo para a minha rotina
