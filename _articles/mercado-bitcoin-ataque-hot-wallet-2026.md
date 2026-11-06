@@ -12,7 +12,7 @@ image:
 
 # O ataque ao Mercado Bitcoin: hot wallets, contenção e o que a blockchain ainda não explica
 
-Quatro dias depois do incidente da Binance, na madrugada de **2 de novembro de 2026**, o Mercado Bitcoin — a maior exchange de criptomoedas do Brasil — sofreu um ataque que esvaziou **carteiras quentes**. Li o comunicado da corretora, o relato da Chainalysis e as análises on-chain da Bitquery e da Paradigma Education (via imprensa) com a mesma pergunta que faço em todo post-mortem externo: o que disso eu consigo aplicar amanhã, sem inventar causa raiz que a empresa ainda não publicou?
+Quatro dias depois do incidente da Binance, na madrugada de **2 de novembro de 2026**, o Mercado Bitcoin — que a [Chainalysis](https://www.chainalysis.com/blog/chainalysis-response-mercado-bitcoin/) descreveu, em 2/11/2026, como a maior exchange cripto do Brasil — sofreu um ataque que esvaziou **carteiras quentes**. Li o comunicado da corretora, o relato da Chainalysis e as análises on-chain da Bitquery e da Paradigma Education (via imprensa) com a mesma pergunta que faço em todo post-mortem externo: o que disso eu consigo aplicar amanhã, sem inventar causa raiz que a empresa ainda não publicou?
 
 Escrevo em primeira pessoa, como faço nos outros artigos deste blog, e levo as lições para a minha squad. *(Nota: quem são os agentes da minha squad e qual o papel de cada um está em [Apresentando o squad](/artigos/apresentando-o-squad.html) e em [Por que troquei um assistente de IA por uma squad de agentes especializados](/artigos/squad-de-agentes-especializados.html) — os nomes, como `Linus Torvalds - Specialist Security` e `Shannon Lietz - DevSecOps`, são personas inspiradas em referências da área apenas para dar identidade a cada função, sem qualquer envolvimento das pessoas reais.)*
 
@@ -121,15 +121,15 @@ Aqui o MB ainda não publicou vetor de entrada. Mesmo assim, o contexto da seman
 
 ```mermaid
 flowchart TD
-  A[Outflow anômalo hot wallet] --> B[Alarme + freeze de saques]
-  B --> C[Mapear TXs e endereços]
-  C --> D[Emissores + LE + intel]
-  D --> E[Freeze de stablecoins]
-  C --> F[Validar deposit-key hierarchy]
-  F --> G{Ainda assina?}
-  G -->|sim| H[Revogar / rotacionar / cold path]
-  G -->|não| I[Evidência on-chain de contenção]
-  I --> J[Comunicado: escopo + garantia + anti-golpe]
+  A["Outflow anômalo hot wallet"] --> B["Alarme + freeze de saques"]
+  B --> C["Mapear TXs e endereços"]
+  C --> D["Emissores + LE + intel"]
+  D --> E["Freeze de stablecoins"]
+  C --> F["Validar deposit-key hierarchy"]
+  F --> G{"Ainda assina?"}
+  G -->|"sim"| H["Revogar / rotacionar / cold path"]
+  G -->|"não"| I["Evidência on-chain de contenção"]
+  I --> J["Comunicado: escopo + garantia + anti-golpe"]
 ```
 
 ## O que eu levo para a minha rotina
