@@ -3,6 +3,8 @@ description: Post-mortems blameless públicos (versões sanitizadas) — Tech Bl
 theme: jekyll-theme-minimal
 lang: pt-BR
 timezone: America/Sao_Paulo
+# Do not publish posts dated in the future until their date arrives (explicit Jekyll embargo).
+future: false
 markdown: kramdown
 kramdown:
   input: GFM
