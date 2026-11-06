@@ -28,24 +28,37 @@ Na [atualização oficial de 2 de novembro de 2026, às 21h](https://central.aju
 
 Em **4 de novembro de 2026**, o [Valor Econômico](https://valor.globo.com/financas/criptomoedas/noticia/2026/11/04/aps-ataque-hacker-mercado-bitcoin-reabre-acesso-gradual-a-contas-a-partir-de-2-feira.ghtml) noticiou, a partir de comunicado do MB, que o incidente envolveu **US$ 49,2 milhões**, que já haviam sido bloqueados **mais de US$ 15 milhões**, e que a reabertura seria gradual a partir de **9 de novembro** (site em modo consulta); saques e negociação ainda sem prazo definido, cobertos com recursos próprios.
 
+No [FAQ público do MB](https://central.ajuda.mercadobitcoin.com.br/wiki/spaces/TF/pages/2968387585/Perguntas+Frequentes), a corretora também afirma que, “neste momento”, o valor dos ativos envolvidos é de cerca de **US$ 36,3 milhões** (com mais de US$ 15 milhões já bloqueados). Essa página **não exibe data de atualização verificável**; trato a cifra como estava nos **dados apurados até 05/11/2026**, em paralelo às estimativas anteriores do próprio MB e da Bitquery — não como correção que invalida os snapshots de 2–4/11.
+
 ## Números: mesma história, rótulos diferentes
 
-Não misturo fontes. Cada cifra abaixo leva emissor e data:
+**Dados apurados até 05/11/2026.** Cifras mudam com cotação, freezes e releituras on-chain; estimativas anteriores **não são “falsas”** — são snapshots com data e método. Cada linha abaixo leva emissor e data.
+
+### Contagens Bitquery atualizadas em 5/11/2026
+
+A investigação da [Bitquery](https://bitquery.io/investigations/mercado-bitcoin-hack) (figuras on-chain verificadas em **5 de novembro de 2026**) separa três escopos que eu não misturo:
+
+1. **Hot wallets do MB — 10 blockchains.** Na madrugada de 2/11, em cerca de 25 minutos, as carteiras quentes do MB em **10** redes pagaram o atacante (Bitquery FAQ / seção “The night”).
+2. **Total atribuído ao MB — US$ 48,6 milhões em 11 blockchains.** O total de **US$ 48,6M** cobre **11** redes com perdas ligadas ao Mercado Bitcoin (hot wallets + varreduras adicionais de depósito em cadeias além do núcleo das 10). Inclui a varredura de endereços de depósito (ex.: 36.042 endereços ETH esvaziados entre 12:27 e 16:56 UTC, cerca de US$ 266 mil no agregado ETH; sweeps também em BNB Chain e Base, segundo a Bitquery).
+3. **Endereço do atacante em 17 blockchains (MB + BitMart).** A Bitquery vê o mesmo endereço do atacante em **17** cadeias no total — o mesmo número que a Chainalysis citou para “este hack”. **Só 11** dessas 17 mostram perdas do Mercado Bitcoin; o restante concentra, na leitura da Bitquery, perdas ligadas à **BitMart** (~**US$ 424 mil**, atualizado em 5/11; BitMart confirmou ter sido hackeada, sem publicar a cifra).
+
+Freeze on-chain na mesma atualização Bitquery: cerca de **US$ 11,8 milhões** congelados por emissores (maioria Tether, Circle e Paxos).
+
+### Outras estimativas (snapshots anteriores ou de outros emissores)
 
 | Número | Fonte e data | Nota |
 |---|---|---|
-| ~US$ 49 milhões | [Chainalysis, 2/11/2026](https://www.chainalysis.com/blog/chainalysis-response-mercado-bitcoin/) | “approximately $49 million” |
-| US$ 49 milhões / ~R$ 267 milhões | E-mail MB aos clientes (WB3News, 3/11/2026) | ~US$ 11M bloqueados + ~US$ 38M ainda não |
-| US$ 49,2 milhões | Valor citando atualização do MB, 4/11/2026 | |
-| US$ 48,5–48,6 milhões em **10** blockchains | Bitquery via WB3News e [CoinDesk, 5/11/2026](https://www.coindesk.com/pt-br/business/2026/11/05/mercado-bitcoin-hack-continued-hours-after-exchange-said-attack-was-contained-report-finds) | Contagem on-chain de pesquisadores |
-| Ativos em **17** blockchains | Chainalysis, 2/11/2026 | **Conflito** com os 10 da Bitquery — cito ambos, sem escolher um “certo” |
-| ~US$ 40 milhões | Alertas iniciais Hypernative (via WB3News) | Número inicial, depois supersedido |
-| US$ 45,1 milhões | Paradigma Education (hot wallets; via WB3News) | Escopo diferente |
+| ~US$ 49 milhões | [Chainalysis, 2/11/2026](https://www.chainalysis.com/blog/chainalysis-response-mercado-bitcoin/) | “approximately $49 million”; blog também fala em ativos em **17** blockchains (escopo do atacante / ondas) |
+| US$ 49 milhões / ~R$ 267 milhões | E-mail MB aos clientes (WB3News, 3/11/2026) | ~US$ 11M bloqueados + ~US$ 38M ainda não, naquele momento |
+| US$ 49,2 milhões | Valor citando atualização do MB, 4/11/2026 | Snapshot da corretora via imprensa |
+| US$ 48,5–48,6 milhões / “10 blockchains” | Bitquery via WB3News (3/11) e [CoinDesk, 5/11/2026](https://www.coindesk.com/pt-br/business/2026/11/05/mercado-bitcoin-hack-continued-hours-after-exchange-said-attack-was-contained-report-finds) | Leituras anteriores/intermediárias; a atualização Bitquery de 5/11 consolida **US$ 48,6M / 11 redes** para o MB |
+| ~US$ 40 milhões | Alertas iniciais Hypernative (via WB3News) | Primeiro alerta público |
+| US$ 45,1 milhões | Paradigma Education (hot wallets; via WB3News) | Escopo hot wallets |
 | ~US$ 11 milhões bloqueados | MB Central, 2/11 ~21h | |
-| nearly US$ 10 milhões / ~US$ 10,5 milhões on-chain | Chainalysis; levantamento WB3News | Métodos e horários diferentes do claim MB |
-| > US$ 15 milhões bloqueados | Valor / comunicado MB, 4/11/2026 | Atualização posterior |
-| ~US$ 261–266 mil | Bitquery: varredura de endereços de depósito ETH | Pequeno frente ao total das hot wallets |
-| ~US$ 391 mil | Bitquery/CoinDesk: wallets ligadas a BitMart, mesmo padrão de atacante | BitMart não confirmou o valor; **não é fato atribuído ao MB** |
+| nearly US$ 10 milhões / ~US$ 10,5 milhões on-chain | Chainalysis; levantamento WB3News (3/11) | Métodos e horários diferentes |
+| > US$ 15 milhões bloqueados | Valor / comunicado MB, 4/11/2026; FAQ MB | Atualização posterior da corretora |
+| ~US$ 391 mil (BitMart) | Bitquery/CoinDesk em leituras anteriores a 5/11 | Substituído na Bitquery 5/11 por ~**US$ 424 mil** — não chamo o 391k de erro; era contagem parcial |
+| **~US$ 36,3 milhões** | [FAQ do MB](https://central.ajuda.mercadobitcoin.com.br/wiki/spaces/TF/pages/2968387585/Perguntas+Frequentes) (“Neste momento… cerca de US$ 36,3 milhões”) | Página **sem data de atualização verificável** no HTML público; cito como estava **nos dados apurados até 05/11/2026**, não como cifra definitiva |
 
 A Chainalysis descreveu que, nas primeiras horas de 2 de novembro, o atacante moveu ativos em ondas e que a maior parte veio de Bitcoin e Ethereum, com varredura também em redes menores (Base, Tron, Polygon, entre outras citadas no blog).
 
@@ -55,9 +68,8 @@ A Chainalysis descreveu que, nas primeiras horas de 2 de novembro, o atacante mo
 - **2/11 03:19–03:53** — bloco principal; hot wallets enviam ao atacante cerca de 03:24–03:50 (Hypernative / Bitquery).
 - **03:41** — transação de cerca de **104,43 BTC** esvazia a hot wallet de bitcoin (mempool.space via WB3News).
 - Manhã — freezes começam (Tether, Paxos etc., conforme Bitquery/WB3News).
-- **09:10+** — varredura de dezenas de milhares de endereços de depósito na Ethereum (Bitquery).
-- **09:56** — MB anuncia identificação/contenção e suspende depósitos/saques.
-- **12:27–16:56 UTC** — segundo o [CoinDesk de 5/11](https://www.coindesk.com/pt-br/business/2026/11/05/mercado-bitcoin-hack-continued-hours-after-exchange-said-attack-was-contained-report-finds), a Bitquery registrou esvaziamento de endereços de depósito **depois** do anúncio de contenção (~12:56 UTC). Isso não prova má-fé; prova que “contido” no comunicado e “contido” on-chain podem divergir por horas.
+- **09:56 (Brasília)** — MB anuncia identificação/contenção e suspende depósitos/saques (~12:56 UTC).
+- **12:27–16:56 UTC** — na atualização de **5/11**, a [Bitquery](https://bitquery.io/investigations/mercado-bitcoin-hack) registra 36.042 endereços de depósito ETH esvaziados **depois** do anúncio de contenção (~12:56 UTC); sweeps adicionais em BNB Chain e Base. O [CoinDesk de 5/11](https://www.coindesk.com/pt-br/business/2026/11/05/mercado-bitcoin-hack-continued-hours-after-exchange-said-attack-was-contained-report-finds) ecoa essa janela. Isso não prova má-fé; prova que “contido” no comunicado e “contido” on-chain podem divergir por horas. (Leituras iniciais via WB3News falavam em início ~09:10 Brasília; a Bitquery corrigiu spam look-alike e consolidou a janela UTC acima.)
 - Noite de 2/11 — updates oficiais / e-mail com garantia ao cliente e cifras de freeze.
 
 ## Vetor de ataque: o que é fato e o que é hipótese
@@ -131,6 +143,8 @@ Na sua operação, você conseguiria provar em uma hora — com evidência on-ch
 ## Fontes
 
 - Mercado Bitcoin — [Atualização de 02/11, às 21h](https://central.ajuda.mercadobitcoin.com.br/wiki/spaces/TF/pages/2965700610)
+- Mercado Bitcoin — [Perguntas frequentes](https://central.ajuda.mercadobitcoin.com.br/wiki/spaces/TF/pages/2968387585/Perguntas+Frequentes) (cifra ~US$ 36,3M; lida nos dados apurados até 05/11/2026; página sem data de update verificável)
+- Bitquery — [Mercado Bitcoin Hack: $48.6M on 11 blockchains](https://bitquery.io/investigations/mercado-bitcoin-hack) (figuras on-chain verificadas 5/11/2026)
 - Chainalysis — [Mercado Bitcoin Hack: response and freezes](https://www.chainalysis.com/blog/chainalysis-response-mercado-bitcoin/) (2/11/2026)
 - Valor Econômico — [Após ataque hacker, Mercado Bitcoin reabre acesso gradual](https://valor.globo.com/financas/criptomoedas/noticia/2026/11/04/aps-ataque-hacker-mercado-bitcoin-reabre-acesso-gradual-a-contas-a-partir-de-2-feira.ghtml) (4/11/2026)
 - WB3News — [Hacker do Mercado Bitcoin teria usado o próprio sistema de saques](https://wb3news.com.br/noticia/ataque-hacker-mercado-bitcoin-49-milhoes) (3/11/2026)
