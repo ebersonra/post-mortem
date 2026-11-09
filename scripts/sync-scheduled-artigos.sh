@@ -12,7 +12,11 @@ if [[ "${1:-}" == "--check" ]]; then
 fi
 
 export TZ=America/Sao_Paulo
-now_epoch="$(date +%s)"
+if [[ -n "${SCHEDULED_SYNC_NOW:-}" ]]; then
+  now_epoch="$(date -d "$SCHEDULED_SYNC_NOW" +%s)"
+else
+  now_epoch="$(date +%s)"
+fi
 
 yaml_field() {
   local file="$1" key="$2"
@@ -91,17 +95,18 @@ done
 for stub in "$OUT"/*.md; do
   [[ -e "$stub" ]] || continue
   base="$(basename "$stub" .md)"
-  if ! grep -qxF "$base" "$want_list" 2>/dev/null; then
-    if [[ "$MODE" == check ]]; then
-      # Stubs órfãos após publicação não quebram o site (o artigo prevalece), mas mantemos o diretório limpo.
-      if [[ -f "$ARTICLES/$base.md" ]]; then
-        echo "FAIL: stub órfão $stub — rode scripts/sync-scheduled-artigos.sh" >&2
-        exit 1
-      fi
-    else
-      rm -f "$stub"
-    fi
+  if grep -qxF "$base" "$want_list" 2>/dev/null; then
+    continue
   fi
+  if [[ ! -f "$ARTICLES/$base.md" ]]; then
+    if [[ "$MODE" == check ]]; then
+      echo "FAIL: stub sem artigo em _articles/: $stub" >&2
+      exit 1
+    fi
+    rm -f "$stub"
+    continue
+  fi
+  # Artigo existe e já passou da data: o stub pode permanecer no repositório; no build o HTML do artigo prevalece.
 done
 
 if [[ "$MODE" == "check" ]]; then

@@ -30,7 +30,7 @@ assert_no_markers_in() {
   done
 }
 
-echo "Checagem: stubs agendados"
+echo "Checagem: stubs agendados (artigos ainda no futuro — relógio real)"
 ./scripts/sync-scheduled-artigos.sh --check
 
 echo "Caso 1: agora (antes das datas futuras) — placeholder, sem corpo"
@@ -91,6 +91,58 @@ assert_em_construcao "$html"
 if grep -q 'SECRETEMBARGO999' "$html"; then
   echo "FAIL: corpo do PM futuro vazou no HTML"
   exit 1
+fi
+
+echo "Caso 4: mesmos arquivos no disco — --check após datas (stubs retidos, sem remover)"
+export SCHEDULED_SYNC_NOW='2026-11-15 12:00:00 -0300'
+./scripts/sync-scheduled-artigos.sh --check
+unset SCHEDULED_SYNC_NOW
+
+cat > /tmp/embargo-all-published.yml <<'EOF'
+time: 2026-11-15 12:00:00 -0300
+EOF
+build "_config.yml,/tmp/embargo-all-published.yml" "_site_embargo_published"
+for slug in binance-ataque-hot-wallet-2026 jepsen-particledb-testes-e-llms sre-deskilling-squad-de-agentes mercado-bitcoin-ataque-hot-wallet-2026; do
+  f="_site_embargo_published/artigos/${slug}.html"
+  test -f "$f"
+  if grep -q 'em-construcao' "$f"; then
+    echo "FAIL: ainda placeholder após data para $slug (stubs devem ceder ao artigo)"
+    exit 1
+  fi
+  count=$(find "_site_embargo_published/artigos" -name "${slug}.html" | wc -l)
+  if [[ "$count" -ne 1 ]]; then
+    echo "FAIL: URL duplicada para $slug (count=$count)"
+    exit 1
+  fi
+done
+
+echo "Caso 5: feed/sitemap — cobertura do build atual"
+shopt -s nullglob
+feeds=( _site_embargo_published/feed.xml _site_embargo_published/atom.xml )
+found_feed=0
+for feed in "${feeds[@]}"; do
+  [[ -f "$feed" ]] || continue
+  found_feed=1
+  if grep -qE 'Richard Teng rejeitou|Lisanne Bainbridge|Kyle Kingsbury' "$feed"; then
+    echo "FAIL: corpo prematuro no feed"
+    exit 1
+  fi
+done
+if [[ "$found_feed" -eq 1 ]]; then
+  echo "feed presente e sem marcadores de corpo embargado (checagem básica)"
+else
+  echo "SKIP: feed não é gerado neste site (_config.yml não ativa jekyll-feed; tema minimal)"
+fi
+sitemaps=( _site_embargo_published/sitemap.xml _site_embargo_published/sitemap*.xml )
+found_sitemap=0
+for sm in "${sitemaps[@]}"; do
+  [[ -f "$sm" ]] || continue
+  found_sitemap=1
+done
+if [[ "$found_sitemap" -eq 1 ]]; then
+  echo "sitemap presente (checagem básica nos casos anteriores do build)"
+else
+  echo "SKIP: sitemap não é gerado neste site (_config.yml não ativa jekyll-sitemap)"
 fi
 
 echo "OK"
