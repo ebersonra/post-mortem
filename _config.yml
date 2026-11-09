@@ -21,6 +21,7 @@ exclude:
   - vendor
   - scripts
   - tests
+  - tools
 defaults:
   - scope:
       path: ""

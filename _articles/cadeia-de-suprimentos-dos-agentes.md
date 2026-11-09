@@ -1,7 +1,7 @@
 ---
 title: "A cadeia de suprimentos dos agentes: a extensão que roda com as minhas permissões e o log que pode mentir"
 date: 2026-11-05 00:00:00 -0300
-description: "Uma extensão oficial com backdoor no marketplace do Cursor e arquivos comuns que sequestram agentes de IA. Por que tudo o que o agente lê é parte da cadeia de suprimentos, e o que mudei na minha squad."
+description: "Uma extensão oficial com backdoor no marketplace do Cursor e arquivos comuns que sequestram agentes de IA. Por que tudo o que o agente lê é parte da cadeia de suprimentos, e o que procuro mudar na minha squad."
 tags: [seguranca, devsecops, supply-chain, ia, agentes, building-in-public]
 image:
   path: /assets/images/og/cadeia-de-suprimentos-dos-agentes.png
@@ -63,27 +63,27 @@ Um cenário **fictício** para deixar concreto: uma requisição de fora grava n
 
 E o editor é o mesmo problema visto de outro ângulo. As extensões que eu instalo rodam como eu. Elas enxergam os mesmos arquivos, os mesmos tokens no ambiente e as mesmas chaves SSH que eu. Não dá para tratar marketplace de extensões como algo mais confiável que um registro de pacotes só porque a instalação é um clique.
 
-## O que eu mudei
+## O que eu procuro fazer
 
-Nada disso tem solução mágica. "Diga ao modelo para não obedecer instruções do log" ajuda, mas não é fronteira de segurança, como lembraram vários comentários no post do DEV. Então mudei o processo, não só o prompt. Revisei as mudanças com o **Linus Torvalds - Specialist Security** e a **Shannon Lietz - DevSecOps**.
+Nada disso tem solução mágica. "Diga ao modelo para não obedecer instruções do log" ajuda, mas não é fronteira de segurança, como lembraram vários comentários no post do DEV. Por isso, o que procuro mudar é o processo, não só o prompt. Na squad, esse é o tipo de mudança que passa pelo **Linus Torvalds - Specialist Security** e pela **Shannon Lietz - DevSecOps**.
 
-**1. Quem lê não executa.** O agente que analisa logs de incidente roda sem ferramentas de escrita: não abre PR, não roda comando, não edita arquivo fora do rascunho. Ele produz texto, e só. Qualquer ação depois disso passa por outro agente e pela minha aprovação.
+**1. Quem lê não executa.** O que procuro garantir é que o agente que analisa logs de incidente rode sem ferramentas de escrita: não abre PR, não roda comando, não edita arquivo fora do rascunho. Ele deveria produzir texto, e só. Qualquer ação depois disso deveria passar por outro agente e por aprovação humana.
 
-**2. Log é evidência, não conversa.** O log bruto fica guardado como evidência original. O que vai para o agente é tratado explicitamente como dado não confiável, delimitado e citado, e o rascunho precisa apontar de qual linha veio cada afirmação. Se uma conclusão não tem linha de origem, ela não entra no post-mortem.
+**2. Log é evidência, não conversa.** Recomendo guardar o log bruto como evidência original. O que vai para o agente deveria ser tratado explicitamente como dado não confiável, delimitado e citado, e o rascunho deveria apontar de qual linha veio cada afirmação. Se uma conclusão não tem linha de origem, ela não deveria entrar no post-mortem.
 
-**3. Conclusão não vem do log sozinho.** Causa raiz e status de "resolvido" precisam bater com algo verificável fora do log: o SHA da correção na `main`, o resultado do CI, o estado do PR. É a mesma regra de [o merge levou o PR, mas não a correção](/artigos/o-merge-levou-o-pr.html), agora aplicada a quem escreve o relato.
+**3. Conclusão não vem do log sozinho.** O que procuro fazer é exigir que causa raiz e status de "resolvido" batam com algo verificável fora do log: o SHA da correção na `main`, o resultado do CI, o estado do PR. É a mesma regra de [o merge levou o PR, mas não a correção](/artigos/o-merge-levou-o-pr.html), agora aplicada a quem escreve o relato.
 
-**4. Revisão procura instrução onde deveria haver dado.** O checklist de revisão do rascunho ganhou um item: o texto do post-mortem contém algo que parece vir de uma instrução e não de um fato observado? Mudança brusca de tom, conclusão sem evidência, pedido para remover alerta ou fechar incidente são sinais para parar e reler o log original.
+**4. Revisão procura instrução onde deveria haver dado.** Vale incluir um item no checklist de revisão do rascunho: o texto do post-mortem contém algo que parece vir de uma instrução e não de um fato observado? Mudança brusca de tom, conclusão sem evidência, pedido para remover alerta ou fechar incidente são sinais para parar e reler o log original.
 
-**5. Pasta de trabalho é escolha consciente.** Agente nenhum abre em Downloads ou em pasta com arquivo que eu não conheço. Um `AGENTS.md` ou similar que eu não escrevi é lido por mim antes de qualquer agente chegar perto. E a configuração global dos agentes entrou no inventário: se mudou sem PR, é incidente.
+**5. Pasta de trabalho é escolha consciente.** Procuro não abrir agente em Downloads ou em pasta com arquivo que eu não conheço. Um `AGENTS.md` ou similar que eu não escrevi deveria ser lido por uma pessoa antes de qualquer agente chegar perto. E recomendo colocar a configuração global dos agentes no inventário: se mudou sem PR, é incidente.
 
-**6. Extensões entram no inventário de supply chain.** Listei as extensões instaladas no editor e removi as que não uso. Para as que ficaram, prefiro esperar um tempo antes de aceitar atualização nova, em vez de instalar no minuto em que sai. Quantas eu removi: [MÉTRICA REAL: número de extensões antes e depois da revisão]. E incluí na rotina de incidente as verificações que a Phorion recomenda: chaves SSH autorizadas, itens de inicialização e rotação das credenciais que a máquina alcança.
+**6. Extensões entram no inventário de supply chain.** Vale listar as extensões instaladas no editor e remover as que você não usa. Para as que ficam, prefiro esperar um tempo antes de aceitar atualização nova, em vez de instalar no minuto em que sai. Uma pergunta útil: quantas extensões no seu editor você instalaria de novo hoje? E recomendo incluir na rotina de incidente as verificações que a Phorion recomenda: chaves SSH autorizadas, itens de inicialização e rotação das credenciais que a máquina alcança.
 
-**7. Menos segredo no ambiente do editor.** Se uma extensão comprometida consegue listar os nomes das minhas variáveis de ambiente, quanto menos credencial de longa duração estiver ali, menor o prêmio. Tokens de escopo curto e por projeto, rotacionados com rotina. Tempo médio para rotacionar tudo que uma máquina alcança: [MÉTRICA REAL: tempo da última rotação completa].
+**7. Menos segredo no ambiente do editor.** Se uma extensão comprometida consegue listar os nomes das minhas variáveis de ambiente, quanto menos credencial de longa duração estiver ali, menor o prêmio. Tokens de escopo curto e por projeto, rotacionados com rotina. Vale perguntar: se a sua máquina fosse comprometida hoje, quanto tempo levaria para rotacionar tudo o que ela alcança?
 
 ## O que ainda não sei
 
-Ainda não testei de forma sistemática quantas vezes um log com instrução plantada consegue desviar o rascunho de um post-mortem no meu fluxo: [MÉTRICA REAL: taxa de desvio em testes com logs fictícios envenenados]. Esse teste, com vetores inventados e logs sintéticos, está na fila. Quando tiver o número, ele vem para cá, do jeito que vier.
+Não sei com que frequência um log com instrução plantada consegue desviar o rascunho de um post-mortem num fluxo como o meu. O caminho que recomendo para descobrir é testar de forma sistemática, com vetores inventados e logs sintéticos, nunca com dados reais. E fica a pergunta: você já testou o seu fluxo contra um log envenenado?
 
 ## Resumo
 
