@@ -43,6 +43,13 @@ defaults:
       layout: postmortem
       type: postmortem
   - scope:
+      path: "scheduled-artigos"
+    values:
+      layout: em-construcao
+      type: article
+      robots: noindex, nofollow
+      sitemap: false
+  - scope:
       type: "articles"
     values:
       layout: article

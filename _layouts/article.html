@@ -1,6 +1,10 @@
 ---
 layout: default
 ---
+{% include scheduled-publication.html item=page %}
+{% if scheduled %}
+  {% include em-construcao-panel.html type='article' publish_after=page.date title=page.title description=page.description %}
+{% else %}
 <article class="pm-article">
   <header class="pm-article__header">
     <p class="pm-article__id">Artigo</p>
@@ -27,3 +31,4 @@ layout: default
     {{ content }}
   </div>
 </article>
+{% endif %}

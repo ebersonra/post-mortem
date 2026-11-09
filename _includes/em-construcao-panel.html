@@ -1,0 +1,35 @@
+{% assign panel_title = include.title | default: page.title | default: "Publicação em breve" %}
+{% assign panel_publish_after = include.publish_after | default: page.publish_after | default: page.date %}
+<article class="pm-article em-construcao" aria-labelledby="em-construcao-heading">
+  <header class="pm-article__header">
+  {% if include.type == 'article' or page.type == 'article' %}
+    <p class="pm-article__id">Artigo</p>
+  {% elsif include.type == 'postmortem' or page.type == 'postmortem' %}
+    <p class="pm-article__id">{% if page.pm_id %}{{ page.pm_id | escape }}{% else %}Post-mortem{% endif %}</p>
+  {% endif %}
+    <dl class="pm-article__meta">
+      {% if panel_publish_after %}
+        <div>
+          <dt>Publicação prevista</dt>
+          <dd><time datetime="{{ panel_publish_after | date: '%Y-%m' }}">{% include date-pt.html date=panel_publish_after format='month-year' %}</time></dd>
+        </div>
+      {% endif %}
+    </dl>
+    {% assign panel_summary = include.description | default: page.description | default: page.summary %}
+    {% if panel_summary %}
+      <p class="pm-article__summary">{{ panel_summary | escape }}</p>
+    {% endif %}
+  </header>
+  <div class="em-construcao__panel prose">
+    <h1 id="em-construcao-heading" class="em-construcao__title">{{ panel_title | escape }}</h1>
+    <p class="em-construcao__lead">Este texto ainda está em construção e será publicado na data prevista acima. Enquanto isso, o conteúdo completo não está disponível.</p>
+    <p>
+      {% if include.type == 'article' or page.type == 'article' %}
+        <a class="text-link" href="{{ '/artigos/' | relative_url }}">Voltar ao índice de artigos</a>
+      {% elsif include.type == 'postmortem' or page.type == 'postmortem' %}
+        <a class="text-link" href="{{ '/postmortems/' | relative_url }}">Voltar ao índice de post-mortems</a>
+      {% endif %}
+      · <a class="text-link" href="{{ '/' | relative_url }}">Primeira página</a>
+    </p>
+  </div>
+</article>

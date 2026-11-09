@@ -1,3 +1,8 @@
+{% if page.date and page.date > site.time %}
+<meta name="robots" content="noindex, nofollow">
+{% elsif page.robots %}
+<meta name="robots" content="{{ page.robots | escape }}">
+{% endif %}
 {% include fonts.html %}
 <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
 <script defer src="{{ '/assets/js/site.js' | relative_url }}"></script>
