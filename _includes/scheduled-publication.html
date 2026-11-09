@@ -1,0 +1,11 @@
+{% comment %}
+  Defina `scheduled` como true quando a publicação ainda não está disponível (data futura).
+  Uso: {% include scheduled-publication.html item=page %}
+{% endcomment %}
+{% assign scheduled = false %}
+{% assign scheduled_item = include.item %}
+{% if scheduled_item.date %}
+  {% if scheduled_item.date > site.time %}
+    {% assign scheduled = true %}
+  {% endif %}
+{% endif %}

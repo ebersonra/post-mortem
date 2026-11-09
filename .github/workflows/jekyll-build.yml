@@ -27,6 +27,8 @@ jobs:
         run: |
           mkdir -p _articles
           cp tests/fixtures/articles/ci-published-article.md "_articles/ci-published-article.md"
+      - name: Assert scheduled stubs for future articles
+        run: TZ=America/Sao_Paulo ./scripts/sync-scheduled-artigos.sh --check
       - name: Assert every post-mortem has a valid date in front matter
         run: |
           set -euo pipefail
@@ -72,6 +74,8 @@ jobs:
           grep -q 'post-card__type">Post-mortem' _site/index.html
       - name: Simulate home with controlled fixtures (#20)
         run: tests/home-sim.sh
+      - name: Assert embargo placeholders for future-dated content
+        run: TZ=America/Sao_Paulo tests/embargo-future.sh
       - name: Cleanup simulation fixtures
         if: always()
         run: rm -f _articles/ci-flood-*.md postmortems/ci-pm-*.md

@@ -80,6 +80,8 @@ bundle exec jekyll build
 
    **Atenção:** `published: false` oculta a página no site gerado, mas o arquivo continua **público no repositório Git**. Não faça commit de rascunhos sobre assuntos sensíveis até estarem prontos para publicação.
 
+   **Datas futuras:** o site usa `future: false` no `_config.yml`. Cards e listagens podem mostrar artigos cuja `date` ainda não chegou, mas o Jekyll **não gera** a página do artigo até `site.time` atingir essa data. Para evitar 404 nos links, cada artigo futuro precisa de um stub em `scheduled-artigos/` (gerado por `./scripts/sync-scheduled-artigos.sh`). O stub exibe uma página **em construção** (sem corpo do artigo), com `noindex` e fora do sitemap. **Os stubs podem permanecer commitados após a data:** em um rebuild com `site.time` ≥ `date`, o HTML do artigo na collection substitui o placeholder na mesma URL (sem colisão de permalink). O CI só exige stub enquanto o artigo ainda está no futuro. Post-mortems com `date` futura usam o mesmo estado no layout, sem vazar o Markdown no HTML gerado.
+
 5. Índice público de artigos: `/artigos/`. A capa e o arquivo listam artigos e post-mortems juntos, ordenados por data. Se o mês ainda não tiver `archive/YYYY/MM/index.md`, o arquivo geral lista o mês como texto (sem link) até você criar a página — evita links 404.
 
 6. Ao publicar em um mês novo, crie os stubs de arquivo como nos post-mortems (passo 5 da seção de post-mortems).
