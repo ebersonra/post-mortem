@@ -33,8 +33,11 @@ assert_no_markers_in() {
 echo "Checagem: stubs agendados (artigos ainda no futuro — relógio real)"
 ./scripts/sync-scheduled-artigos.sh --check
 
-echo "Caso 1: agora (antes das datas futuras) — placeholder, sem corpo"
-build "_config.yml" "_site_embargo_now"
+echo "Caso 1: antes de todas as datas (relógio fixo) — placeholder, sem corpo"
+cat > /tmp/embargo-before-all.yml <<'EOF'
+time: 2026-10-01 00:00:00 -0300
+EOF
+build "_config.yml,/tmp/embargo-before-all.yml" "_site_embargo_now"
 for slug in binance-ataque-hot-wallet-2026 jepsen-particledb-testes-e-llms sre-deskilling-squad-de-agentes mercado-bitcoin-ataque-hot-wallet-2026; do
   f="_site_embargo_now/artigos/${slug}.html"
   if [[ ! -f "$f" ]]; then echo "FAIL: falta $f"; exit 1; fi
