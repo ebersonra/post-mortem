@@ -2,6 +2,11 @@
 title: "O teste passou no hardware errado: o que o apagão do Microsoft 365 ensina à minha squad"
 date: 2026-11-17 00:00:00 -0300
 description: "O relatório preliminar da Microsoft sobre o apagão de e-mail de 12 e 13 de novembro descreve um defeito de julho que o load test não viu, porque mediu o hardware errado. O que isso muda no jeito que eu leio um “testei e passou” da squad."
+image:
+  path: /assets/images/og/apagao-microsoft-365.png
+  alt: "Card do artigo O teste passou no hardware errado: o que o apagão do Microsoft 365 ensina à minha squad, no Tech Blog Bargainly"
+  width: 1200
+  height: 630
 tags: [sre, incidentes, testes, post-mortem, ia, agentes, building-in-public]
 ---
 
