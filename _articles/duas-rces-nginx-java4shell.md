@@ -4,7 +4,7 @@ date: 2026-11-24 00:00:00 -0300
 description: "Em 17 e 18 de novembro saíram falhas críticas de execução remota no HTTP/2 do NGINX e no decodificador Base64 do OpenJDK, as duas achadas com ajuda de IA. O que eu levo disso para o jeito como a minha squad de agentes trata patch, mitigação e inventário."
 image:
   path: /assets/images/og/duas-rces-nginx-java4shell.png
-  alt: "Card do Tech Blog Bargainly sobre as falhas de execução remota no NGINX e no Java4Shell"
+  alt: "Card do Tech Blog Bargainly com o título Duas RCEs na mesma semana: HTTP/2 do NGINX e Base64 do OpenJDK, a parte difícil vem antes do patch"
   width: 1200
   height: 627
 tags: [seguranca, vulnerabilidades, nginx, java, ia, agentes, building-in-public]
