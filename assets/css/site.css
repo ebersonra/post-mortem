@@ -834,18 +834,6 @@ button:focus-visible {
   line-height: 1.6;
 }
 
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .bmc-cta {
   margin-top: var(--space-8);
   padding: var(--space-5) var(--space-5) var(--space-6);
@@ -944,13 +932,17 @@ button:focus-visible {
   padding-top: 0.08em;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 560px) {
   .bmc-cta {
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
     text-align: left;
     gap: var(--space-4);
+  }
+
+  .bmc-cta__copy {
+    flex: none;
   }
 
   .bmc-cta__button {
