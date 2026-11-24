@@ -2,6 +2,11 @@
 title: "A Nvidia reconduziu Jensen Huang: o que a volta do CEO diz à minha squad sobre a era da IA"
 date: 2026-11-23 00:00:00 -0300
 description: "Em 23 de novembro, o conselho da Nvidia reconduziu Jensen Huang a CEO, 11 dias após a renúncia. A reação do mercado e as investigações que seguem abertas dizem mais sobre concentração na cadeia de IA do que sobre um comunicado."
+image:
+  path: /assets/images/og/nvidia-reconduz-jensen-huang.png
+  alt: "Capa do Tech Blog Bargainly para o artigo Nvidia reconduz Jensen Huang, com o logo da Nvidia entre bandeiras dos EUA e da China, uma explosão e Elon Musk rindo ao fundo"
+  width: 1200
+  height: 627
 tags: [ia, nvidia, governanca, cadeia-de-suprimentos, building-in-public]
 ---
 
