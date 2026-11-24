@@ -10,6 +10,7 @@ kramdown:
   input: GFM
 url: "https://tech.bargainly.com.br"
 baseurl: ""
+buymeacoffee_url: "https://buymeacoffee.com/bargainly"
 collections:
   articles:
     output: true
