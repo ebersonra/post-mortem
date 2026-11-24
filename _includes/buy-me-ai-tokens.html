@@ -1,0 +1,28 @@
+{% assign bmc_url = site.buymeacoffee_url | default: "https://buymeacoffee.com/bargainly" %}
+<aside class="bmc-cta" aria-labelledby="bmc-cta-title">
+  <div class="bmc-cta__copy">
+    <p class="bmc-cta__kicker">APOIE O BLOG</p>
+    <h2 class="bmc-cta__title" id="bmc-cta-title">Café já não paga os tokens.</h2>
+    <p class="bmc-cta__lead">
+      Se este texto economizou horas de debug ou trouxe uma boa ideia, ajude a bancar os tokens de IA das próximas edições.
+    </p>
+  </div>
+  <a
+    class="bmc-cta__button"
+    href="{{ bmc_url | escape }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Buy me AI tokens — apoie o blog no Buy Me a Coffee"
+  >
+    <img
+      class="bmc-cta__cup"
+      src="{{ '/assets/images/bmc-cup.svg' | relative_url }}"
+      width="28"
+      height="40"
+      alt=""
+      aria-hidden="true"
+      decoding="async"
+    />
+    <span class="bmc-cta__button-label">Buy me AI tokens</span>
+  </a>
+</aside>
