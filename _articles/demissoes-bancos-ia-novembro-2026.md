@@ -2,6 +2,11 @@
 title: "A fila encolheu, o time também: o que as demissões em bancos e fintechs dizem sobre IA no back-office"
 date: 2026-11-25 00:00:00 -0300
 description: "Itaú, BV, Inter, Nubank e Galapagos cortaram pessoal em novembro de 2026. Nem tudo é IA, mas onde a automação aparece, ela entrou pela fila do back-office. O que isso diz a quem trabalha em tecnologia e finanças, e a quem constrói com agentes."
+image:
+  path: /assets/images/og/demissoes-bancos-ia-novembro-2026.png
+  alt: "Capa do Tech Blog Bargainly: escritório de banco vazio, caixa de papelão com crachá numa mesa e uma fila de cartões verdes se desfazendo num chip de IA, com o título A fila encolheu. O time também."
+  width: 1200
+  height: 630
 tags: [ia, mercado-de-trabalho, bancos, automacao, agentes, building-in-public]
 ---
 
